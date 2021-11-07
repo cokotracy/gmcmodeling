@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="hr_emp_form_inh" model="ir.ui.view">
+		<field name="name">hr.emp.form.inh</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr.view_employee_form"/>
+		<field name="arch" type="xml">
+			<field name="job_id" position="after">
+				<field name="emp_code"/>
+			</field>
+			<field name="mobile_phone" position="before">
+				<field name="disp_name"/>
+			</field>
+			<field name="work_email" position="after">
+				<field name="email_status"/>
+				<field name="email_type"/>
+			</field>
+			<!-- <field name="identification_id" position="after">
+				<field name="identification_no"/>
+			</field> -->
+		</field>
+	</record>
+</odoo>
