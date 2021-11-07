@@ -1,0 +1,281 @@
+<odoo>
+    <data>
+        <record id="procurment_list" model="ir.actions.act_window">
+            <field name="name">Procurment list</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">procurment.list</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--      MENU ITEM Procurment List     -->
+        <menuitem id="menu_procurment_list" name="Procurment List" parent="odoo_job_costing_management.menu_job_managmt"
+                  sequence="3"/>
+        <menuitem id="menu_procurment_list2" name="Procurment List" parent="menu_procurment_list"
+                  sequence="1"
+                  action="procurment_list" groups="group_procurment_list_add"/>
+
+        <!-- Procurment List -->
+        <!--  FORM  -->
+        <record id="procurment_list_view_form" model="ir.ui.view">
+            <field name="name">procurment.list.form</field>
+            <field name="model">procurment.list</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="procurment list" duplicate="0">
+                    <header>
+                        <!-- <button name="confirm_procurment_list" string="Confirm Order" class="btn-primary" type="object"
+                                invisible="1"/> -->
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="send_to_pr" string="Send to PR" type="object" class="oe_stat_button">
+                            </button>
+                            <button name="send_to_po" string="Send to PO" type="object" class="oe_stat_button">
+                            </button>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="project_no"/>
+                                <field name="name"/>
+                                <field name="partner_id" options="{'no_create':True}"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group>
+                                <field name="department_id" options="{'no_create':True}"/>
+                                <field name="analytic_account_id" options="{'no_create':True}"/>
+                                <field name="discount"/>
+                                <!--                                <field name="type_send"/>-->
+                                <field name="picking_type_id"/>
+                                <field name="source_location_id"/>
+                                <field name="location_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <!--   PAGE FOR procurment Lines  -->
+                            <page string="Project tender">
+                                <field name="procurment_lines" nolabel="1" force_save="1">
+                                    <tree editable="bottom">
+                                        <field name="work_item_code" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="name" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="action_line" invisible="1"/>
+                                        <field name="item_type" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="product_code" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="product" options="{'no_create':True}"
+                                               attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="job_type_id" options="{'no_create':True}"
+                                               attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="planned_qty" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="cost_price" invisible="1"
+                                               attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="uom_id" options="{'no_create':True}"
+                                               attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="qty_actually" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="partial_qty" readonly="1"/>
+                                        <field name="taken_partial_qty" invisible="1"/>
+                                        <field name="remain_partial_qty"/>
+                                        <field name="vendor" options="{'no_create':True}"/>
+                                        <!--                                               attrs="{'readonly': [('action_line', '!=', 0)]}"-->
+                                        <field name="submitted_date"/>
+                                        <field name="returned_date"/>
+                                        <field name="type_send_line"/>
+                                        <field name="code" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="send_to_pr"
+                                               attrs="{'invisible': [('code', 'not in', ['a','b'])] ,'readonly': [('action_line', '!=', 0)] }"/>
+                                        <field name="send_to_po"
+                                               attrs="{'invisible': [('code', 'not in', ['a','b'])] , 'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="note" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="moved" invisible="1"/>
+                                        <!-- <field name="attachment" widget="many2many_binary" attrs="{'readonly': [('action_line', '!=', 0)]}"/> -->
+                                        <button class="oe_stat_button" name="attachment_view" type="object"
+                                                icon="fa-files-o"/>
+                                        <field name="doc_count"/>
+                                        <button class="oe_stat_button" name="create_submittal" type="object"
+                                                string="Submittal"/>
+                                    </tree>
+                                </field>
+
+                            </page>
+                            <page string="Sample List">
+                                <field name="sub_procurement_lines" nolabel="1" force_save="1">
+                                    <tree editable="bottom">
+                                        <field name="action_line" invisible="1"/>
+                                        <field name="parent_product" options="{'no_create':True}"/>
+                                        <field name="product" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="job_type_id" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="planned_qty" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="cost_price" invisible="1"
+                                               attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="uom_id" options="{'no_create':True}"
+                                               attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="qty_actually" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="vendor" options="{'no_create':True}"
+                                               attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="submitted_date"/>
+                                        <field name="returned_date"/>
+                                        <field name="code" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="send_to_pr"
+                                               attrs="{'invisible': [('code', 'not in', ['a','b'])] ,'readonly': [('action_line', '!=', 0)] }"/>
+                                        <field name="send_to_po"
+                                               attrs="{'invisible': [('code', 'not in', ['a','b'])] , 'readonly': [('action_line', '!=', 0)]}"/>
+                                        <field name="note" attrs="{'readonly': [('action_line', '!=', 0)]}"/>
+                                        <!-- <field name="attachment" widget="many2many_binary" attrs="{'readonly': [('action_line', '!=', 0)]}"/> -->
+                                        <button class="oe_stat_button" name="attachment_view" type="object"
+                                                icon="fa-files-o"/>
+                                        <field name="doc_count"/>
+                                        <button class="oe_stat_button" name="create_submittal" type="object"
+                                                string="Submittal"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+        <!--    TREE    -->
+        <record model="ir.ui.view" id="procurment_list_view_tree">
+            <field name="name">procurment.list.tree</field>
+            <field name="model">procurment.list</field>
+            <field name="arch" type="xml">
+                <tree string="Procurment List">
+                    <field name="name"/>
+                    <field name="project_no"/>
+                    <field name="partner_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_material_purchase_requisition_line_form_inherit" model="ir.ui.view">
+            <field name="name">material.purchase.requisition.line.form.inherit</field>
+            <field name="model">material.purchase.requisition</field>
+            <field name="inherit_id" ref="material_purchase_requisitions.material_purchase_requisition_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page['0']/field[@name='requisition_line_ids']/tree/field[@name='description']"
+                       position="after">
+                    <field name="cost_id" options="{'no_create':True}"/>
+                    <field name="job_cost_line_id" options="{'no_create':True}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="procurment_list_lines_attachment_view_tree">
+            <field name="name">procurment.list.lines.attachment.tree</field>
+            <field name="model">procurment.list.lines.attachment</field>
+            <field name="arch" type="xml">
+                <tree string="Procurment List Attachment">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="procurment_list_lines_attachment_view_form">
+            <field name="name">procurment.list.lines.attachment.form</field>
+            <field name="model">procurment.list.lines.attachment</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="procurment list" duplicate="0">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="doc_attachment_id" widget="many2many_binary" class="oe_inline"/>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_material_purchase_requisition_form_inherit" model="ir.ui.view">
+            <field name="name">material.purchase.requisition.form.inherit</field>
+            <field name="model">material.purchase.requisition</field>
+            <field name="inherit_id" ref="material_purchase_requisitions.material_purchase_requisition_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group['0']/group['1']/field[@name='analytic_account_id']" position="after">
+                    <field name="type_pr" attrs="{'readonly': [('id', '!=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_purchase_order_inherit_form" model="ir.ui.view">
+            <field name="name">view_purchase_order_inherit_form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name = 'print_quotation']" position="after">
+
+                    <field name="validate_done" invisible="1"/>
+                    <field name="is_need_confirm" invisible="1"/>
+                    <button name="validate_product" string="Validate" type="object" class="oe_highlight"
+                            attrs="{'invisible':['|', '|', ('is_need_confirm','=',False),('validate_done','=',True), ('state', 'in', ['cancel', 'done', 'purchase'])]}"
+                    />
+                    <xpath expr="//button[@id='draft_confirm']" position="after">
+                        <button name="gm_approve" type="object" states="dep_approved" string="GM Approve"
+                                class="oe_highlight"
+                                groups="wc_construction.rfq_pm_approve"/>
+                    </xpath>
+                </xpath>
+
+                <xpath expr="/form/sheet/notebook/page['0']/field[@name='order_line']/tree/field[@name='product_qty']"
+                       position="after">
+                    <field name="validate_qty" groups="procurment_list_project.group_control_po_validate"/>
+                </xpath>
+                <!-- <xpath expr="/form/sheet/notebook/page['0']/field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                    	<field name = "validate_price" groups="procurment_list_project.group_control_po_validate"/>
+
+				</xpath> -->
+
+                <xpath expr="//notebook/page/field/tree/field[@name='product_qty']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('parent.validate_done','=',True)]}</attribute>
+                </xpath>
+
+                <xpath expr="//notebook/page/field/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('parent.validate_done','=',True)]}</attribute>
+                </xpath>
+            </field>
+
+        </record>
+
+        <record id="view_account_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/field[@name='id']" position="after">
+                    <field name="type_bill" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_view_location_form" model="ir.ui.view">
+            <field name="name">view_inherit_view_location_form</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//field[@name='return_location']" position="after">
+                    <field name="is_default"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

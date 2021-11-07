@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <record id="view_contracts_form" model="ir.ui.view">
+            <field name="name">view_contracts_form</field>
+            <field name="model">contracts</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="name"/>
+                            <field name="customer_account_id"/>
+                            <field name="revenue_account_id"/>
+                            <field name="is_owner_contract"/>
+                            <field name="is_subcontractor_contract"/>
+                        </group>
+                        <notebook>
+                            <page name="conditions" string="Contract Conditions">
+                                <group>
+                                    <field name="terms_conditions"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_contracts_tree" model="ir.ui.view">
+            <field name="name">view_contracts_tree</field>
+            <field name="model">contracts</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="customer_account_id"/>
+                    <field name="revenue_account_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_contracts_view" model="ir.actions.act_window">
+            <field name="name">Contract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contracts</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_contracts_view" name="Contracts"
+                  parent="odoo_job_costing_management.menu_job_cost_configuration" action="action_contracts_view"
+                  sequence="32"/>
+    </data>
+</odoo>

@@ -1,0 +1,129 @@
+<odoo>
+    <data>
+        <template id="report_direct_line_doc">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 align="center">Custody Lines</h2>
+                        <table class="table table-condensed">
+                            <t t-set="value" t-value="0"/>
+                            <thead>
+                                <tr>
+                                    <th>Custody</th>
+                                    <th>Custody Status</th>
+                                    <th>Date</th>
+                                    <th>Employee</th>
+                                    <th>Department</th>
+                                    <th>Description</th>
+                                    <th>Customer</th>
+                                    <th>Asset</th>
+                                    <th>Analytic Account</th>
+                                    <th>Value</th>
+                                    <th>Approve</th>
+                                </tr>
+                            </thead>
+                            <tbody class="custody_tbody">
+                                <t t-foreach="docs" t-as="l">
+                                    <tr>
+                                        <td>
+                                            <span t-field="l.custody"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.custody_state"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.date"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.employee"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.department"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.description"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.partner_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.asset_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.analytic_account_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="l.value"/>
+                                        </td>
+                                        <td>
+                                            <span t-if="l.approve == True">Approved</span>
+                                            <span t-if="l.approve == False">Rejected</span>
+                                        </td>
+                                        <t t-set="value" t-value="value + l.value"/>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        Total
+                                    </td>
+                                    <td>
+                                        <t t-esc="value"/>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+        <report
+                id="report_direct_line_report"
+                string="Custody Lines"
+                model="custody.line"
+                report_type="qweb-pdf"
+                file="janobi_custody.report_direct_line_doc"
+                name="janobi_custody.report_direct_line_doc"
+        />
+
+        <record id="paperformat_custody_line_report"
+                model="report.paperformat">
+            <field name="name">European A4 Landscape</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="report_direct_line_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="janobi_custody.paperformat_custody_line_report"/>
+        </record>
+
+    </data>
+</odoo>

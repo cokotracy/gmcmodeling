@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="paper_format_owner_contract_invoice" model="report.paperformat">
+            <field name="name">Owner Contract Invoice</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">60</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="owner_contract_invoice_report" model="ir.actions.report">
+            <field name="name">Print Contract Invoice</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">wc_construction.report_owner_contract_invoice</field>
+            <field name="report_file">wc_construction.report_owner_contract_invoice</field>
+            <field name="print_report_name">'Contract - %s' % (object.name).replace('/', '')</field>
+            <field name="paperformat_id" ref="wc_construction.paper_format_owner_contract_invoice"/>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_owner_contract_document">
+            <t t-call="web.external_layout">
+                <div class="page" dir="rtl">
+                    <h5 class="text-center">
+                        <strong>
+                            مــــسـتـخـلـص جـارى رقم (
+                            <span t-field="o.contract_project_id.name"/>
+                            )
+                        </strong>
+                    </h5>
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="border-bottom: 2px solid black;border-left: 2px solid black;width:30%;"
+                                class="text-center">
+                                <strong>وزارة الشئون البلدية والقروية
+                                    <br/>
+                                    بلدية محافظة طريف
+                                </strong>
+                            </td>
+                            <td style="border-bottom: 2px solid black;width:40%;" class="text-center">----------------
+                            </td>
+                            <td style="border-bottom: 2px solid black;border-right: 2px solid black;width:30%;"
+                                class="text-center">
+                                <strong>اسم المقاول
+                                    <br/>
+                                    شركة الجنوبي للمقاولات شركة شخص واحد
+                                </strong>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%;" dir="rtl">
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>رقـم المـشـروع :</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_project_id.project_no"/>
+                            </td>
+                            <td/>
+                            <td class="text-right">
+                                <strong>
+                                    اسـم العـمـلـيـة :
+                                </strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_project_id.type_of_construction"/>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>مـسـمـى العـقـد :</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_id.description"/>
+                            </td>
+                            <td/>
+                            <td/>
+                            <td/>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>رقـم العـقـد :</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_id.name"/>
+                            </td>
+                            <td/>
+                            <td class="text-right">
+                                <strong>
+                                    تـاريـخـه :
+                                </strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_id.date"/>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>قـيـمـة العـقـد :</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_id.contract_value"/>
+                            </td>
+                            <td/>
+                            <td class="text-right">
+                                <strong>
+                                    مـدة العـقـد :
+                                </strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_id.difference_days"/>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>قـيـمـة العـقـد بعد التعديل :</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_project_id.project_no"/>
+                            </td>
+                            <td/>
+                            <td class="text-right">
+                                <strong>
+                                    مدة العـقـد بعد التعديل :
+                                </strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_project_id.type_of_construction"/>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>تارـخ تسليم الموقع :</strong>
+                            </td>
+                            <td>
+                            </td>
+                            <td/>
+                            <td class="text-right">
+                                <strong>
+                                    الموافق :
+                                </strong>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>تارـخ الاستلام الابتدائى :</strong>
+                            </td>
+                            <td>
+                            </td>
+                            <td/>
+                            <td class="text-right">
+                                <strong>
+                                    الموافق :
+                                </strong>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>تارـخ المسـتـخلـص :</strong>
+                            </td>
+                            <td>
+                            </td>
+                            <td/>
+                            <td class="text-right">
+                                <strong>
+                                    الموافق :
+                                </strong>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>فترة المسـتـخـلـص :</strong>
+                            </td>
+                            <td class="text-right">
+                                <strong>
+                                    من تاريخ :
+                                </strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_project_id.project_start_date"/>
+                            </td>
+                            <td class="text-right">
+                                <strong>
+                                    إلى تاريخ :
+                                </strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.contract_project_id.project_end_date"/>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>حـسـم عـطـاء مـقاول :</strong>
+                            </td>
+                            <td class="text-right">
+                                <!--                                <span t-field="o."/>-->
+                            </td>
+                            <td colspan="2" class="text-right">
+                                <strong>
+                                    حـسـم دفـعـة مـقـدمـة :
+                                </strong>
+                            </td>
+                            <td class="text-right">
+                                <!--                                <span t-field="o."/>-->
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>حـسـم غرامـة تاخـيـر :</strong>
+                            </td>
+                            <td class="text-right">
+                                <!--                                <span t-field="o."/>-->
+                            </td>
+                            <td/>
+                            <td class="text-right">
+                                <strong>
+                                    حـسـومـات اخرى :
+                                </strong>
+                            </td>
+                            <td class="text-right">
+                                <!--                                <span t-field="o."/>-->
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid black;">
+                            <td class="text-right">
+                                <strong>إجمـالـى الحـسـومـات :</strong>
+                            </td>
+                            <td class="text-right">
+                                <!--                                <span t-field="o."/>-->
+                            </td>
+                            <td colspan="3" class="text-right">
+                                <strong>
+                                    (تـفـصـيـل الحـسـومـات الاخـرى فى الصـفـحـة الاخيــرة)
+                                </strong>
+                            </td>
+                            <td/>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%;" dir="rtl">
+                        <tr>
+                            <td class="text-right">
+                                <strong>ما سـبـق صرفـه :</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.previous_chashing"/>
+                            </td>
+                            <td/>
+                            <td/>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-right">
+                                <strong>
+                                    إجمالى المبلغ المستحق صرفه لهذه الفتره للمقاول :
+                                </strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total"/>
+                            </td>
+                            <td class="text-right">
+                                <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                    <span t-esc="amount_by_group[0]"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">
+                                <strong>ضريبة مستحقة على مستخلصات سابقة :</strong>
+                            </td>
+                            <td class="text-right">
+
+                            </td>
+                            <td class="text-right">
+                                <strong>مجموع الضريبة المستحقة على المستخلص :</strong>
+                            </td>
+                            <td class="text-right">
+                                <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                    <span t-esc="amount_by_group[1]"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-right">
+                                <strong>ضريبة صرفت بالخطأ في مستخلصات سابقة :</strong>
+                            </td>
+                            <td colspan="2" class="text-right">
+                                <!--<span/>-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-right">
+                                <strong>إجمالى المبلغ المستحق صرفه للمقاول شامل الضريبة :</strong>
+                            </td>
+                            <td colspan="2" class="text-right">
+                                <!--                                <span/>-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-right">
+                                <strong>فقط :</strong>
+                                <strong>
+                                    <span t-field="o.amount_words"/>
+                                </strong>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%;" dir="rtl">
+                        <tr>
+                            <td class="text-right" style="border-left: 2px solid black;border-top: 2px solid black;">
+                                <strong>نسبة الاعمال المنجزة حتى تاريخه :</strong>
+                                <!--                                <span t-field=""/>-->
+                            </td>
+                            <td style="border-top: 2px solid black;width:50%;"/>
+                        </tr>
+                        <tr>
+                            <td class="text-right" style="border-left: 2px solid black;">
+                                <strong>نسبة المدة المنقضية لكامل المدة :</strong>
+                                <!--                                <span t-field=""/>-->
+                            </td>
+                            <td style="width:50%;"/>
+                        </tr>
+                        <tr>
+                            <td class="text-right" style="border-left: 2px solid black;">
+                                <strong>قيمة الاعمال المنفذة فى هذه الفترة :</strong>
+                                <!--                                <span t-field=""/>-->
+                            </td>
+                            <td style="width:50%;"/>
+                        </tr>
+                        <tr>
+                            <td class="text-right" style="border-left: 2px solid black;border-bottom: 2px solid black;">
+                                <strong>المبلغ المتبقى :</strong>
+                                <!--                                <span t-field=""/>-->
+                            </td>
+                            <td style="border-bottom: 2px solid black;width:50%;"/>
+                        </tr>
+
+                    </table>
+
+                    <table style="width:100%;" dir="rtl">
+                        <tr>
+                            <td class="text-center"
+                                style="border-left: 2px solid black;border-bottom: 2px solid black;">
+                                <strong>مندوب المقاول</strong>
+                                <br/>
+                                <!--                                <span t-field=""/>-->
+                            </td>
+                            <td style="border-left: 2px solid black;border-bottom: 2px solid black;">
+                                <table style="width:100%;" dir="rtl">
+                                    <tr class="text-center">
+                                        <td>
+                                            <strong>مراقب المشاريع</strong>
+                                            <br/>
+                                            <!--                                <span t-field=""/>-->
+                                        </td>
+                                        <td>
+                                            <strong>مدير إدارة المشاريع</strong>
+                                            <br/>
+                                            <!--                                <span t-field=""/>-->
+                                        </td>
+                                        <td>
+                                            <strong>رئيس بلدية طريف</strong>
+                                            <br/>
+                                            <!--                                <span t-field=""/>-->
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td class="text-center" style="border-bottom: 2px solid black;">
+                                <img t-attf-src="data:image/*;base64,{{o.contract_project_id.qr_code}}"
+                                     style="max-height:40%;max-width:40%;"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered"
+                           style="width:100%;border: 1px solid black;page-break-before: always;" dir="rtl">
+                        <tr>
+                            <th rowspan="2" class="text-center" style="width:1%;background-color: #808080;">رقم الجدول
+                            </th>
+                            <th rowspan="2" class="text-center" style="width:25%;background-color: #808080;">الوصـــف
+                            </th>
+                            <th rowspan="2" class="text-center" style="width:5%;background-color: #808080;">الوحــدة
+                            </th>
+                            <th rowspan="2" class="text-center" style="width:5%;background-color: #808080;">الكـمـيـة
+                            </th>
+                            <th rowspan="2" class="text-center" style="width:5%;background-color: #808080;">الكمية
+                                المعدلة
+                            </th>
+                            <th rowspan="2" class="text-center" style="width:5%;background-color: #808080;">السعر
+                                الافرادى
+                            </th>
+                            <th class="text-center" style="width:15%;background-color: #808080;font-size:15px;"
+                                colspan="3">الكـمـيـات
+                                المـنـفـذة
+                            </th>
+                            <th class="text-center" style="width:15%;background-color: #808080;font-size:15px;"
+                                colspan="3">تـكلفـة
+                                الاعمال<br/>المنـفـذة
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="text-center" style="width:5%;background-color: #808080;font-size:12px;">سابقا
+                            </th>
+                            <th class="text-center" style="width:5%;background-color: #808080;font-size:12px;">حاليا
+                            </th>
+                            <th class="text-center" style="width:5%;background-color: #808080;font-size:12px;">إجمالى
+                            </th>
+                            <th class="text-center" style="width:5%;background-color: #808080;font-size:12px;">سابقا
+                            </th>
+                            <th class="text-center" style="width:5%;background-color: #808080;font-size:12px;">حاليا
+                            </th>
+                            <th class="text-center" style="width:5%;background-color: #808080;font-size:12px;">إجمالى
+                            </th>
+                        </tr>
+                        <tr>
+                            <t t-set="i" t-value="1"/>
+                            <t t-set="total_pre_cost" t-value="0"/>
+                            <t t-set="total_cur_cost" t-value="0"/>
+                            <t t-set="total_amount" t-value="0"/>
+                            <t t-foreach="o.invoice_line_ids" t-as="line">
+                                <t t-set="current_value" t-value="line.current_qty2"/>
+                                <t t-set="previous_value" t-value="line.previous_qty"/>
+
+                                <td class="text-center">
+                                    <span t-esc="i"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="line.product_id.name"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="line.product_uom_id.name"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="line.total_qty"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="line.total_qty"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="line.price_unit2"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="line.previous_qty"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="line.current_qty2"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="previous_value + current_value"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="line.price_unit2 * previous_value"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="current_value * line.price_unit2"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="(current_value * line.price_unit2) + (line.price_unit2 * previous_value)"/>
+                                </td>
+                                <t t-set="total_pre_cost"
+                                   t-value="total_pre_cost + (line.price_unit2 * line.previous_qty)"/>
+                                <t t-set="total_cur_cost"
+                                   t-value="total_cur_cost + (line.current_qty2 * line.price_unit2)"/>
+                                <t t-set="total_amount" t-value="total_cur_cost + total_pre_cost"/>
+                            </t>
+                            <t t-set="i" t-value="i + 1"/>
+                        </tr>
+                        <tr>
+                            <td class="text-center" colspan="8"></td>
+                            <td class="text-center">
+                                <strong>إجـمـالـى</strong>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="total_pre_cost"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="total_cur_cost"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="total_amount"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <center>
+                        <table class="table table-bordered"
+                               style="width:70%;border: 1px solid black;page-break-before: always;" dir="rtl">
+                            <tr>
+                                <td colspan="2" class="text-center" style="background-color: #808080;">
+                                    <strong>
+                                        الحـسـومـات الاخـرى
+                                    </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center" style="background-color: #808080;font-size:15px;">البـيـان</th>
+                                <th class="text-center" style="background-color: #808080;font-size:15px;">المـبـلغ</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center" style="font-size:15px;">إيرادات اخـرى</th>
+                                <td>
+                                    <!--                                <span/>-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center" style="background-color: #808080;font-size:15px;">إجمالى
+                                    الحسومات
+                                    الاخرى
+                                </th>
+                                <td>
+                                    <!--                                <span/>-->
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+
+                    <br/>
+                    <br/>
+                    <table style="width:100%;" dir="rtl">
+                        <tr>
+                            <td class="text-center"
+                                style="border-left: 2px solid black;border-bottom: 2px solid black;border-top: 2px solid black;">
+                                <strong>مندوب المقاول</strong>
+                                <br/>
+                                <!--                                <span t-field=""/>-->
+                            </td>
+                            <td style="border-left: 2px solid black;border-bottom: 2px solid black;border-top: 2px solid black;">
+                                <table style="width:100%;" dir="rtl">
+                                    <tr class="text-center">
+                                        <td>
+                                            <strong>مراقب المشاريع</strong>
+                                            <br/>
+                                            <!--                                <span t-field=""/>-->
+                                        </td>
+                                        <td>
+                                            <strong>مدير إدارة المشاريع</strong>
+                                            <br/>
+                                            <!--                                <span t-field=""/>-->
+                                        </td>
+                                        <td>
+                                            <strong>رئيس بلدية طريف</strong>
+                                            <br/>
+                                            <!--                                <span t-field=""/>-->
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td class="text-center" style="border-bottom: 2px solid black;border-top: 2px solid black;">
+                                <img t-attf-src="data:image/*;base64,{{o.contract_project_id.qr_code}}"
+                                     style="max-height:40%;max-width:40%;"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_owner_contract_invoice">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="o.partner_id.lang"/>
+                    <t t-call="wc_construction.report_owner_contract_document" t-lang="lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

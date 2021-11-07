@@ -1,0 +1,879 @@
+<odoo>
+    <data>
+        <template id="report_job_offer_doc">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <t t-foreach="docs" t-as="o">
+                            <p dir="rtl" style="margin-bottom: 0in;text-align: right;text-decoration: none;">
+                                <br/>
+                            </p>
+                            <p dir="rtl" style="margin-bottom: 0in;text-align: right;">
+                                <u>
+                                    <strong>Job Offer</strong>
+                                </u>
+                            </p>
+                            <p style="margin-bottom: 0.04in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                Name
+                                <strong>:&#160;</strong>
+                                <strong>
+                                    <span t-field="o.partner_name"/>
+                                </strong>
+                                <span style="font-weight: normal;">Date:&#160;</span>
+                                <strong>
+                                    <span t-esc="datetime.date.today()"/>
+                                </strong>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                الأســم
+                                <strong>:&#160;</strong>
+                                <span t-field="o.partner_name"/>
+                                <strong>&#160;</strong>التاريـخ
+                                <strong>
+                                    <span t-esc="datetime.date.today()"/>
+                                </strong>
+                            </p>
+                            <p dir="ltr"
+                               style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span style="font-weight: normal;">We are pleased to offer you the terms and conditions
+                                    related to your job at Al Aljanobi Company for Constructions as below:
+                                </span>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span lang="ar-EG">نسعد بتقديم الشروط والاحكام المتعلقة بوظيفتك في شركة الجنوبي
+                                    للمقاولات كما هو موضح أدناه
+                                </span>
+                                <strong>:</strong>
+                            </p>
+                            <center>
+                                <table cellpadding="7" cellspacing="0" dir="rtl" width="1132">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2" style="border: 1px solid #000000;padding: 0in 0.08in;"
+                                                width="6.227758007117438%">
+                                                <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span lang="ar-EG">
+                                                        <strong>رقم جواز السفر</strong>
+                                                    </span>
+                                                    <strong>&#160;<span t-field="o.passport_id"/>
+                                                        <em>&#160;Passport No</em>
+                                                        :
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                            <td colspan="4" style="border: 1px solid #000000;padding: 0in 0.08in;"
+                                                width="11.572162910241202%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>
+                                                        <em>Nationality:&#160;</em>
+                                                        <span t-esc="o.with_context(lang='ar').country_id.name"/>
+
+                                                    </strong>
+                                                    <strong>الجنسيـة</strong>
+                                                    <strong>
+                                                        <em>:&#160;</em>
+                                                    </strong>
+                                                    <strong>
+                                                        <span t-field="o.country_id.name"/>
+                                                    </strong>
+                                                    <strong>
+                                                        <em>.</em>
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                            <td style="border: none;padding: 0in;" width="86.20007908264137%">
+                                                <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                                    <br/>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #000000;padding: 0in 0.08in;"
+                                                width="19.34566145092461%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0.04in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>
+                                                        <em>Starting Date:</em>
+                                                        <em>
+                                                            <span t-esc="o.with_context(lang='en_US').availability"/>
+                                                        </em>
+                                                    </strong>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span lang="ar-SA">
+                                                        <span lang="ar-EG">
+                                                            <strong>تاريخ البدء
+                                                                <em>
+                                                                    <span t-esc="o.with_context(lang='ar').availability"/>
+                                                                </em>
+                                                            </strong>
+                                                        </span>
+                                                    </span>
+                                                </p>
+                                            </td>
+                                            <td colspan="4" style="border: 1px solid #000000;padding: 0in 0.08in;"
+                                                width="80.65433854907539%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0.04in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span style="font-weight: normal;">Your appointment will be
+                                                        effective
+                                                        from the date you arrive to Saudi Arabia. We will let you know
+                                                        the
+                                                        date very soon.&#160;
+                                                    </span>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span lang="ar-SA"><span lang="ar-EG">يسرى هذا العرض&#160;</span>من
+                                                        تاريخ الوصول الى المملكة العربية السعودية<span lang="ar-EG">
+                                                            ،&#160;</span>والوصول الى مقر الشركة
+                                                    </span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="20.14814814814815%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>
+                                                        <em>Position:&#160;</em>
+                                                        <span t-esc="o.with_context(lang='en_US').job_id.name"/>
+                                                        <em>.</em>
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="24.59259259259259%">
+                                                <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span lang="ar-EG">
+                                                        <strong>الوظيفة</strong>
+                                                        <span t-esc="o.with_context(lang='ar').job_id.name"/>
+                                                    </span>
+                                                    <span style="font-weight: normal;">:&#160;</span>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="23.40740740740741%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>
+                                                        <em>Department</em>
+                                                    </strong>
+                                                    <em>
+                                                        <span style="font-weight: normal;">:&#160;</span>
+                                                    </em>
+                                                    <strong><span t-esc="o.with_context(lang='en_US').department_id.name"/>
+                                                        .&#160;
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                            <td colspan="2"
+                                                style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="31.85185185185185%">
+                                                <p dir="ltr"
+                                                   style="text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;margin-bottom: 0.04in;">
+                                                    <br/>
+                                                    <br/>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>القسـم</strong>
+                                                    <strong>:
+                                                        <span t-esc="o.with_context(lang='ar').department_id.name"/>
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="76"
+                                                style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="20.14814814814815%">
+                                                <p dir="ltr"
+                                                   style="text-align: justify;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;margin-bottom: 0.04in;">
+                                                    <strong>
+                                                        <em>Basic Salary&#160;</em>
+                                                        <span t-esc="'{:,.2f}'.format(o.salary_proposed)"/>
+                                                        SR
+                                                    </strong>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="text-align: justify;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;margin-bottom: 0.04in;">
+                                                    <strong>+
+                                                        <span t-esc="'{:,.2f}'.format(o.meal_allowance)"/>
+                                                        SR Food Allowance.
+                                                    </strong>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="text-align: justify;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;margin-bottom: 0.04in;">
+                                                    <strong>+
+                                                        <span t-esc="'{:,.2f}'.format(o.other_allowance)"/>
+                                                        SR Other Allowances.
+                                                    </strong>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <br/>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="24.59259259259259%">
+                                                <p style="text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0in;margin-bottom: 0.04in;">
+                                                    <span lang="ar-EG">
+                                                        <strong>الراتب الأساسي</strong>
+                                                    </span>
+                                                    <span style="font-weight: normal;">:
+                                                        <span t-esc="'{:,.2f}'.format(o.salary_proposed)"/>
+                                                    </span>
+                                                    <span lang="ar-EG">
+                                                        <strong>ر</strong>
+                                                    </span>
+                                                    <span style="font-weight: normal;">.</span>
+                                                    <span lang="ar-SA">
+                                                        <span lang="ar-EG">
+                                                            <strong>س</strong>
+                                                        </span>
+                                                    </span>
+                                                </p>
+                                                <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span style="font-weight: normal;">.</span>
+                                                    <span t-esc="'{:,.2f}'.format(o.meal_allowance)"/>
+                                                    <span style="font-weight: normal;">+&#160;</span>
+                                                    <span lang="ar-EG">
+                                                        <strong>ر</strong>
+                                                    </span>
+                                                    <span lang="ar-EG">
+                                                        <strong>س بدل طعام</strong>
+                                                    </span>
+                                                    <span style="font-weight: normal;">+&#160;</span>
+                                                    <span t-esc="'{:,.2f}'.format(o.other_allowance)"/>
+                                                    <span lang="ar-EG">
+                                                        <strong>ر</strong>
+                                                    </span>
+                                                    <strong>.</strong>
+                                                    <span lang="ar-EG">
+                                                        <strong>س بدلات أخري</strong>
+                                                    </span>
+                                                    <span style="font-weight: normal;">.&#160;</span>
+                                                </p>
+                                            </td>
+                                            <td style="border: 1px solid #000000;padding: 0in 0.08in;"
+                                                width="23.40740740740741%">
+                                                <p style="margin-bottom: 0in;text-align: left;font-weight: normal;">
+                                                    <em>
+                                                        <strong>Reporting To:&#160;</strong>
+                                                    </em>
+                                                    <strong>Transportation Manager</strong>
+                                                    <em>
+                                                        <strong>.</strong>
+                                                    </em>
+                                                </p>
+                                            </td>
+                                            <td colspan="2" style="border: 1px solid #000000;padding: 0in 0.08in;"
+                                                width="31.85185185185185%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0.04in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <br/>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>تقديم التقارير الى</strong>
+                                                    <strong>:&#160;</strong>
+                                                    <strong>مدير&#160;</strong>
+                                                    <span lang="ar-EG">
+                                                        <strong>&#160;الحركة</strong>
+                                                    </span>
+                                                    <span style="font-weight: normal;">.</span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="50"
+                                                style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="20.14814814814815%">
+                                                <p style="margin-bottom: 0in;text-align: left;font-weight: normal;">
+                                                    <em>
+                                                        <strong>Transportation</strong>
+                                                    </em>
+                                                    <strong>&#160;:</strong>
+                                                </p>
+                                                <p style="margin-bottom: 0in;text-align: left;">
+                                                    <br/>
+                                                </p>
+                                                <p style="margin-bottom: 0in;text-align: left;">
+                                                    <br/>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="24.59259259259259%">
+                                                <p style="margin-bottom: 0in;text-align: left;font-weight: normal;">
+                                                    <strong>Is provided to work and versa.</strong>
+                                                </p>
+                                                <p style="margin-bottom: 0in;text-align: left;">
+                                                    <br/>
+                                                </p>
+                                                <p style="margin-bottom: 0in;text-align: center;font-weight: normal;">
+                                                    <span lang="ar-EG">
+                                                        <strong>المواصلات&#160;</strong>
+                                                    </span>
+                                                    <strong>:&#160;</strong>
+                                                    <span lang="ar-EG">
+                                                        <strong>يتم توفيرها الى مكان العمل والعكس</strong>
+                                                    </span>
+                                                    <strong>.</strong>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding: 0in;"
+                                                width="23.40740740740741%">
+                                                <p style="margin-bottom: 0in;text-align: left;font-weight: normal;">
+                                                    <em>
+                                                        <strong>Accommodation</strong>
+                                                    </em>
+                                                    <strong>:</strong>
+                                                </p>
+                                                <p style="margin-bottom: 0in;text-align: left;">
+                                                    <br/>
+                                                </p>
+                                                <p style="margin-bottom: 0in;text-align: left;">
+                                                    <br/>
+                                                </p>
+                                            </td>
+                                            <td colspan="2"
+                                                style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="31.85185185185185%">
+                                                <p style="margin-bottom: 0in;text-align: left;font-weight: normal;">
+                                                    <strong>It is provided according to company policy.</strong>
+                                                </p>
+                                                <p style="margin-bottom: 0in;text-align: left;">
+                                                    <br/>
+                                                </p>
+                                                <p style="margin-bottom: 0in;text-align: center;font-weight: normal;">
+                                                    <span lang="ar-EG">
+                                                        <strong>السكن&#160;</strong>
+                                                    </span>
+                                                    <strong>:&#160;</strong>
+                                                    <span lang="ar-EG">
+                                                        <strong>يتم توفيره طبقا لسياسة الشركه</strong>
+                                                    </span>
+                                                    <strong>.</strong>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="20.14814814814815%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong><em>Vacation:&#160;</em>42 days after 23 working months.
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="24.59259259259259%">
+                                                <p dir="ltr"
+                                                   style="text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;margin-bottom: 0.04in;">
+                                                    <br/>
+                                                    <br/>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span lang="ar-EG">
+                                                        <strong>الاجـازات</strong>
+                                                    </span>
+                                                    <strong>:&#160;</strong>
+                                                    <span style="font-weight: normal;">42&#160;</span>
+                                                    <span lang="ar-EG">
+                                                        <strong>يوم بعد مرور&#160;</strong>
+                                                    </span>
+                                                    <span style="font-weight: normal;">23&#160;</span>
+                                                    <span lang="ar-SA">
+                                                        <span lang="ar-EG">
+                                                            <strong>شهر</strong>
+                                                        </span>
+                                                        <span lang="ar-EG">&#160;عمل</span>
+                                                    </span>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: none;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="23.40740740740741%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong><em>Tickets&#160;</em>: to be earned with vacation
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                            <td colspan="2"
+                                                style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="31.85185185185185%">
+                                                <p dir="ltr"
+                                                   style="text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;margin-bottom: 0.04in;">
+                                                    <br/>
+                                                    <br/>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span lang="ar-EG">
+                                                        <strong>تذاكـر السفر</strong>
+                                                    </span>
+                                                    <strong>:&#160;</strong>
+                                                    <span lang="ar-SA">
+                                                        <span lang="ar-EG">تستحق مع استحقاق الاجازة</span>
+                                                    </span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="19.34566145092461%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>
+                                                        <em>Others:</em>
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                            <td colspan="4"
+                                                style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="80.65433854907539%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0.04in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <br/>
+                                                    <br/>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>أخــرى</strong>
+                                                    <strong>:</strong>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="20.14814814814815%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>
+                                                        <em>Point of Hire:</em>
+                                                    </strong>
+                                                    <strong><span t-esc="o.with_context(lang='ar').country_id.name"/>.
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="24.59259259259259%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0.04in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <br/>
+                                                    <br/>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                                    <span lang="ar-EG">
+                                                        <strong>الدولة المستقدم منها&#160;</strong>
+                                                    </span>
+                                                    <strong>:&#160;</strong>
+                                                    <span lang="ar-SA">
+                                                        <span lang="ar-EG">
+                                                            <strong>
+                                                                <span t-field="o.country_id.name"/>
+                                                            </strong>
+                                                        </span>
+                                                    </span>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="23.40740740740741%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>
+                                                        <em>Contract Period</em>
+                                                    </strong>
+                                                    <span style="font-weight: normal;">&#160;:</span>
+                                                    <strong><span t-esc="o.with_context(lang='en_US').contract_type"/>.
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                            <td colspan="2"
+                                                style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="31.85185185185185%">
+                                                <p dir="ltr"
+                                                   style="text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;margin-bottom: 0.04in;">
+                                                    <br/>
+                                                    <br/>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span lang="ar-EG">
+                                                        <strong>مـدة العقـد</strong>
+                                                    </span>
+                                                    <span style="font-weight: normal;">:&#160;</span>
+                                                    <span lang="ar-EG"><span
+                                                            t-esc="o.with_context(lang='ar').contract_type"/>.
+                                                    </span>
+                                                    <strong>.</strong>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="20.14814814814815%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0.04in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>
+                                                        <em>Medical Treatment :</em>
+                                                    </strong>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>Coverage is in accordance with the applicable regulations in
+                                                        Saudi Arabia.
+                                                    </strong>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="24.59259259259259%">
+                                                <p dir="ltr"
+                                                   style="text-align: center;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;margin-bottom: 0.04in;">
+                                                    <span lang="ar-EG">
+                                                        <strong>العلاج الطبي&#160;</strong>
+                                                    </span>
+                                                    <span style="font-weight: normal;">:&#160;</span>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span lang="ar-SA">
+                                                        <span lang="ar-EG">تتم التغطيه وفق اللوائح والانظمه الخاصه
+                                                            المعمول
+                                                            بها بالمملكة العربيه السعودية
+                                                        </span>
+                                                    </span>
+                                                </p>
+                                            </td>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="23.40740740740741%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0.04in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>
+                                                        <em>End of Service Gratuity :</em>
+                                                    </strong>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                                    <strong>( 15 ) days for a year to be paid after two years according
+                                                        to
+                                                        the Saudi labor system, and it is not due if the contract is
+                                                        terminated before completion of 2 years.&#160;
+                                                    </strong>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <br/>
+                                                </p>
+                                            </td>
+                                            <td colspan="2"
+                                                style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="31.85185185185185%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                                    مكافأة
+                                                    <span lang="ar-EG">نهايـة الخدمـة</span>
+                                                    <strong>:&#160;</strong>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                                    <span style="font-weight: normal;">( 15 )&#160;</span>
+                                                    <strong>يوم عن السنة تدفع بعد سنتين وفق نظام العمل السعودي&#160;
+                                                    </strong>
+                                                    <span style="font-weight: normal;">,&#160;</span>
+                                                    <strong>ولا تستحق في حال إنهاء العقد قبل سنتين</strong>
+                                                    <span style="font-weight: normal;">.</span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0.08in;padding-right: 0in;"
+                                                width="19.34566145092461%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>
+                                                        <em>Meals:</em>
+                                                    </strong>
+                                                    <span style="font-weight: normal;">No Meals</span>
+                                                </p>
+                                            </td>
+                                            <td colspan="4"
+                                                style="border-top: 1px solid #000000;border-bottom: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;padding-top: 0in;padding-bottom: 0in;padding-left: 0in;padding-right: 0.08in;"
+                                                width="80.65433854907539%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>الوجبــات</strong>
+                                                    <strong>:</strong>
+                                                    <span style="font-weight: normal;">لا تتوفـر</span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border: 1px solid #000000;padding: 0in 0.08in;"
+                                                width="19.34566145092461%">
+                                                <h1 dir="ltr"
+                                                    style="margin-top: 0.04in;margin-bottom: 0.04in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                                    <em>
+                                                        <strong>Working Hours</strong>
+                                                    </em>
+                                                </h1>
+                                                <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                                    <span lang="ar-SA">
+                                                        <strong>ساعــات العمــل</strong>
+                                                    </span>
+                                                </p>
+                                            </td>
+                                            <td colspan="4" style="border: 1px solid #000000;padding: 0in 0.08in;"
+                                                width="80.65433854907539%">
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0.04in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <span style="font-weight: normal;">48 hrs. per week, duties may be
+                                                        straight or split shifts according to the business requirements
+                                                        with
+                                                        One day OFF per week.
+                                                    </span>
+                                                </p>
+                                                <p dir="ltr"
+                                                   style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;margin-top: 0.04in;">
+                                                    <strong>48&#160;</strong>
+                                                    <span lang="ar-SA">ساعـة عمل اسبوعيــاً، قد يكون <span lang="ar-EG">
+                                                        الدوام
+                                                    </span> متواصل أو وردية متقطعة وفقاً لمتطلبات العمل مع اجازة يوم في
+                                                        الأسبوع
+                                                    </span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+                            <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span lang="ar-SA">العرض معلق على توقيع العقد، ولا يعد بديل عن العقد</span>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <strong>Employee Signature ____________________ Date of signature _________________
+                                </strong>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <strong>If any problem occurred related to the candidate that prevents the extraction of
+                                    permits needed to work in Saudi Arabia, the candidate will have to pay back all the
+                                    costs paid by the employer, and in case of resign or committing an offence while in
+                                    employment that justifies termination before the two years term, the candidate will
+                                    be liable to settle all cost incurred for hiring.
+                                </strong>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span lang="ar-EG">عند ظهور اي مشكلة تخص المتقدم تمنع استخراج التصاريح اللازمه للعمل في
+                                    المملكة العربية السعودية، يتحمل كافة التكاليف المدفوعة من قبل جهة العمل ، وفي حالة
+                                    ارتكاب جريمة تستدعى انهاء التعاقد قبل فترة السنتين او انه يريد فسخ التعاقد قبل مدته
+                                    يكون ملزما بدفع النفقات التى تكبدتها الشركه مقابل استقدامه وتوظيفه&#160;
+                                </span>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <strong>I acknowledge that my curriculum vitae and my certificates on which I was chosen
+                                    and are sent from the email of ------- , dated-------, contains correct information
+                                    if otherwise the company has the right to expel me without notice or merit and i
+                                    take full responsibility and pay back all expenses.
+                                </strong>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span lang="ar-EG">كما أقر بأن سيرتي الذاتيـة وشهاداتي الذي تم اختياري بناء عليها
+                                    والمرسلة من البريد الألكتروني الخاص ب
+                                </span>
+                                <strong>---------</strong>
+                                <span lang="ar-EG">في تاريخ&#160;</span>
+                                <strong>------------&#160;</strong>
+                                <span lang="ar-EG">، تحتوي على معلومات صحيحة وفي حالة ظهـور غير ذلك يحق للشركة فصلي من
+                                    العمل بدون اشعار أو استحقاق واتحمل اناالمسئوليـة كاملة وأقـوم باعادة كافة المصروفات
+                                    التى تم انفاقها من قبل الشركه من اجل القيام بتوظيفى&#160;
+                                </span>
+                                <strong>.</strong>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <h2 style="margin-top: 0in;margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;">
+                                In case there is any difference in translation, the text in Arabic is approved
+                                <span style="font-weight: normal;">.</span>
+                            </h2>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span lang="ar-EG">في حال وجود اي أختلاف على الترجمة الموجودة في العرض، يتم اعتمـاد النص
+                                    باللغة العربية
+                                </span>
+                                <strong>.</strong>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <strong>If you are agree with the above terms and conditions, please sign and resend
+                                    this offer to us by E-mail.
+                                </strong>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span lang="ar-EG">في حالة الموافقة على ما ورد في تفاصيل هذا العرض، الرجاء التوقيع
+                                    واعادة الأرسال بالبريد الألكتروني
+                                </span>
+                                <strong>.</strong>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <strong>The company shall have right to cancel the offer at any time before the employee
+                                    begins work without any legal consequences or obligation to compensate on that and
+                                    this offer is considered the approval of the employee pending approval of the
+                                    company, which ends with the signing of the contract.
+                                </strong>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span lang="ar-EG">يحق للشركة الغاء العرض في أي وقت قبل مباشرة الموظف للعمل دون أي تبعات
+                                    قانونية أو التزام بالتعويض على ذلك ويعتبر هذا العرض هو الايجاب من الموظف معلق على
+                                    قبول الشركة وينتهي مفعوله&#160;
+                                </span>
+                                <strong>(&#160;</strong>
+                                <span lang="ar-EG">بإلغاء الشركة قبل التعاقد – أو بتوقيع العقد</span>
+                                <strong>.)&#160;</strong>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <strong>This offer will be canceled after signing the contract, and the contract is the
+                                    contract approved
+                                </strong>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span lang="ar-EG">يلغى هذا العرض بعد توقيع العقد ويعد العقد هو المعتمد في
+                                    التعاقد&#160;
+                                </span>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <strong>The probation period is three months from the date of commencement of work
+                                    according to the work system and the business owner has the right to cancel the
+                                    contract if he doesn’t pass it.
+                                </strong>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span lang="ar-EG">فترة التجربة ثلاثة أشهر من تاريخ مباشرة العمل وفق نظام العمل و يحق
+                                    لصاحب العمل فسخ العقد في حال عدم أجتيازها
+                                </span>
+                                <strong>.</strong>
+                            </p>
+                            <p dir="rtl"
+                               style="margin-bottom: 0in;text-align: center;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <h2 style="margin-top: 0in;margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </h2>
+                            <h2 style="margin-top: 0in;margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;">
+                                <span style="font-weight: normal;">------------------------------</span>
+                            </h2>
+                            <h2 style="margin-top: 0in;margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;">
+                                <span style="font-weight: normal;">------------------------------</span>
+                            </h2>
+                            <h3 style="margin-top: 0in;margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:16px;">
+                                HR Manager
+                            </h3>
+                            <h3 style="margin-top: 0in;margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:16px;">
+                                CEO
+                            </h3>
+                            <h3 style="margin-top: 0in;margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:16px;">
+                                <br/>
+                            </h3>
+                            <h3 style="margin-top: 0in;margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:16px;">
+                                <br/>
+                            </h3>
+                            <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                I, <strong>-------------------------</strong> have fully understood the terms and
+                                contents of this letter and signing below indicates my fully acceptance of them.
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <span lang="ar-EG">أنا&#160;</span>________________________ <span lang="ar-EG">فهمت
+                                تماما شروط ومحتويات هذا العرض و توقيعي يدل على قبولي التام لما ورد</span>.
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: right;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <br/>
+                            </p>
+                            <p style="margin-bottom: 0in;text-align: left;font-family: &quot;Times New Roman&quot;, serif;font-size:19px;font-weight: normal;">
+                                <strong>Employee Signature ____________________ Date of signature_________________
+                                </strong>
+                            </p>
+                        </t>
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+        <report
+                id="report_job_offer_report"
+                string="Job Offer"
+                model="hr.applicant"
+                report_type="qweb-pdf"
+                file="hr_enhancement_janobi.report_job_offer_doc"
+                name="hr_enhancement_janobi.report_job_offer_doc"
+        />
+
+
+    </data>
+</odoo>

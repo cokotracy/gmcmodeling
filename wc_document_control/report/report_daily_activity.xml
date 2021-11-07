@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <template id="daily_activity_submittal_report_template_id">
+		<t t-call="web.html_container">
+			<t t-call="wc_document_control.custom_external_layout_standard_daily_activity_submittal">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <!--<div>-->
+					        <!--<img src="/wc_document_control/static/description/header.jpeg" alt="Header" style="width:100%"/>-->
+				        <!--</div>-->
+
+                        <div class="row" style="display:flex;align-items:center;margin-left:2px;width:99.9%;margin-bottom:20px;height:200px;border:2px solid black;">
+                            <div style="margin-top:30px;width:40%;display:flex;align-items:center;">
+                                <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" class="float-left" style="max-height:140px; max-width:300px;"/>
+                            </div>
+<!--                            <div class="row" style="width:30%;display:flex;align-items:center;">-->
+<!--                                <div style="width:50%;display:flex;align-items:center;">-->
+<!--                                    <img t-if="doc.consultant.logo1" t-att-src="image_data_uri(doc.consultant.logo1)" class="float-left" style="max-height:198px; max-width:198px;"/>-->
+<!--                                </div>-->
+<!--                                <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">-->
+<!--                                    <img t-if="doc.consultant.logo2" t-att-src="image_data_uri(doc.consultant.logo2)" class="float-left" style="max-height:195px; max-width:195px;"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="row" style="margin-top:30px;width:30%;display:flex;align-items:center;">
+                                <div style="width:50%;display:flex;align-items:center;">
+                                    <img t-if="doc.project_id.partner_id.image_1920" t-att-src="image_data_uri(doc.project_id.partner_id.image_1920)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                                <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">
+                                    <img t-if="doc.project_id.partner_id.logo2" t-att-src="image_data_uri(doc.project_id.partner_id.logo2)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                            </div>
+                        </div>
+<!--                        <table style="border:2px;solid">-->
+<!--                                     <thead>-->
+<!--                                         <th style="width:40%">-->
+<!--                                         <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     &lt;!&ndash;<th style="width:15%">&ndash;&gt;-->
+<!--                                         &lt;!&ndash;<img t-if="o.consultant.logo1" t-att-src="image_data_uri(o.consultant.logo1)" class="float-left" />&ndash;&gt;-->
+
+<!--                                     &lt;!&ndash;</th>&ndash;&gt;-->
+<!--                                     &lt;!&ndash;<th style="width:15%">&ndash;&gt;-->
+<!--                                         &lt;!&ndash;<img t-if="o.consultant.logo2" t-att-src="image_data_uri(o.consultant.logo2)" class="float-left" />&ndash;&gt;-->
+
+<!--                                     &lt;!&ndash;</th>&ndash;&gt;-->
+
+<!--                                     <th style="width:15%">-->
+<!--                                        <img t-if="o.project_id.partner_id.image_1920" t-att-src="image_data_uri(o.project_id.partner_id.image_1920)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     <th style="width:15%">-->
+<!--                                         <img t-if="o.project_id.partner_id.logo2" t-att-src="image_data_uri(o.project_id.partner_id.logo2)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     </thead>-->
+
+<!--                                      &lt;!&ndash;<div style="width:30%;float:left">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;<div style="width:30%; float:right">&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--                                 &lt;!&ndash;<div style="width:30%; float:right">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;<img t-if="o.consultant.logo2" t-att-src="image_data_uri(o.consultant.logo2)" class="float-left" alt="Logo"/>&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                                 </table>-->
+
+                        <div style="text-align: center; font-size:30px;background-color: #4682b4;border: 2px solid black;">
+                            <p style="margin-top:3px;font-weight:bold;color:white;">MANPOWER REPORT</p>
+                        </div>
+                        <div class="row" style="margin-right:1px;margin-top:10px; width:99.9%">
+                            <table class="table" style="margin-left:10px;margin-right:2px;height:20px; width: 50%; border-color: rgb(175, 175, 175)">
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold ;width:30%;color:white;border-color: rgb(175, 175, 175);">TRANS ID</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;color:black ; border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.daily_activityID"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >PROJECT ID</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%; font-weight:100;border-color: rgb(175, 175, 175)" >
+                                        <span t-field="doc.projectID"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >PROJECT NAME</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.project_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >CLIENT NAME</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.client_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >ATTENTION</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.client_specialist_id.name"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table" style="margin-left:4px;height:20px; width: 50%; border-color: rgb(175, 175, 175)">
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold ;width:30%;color:white;border-color: rgb(175, 175, 175);">SUBMISSION DATE</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;color:black ; border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.submission_date"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >PREPARED BY</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%; font-weight:100;border-color: rgb(175, 175, 175)" >
+                                        <span t-field="doc.prepared_by_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >CONTRACTOR</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.main_contractor"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >WEATHER</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.weather"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >HUMIDITY</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.humidity"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <div style="margin-left:8px;width:49%;text-align: center; font-size:30px;background-color: #4682b4;border: 2px solid black;">
+                                <p style="margin-top:3px;font-weight:bold;color:white;">CONTRACTOR'S MANPOWER </p>
+                            </div>
+                            <div style="margin-left:4px;width:49%;text-align: center; font-size:30px;background-color: #4682b4;border: 2px solid black;">
+                                <p style="margin-top:3px;font-weight:bold;color:white;">EQUIPMENT REPORT</p>
+                            </div>
+                        </div>
+
+                    <div class="row" style="margin-right:1px;margin-top:10px; width:99.9%">
+                        <table class="table" style="margin-left:10px;margin-right:2px;height:20px; width: 24.8%; border-color: rgb(175, 175, 175)">
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Proj.Manager</td>
+
+                                <t t-if="doc.project_manager">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.project_manager"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Total</td>
+
+                                <t t-if="doc.site_manager">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.site_manager"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Engineers</td>
+
+                                <t t-if="doc.engineers">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.engineers"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Admin</td>
+
+                                <t t-if="doc.admin">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.admin"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Tech.</td>
+
+                                 <t t-if="doc.technicians">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.technicians"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Safety Officer</td>
+
+                                 <t t-if="doc.safety_officer">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.safety_officer"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Indira Labour</td>
+
+                                <t t-if="doc.indir_labour">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.indir_labour"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Operator</td>
+
+                                <t t-if="doc.operator">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.operator"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Mechanic</td>
+
+                                <t t-if="doc.electricians">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.mechanic"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Electrician</td>
+
+                                <t t-if="doc.electricians">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.electricians"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Welder</td>
+
+                                <t t-if="doc.welders">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.welders"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Drivers</td>
+
+                                <t t-if="doc.drivers">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.drivers"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                        </table>
+                        <table class="table" style="margin-left:4px;margin-right:2px;height:20px; width: 24.8%; border-color: rgb(175, 175, 175)">
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Foreman</td>
+
+                                <t t-if="doc.foreman">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.foreman"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Steel Fixer</td>
+
+                                <t t-if="doc.steel_fixer">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.steel_fixer"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Charge Hand</td>
+
+                                <t t-if="doc.charge_hand">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.charge_hand"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Carpenter</td>
+
+                                 <t t-if="doc.carpenter">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.carpenter"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Mason</td>
+
+                                <t t-if="doc.mason">
+                                   <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.mason"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Plasterer</td>
+
+                                <t t-if="doc.plasterer">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.plasterer"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Office Boys</td>
+
+                                <t t-if="doc.office_boys">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.office_boys"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Plumber</td>
+
+                                <t t-if="doc.plumbers">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.plumbers"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >UnSkilled</td>
+
+                                 <t t-if="doc.unSkilled">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.unSkilled"/>
+                                    </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr style="height:20px;">
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 18px;width:50%;border-color: rgb(175, 175, 175);" >Night Watchman</td>
+
+                                <t t-if="doc.night_watchman">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc."/>
+                                    </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Cleaner</td>
+
+                                <t t-if="doc.cleaner">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.cleaner"/>
+                                    </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Store Keeper</td>
+                                <t t-if="doc.store_keeper">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.store_keeper"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Gate Keeper</td>
+                                <t t-if="doc.gate_keeper">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            <span t-field="doc.gate_keeper"/>
+                                    </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >
+                                            0
+                                    </td>
+                                </t>
+                            </tr>
+                        </table>
+                        <table class="table" style="margin-left:4px;margin-right:2px;height:20px; width: 50%; border-color: rgb(175, 175, 175)">
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Backhoe</td>
+                                <t t-if="doc.backhoe">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                            <span t-field="doc.backhoe"/>
+                                    </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.backhoe_status"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Wheel Loader</td>
+
+                                <t t-if="doc.wheel_loader">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.wheel_loader"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.wheel_loader_status"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Tipper</td>
+
+                                <t t-if="doc.tipper">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.tipper"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.tipper_status"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Roller Compactor</td>
+
+                                <t t-if="doc.rooler_compactor">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.rooler_compactor"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.rooler_compactor_status"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Mobile Crane</td>
+
+                                <t t-if="doc.mobile_crane">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.mobile_crane"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.mobile_crane_status"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Tower Crane</td>
+
+                                <t t-if="doc.tower_crane">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.tower_crane"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.tower_crane_status"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Concrete Mixers</td>
+
+                                <t t-if="doc.concrete_vibrator">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.concrete_vibrator"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.concrete_vibrator_status"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Transit Mixers</td>
+
+                                <t t-if="doc.transit_mixer">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.transit_mixer"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.transit_mixer_status"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Welding Machines</td>
+
+                                <t t-if="doc.welding_machine">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.welding_machine"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.welding_machine"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Generator</td>
+
+                                <t t-if="doc.generator">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.generator"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.generator"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Bar Bending / Cutting</td>
+
+                                <t t-if="doc.bar_bending_cutting">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.bar_bending_cutting"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.bar_bending_cutting_status"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >Pickup Trucks</td>
+
+                                <t t-if="doc.pick_up_trucks">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.pick_up_trucks"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.pick_up_trucks_status"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-weight:bold;border: 1px solid ;font-size : 20px;width:50%;border-color: rgb(175, 175, 175);" >BobCat Telescopic</td>
+
+                                <t t-if="doc.bobcat_telescopic">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.bobcat_telescopic"/>
+                                </td>
+                                </t>
+                                <t t-else="">
+                                    <td style="text-align:right;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >0</td>
+                                </t>
+                                <td style="text-align:left;border: 1px solid ;font-size : 20px;width:25%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.bobcat_telescopic_status"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div style="text-align: center; font-size:30px;background-color: #4682b4;border: 2px solid black;">
+                            <p style="margin-top:3px;font-weight:bold;color:white;">SUB CONTRACTOR'S MANPOWER </p>
+                    </div>
+
+                    <table class="table" style="margin-top:10px;margin-right:10px;height:20px; width: 100%; border-color: rgb(175, 175, 175)">
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">INDIRECT STAFF</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">ELEC</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">ELECVTR</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">HVAC</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">MECH</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">CARP</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">S/F</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">TOTAL</td>
+                    </table>
+
+                    <table class="table" style="margin-top:10px;margin-right:10px;height:20px; width: 100%; border-color: rgb(175, 175, 175)">
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">DIRECT LABOUR</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">ELEC</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">ELECVTR</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">HVAC</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">MECH</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">CARP</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">S/F</td>
+                        <td style="border: 1px solid ;font-size : 20px;width:(100/8)%;color:black ; border-color: rgb(175, 175, 175);">TOTAL</td>
+                    </table>
+
+
+                    </div>
+                </t>
+			</t>
+			</t>
+		</template>
+
+        <template id="custom_external_layout_standard_daily_activity_submittal">
+            <div class="article o_report_layout_standard">
+                <t t-raw="0"/>
+            </div>
+			<div class="footer" >
+                <table style="margin-top:40px;border: 2px solid black; width:100%;">
+                    <tr style="height:50px;">
+                        <td style="padding-left:10px;bold;font-size : 25px;border: 2px solid black; width:40%;">PROJECT MANAGER :</td>
+                        <td style="padding-left:10px;font-size : 25px;border: 2px solid black; width:40%;">SIGNATURE :</td>
+                        <td style="padding-left:10px;font-size : 25px;border: 2px solid black; width:20%;">DATE :</td>
+                    </tr>
+                    <tr style="height:10px;">
+                        <td style="padding-left:10px;font-weight:bold;font-size : 20px;border: 2px solid black; width:40%;"></td>
+                        <td style="padding-left:10px;font-weight:bold;font-size : 20px;border: 2px solid black; width:40%;"></td>
+                        <td style="padding-left:10px;font-weight:bold;font-size : 20px;border: 2px solid black; width:20%;"></td>
+                    </tr>
+                    <tr style="height:50px;">
+                        <td style="padding-left:10px;font-size : 25px;border: 2px solid black; width:40%;">PROJECT MANAGER :</td>
+                        <td style="padding-left:10px;font-size : 25px;border: 2px solid black; width:40%;">SIGNATURE :</td>
+                        <td style="padding-left:10px;font-size : 25px;border: 2px solid black; width:20%;">DATE :</td>
+                    </tr>
+                </table>
+			</div>
+        </template>
+
+
+    </data>
+</odoo>
+

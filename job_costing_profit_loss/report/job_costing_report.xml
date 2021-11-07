@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <report
+           id="job_costing_profit_lose_report"
+           model="job.costing"
+           string="Job Costing Profit &amp; Loss"
+           report_type="qweb-pdf"
+           name="job_costing_profit_loss.report_job_costing_profit_lose"  
+           file="job_costing_profit_loss.report_job_costing_profit_lose" 
+           paperformat="odoo_job_costing_management.paperformat_my_jobcost_landscape_report"  
+   />
+    <template id="report_job_costing_profit_lose">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <t t-set="total_profit" t-value="0.0"/>
+                        <t t-set="total_actual_invoicecost" t-value="0.0"/>
+                        <t t-set="total_actual_invoicesubtotal" t-value="0.0"/>
+                        <t t-set="total_labour_profit" t-value="0.0"/>
+                        <t t-set="total_labouractual_invoicecost" t-value="0.0"/>
+                        <t t-set="total_labouractual_invoicesubtotal" t-value="0.0"/>
+                        <t t-set="total_ohd_profit" t-value="0.0"/>
+                        <t t-set="total_ohdactual_invoicecost" t-value="0.0"/>
+                        <t t-set="total_ohdactual_invoicesubtotal" t-value="0.0"/>
+                        <center>
+                            <h2>JOB COSTING PROFIT &amp; LOSS</h2>
+                        </center>
+                        <center>
+                            <h2><span t-field="doc.number"/></h2>
+                        </center>
+                        <div class="row mt32 mb32">  
+                        <table class="table table-sm o_main_table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>Project </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.project_id.name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Job Order </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.task_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Customer </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.partner_id.name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Analytic Account </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.analytic_id.name"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <div t-if="doc.job_cost_line_ids">
+                            <h3>Materials</h3>
+                            <table class="table table-sm o_main_table">
+                                <thead>
+                                    <tr>
+                                        <th>Job</th>
+                                        <th class="text-center">Costs</th>
+                                        <th class="text-center">Revenue</th>
+                                        <th class="text-center">Profit / Loss</th>
+                                        <th class="text-center">Markup</th>
+                                        <th class="text-center">Profit Margin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.job_cost_line_ids" t-as="material_line">
+                                        <t t-set= "profit" t-value="material_line.total_cost - material_line.actual_invoice_subtotal"/>
+                                        <t t-set="total_profit" t-value="total_profit + float(profit)"/>
+                                        <t t-set="total_actual_invoicecost" t-value="total_actual_invoicecost + float(material_line.total_cost)"/>
+                                        <t t-set="total_actual_invoicesubtotal" t-value="total_actual_invoicesubtotal + float(material_line.actual_invoice_subtotal)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Total</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong> 
+                                                <span t-esc="total_actual_invoicecost" t-options='{"widget": "monetary", "display_currency":  
+                                                  doc.currency_id}'/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                             <strong>
+                                                 <span t-esc="total_actual_invoicesubtotal" t-options='{"widget": "monetary", "display_currency":
+                                                  doc.currency_id}'/>
+                                             </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                 <span t-esc="total_profit" t-options='{"widget": "monetary", "display_currency": 
+                                                      doc.currency_id}'/>
+                                            </strong>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="doc.job_cost_line_ids" t-as="material_line">
+                                        <td>
+                                            <span t-field="material_line.description"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="material_line.total_cost" t-options='{"widget": "monetary", "display_currency":
+                                                  doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="material_line.actual_invoice_subtotal" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-set= "profit" t-value="material_line.total_cost - material_line.actual_invoice_subtotal"/>
+                                            <span t-esc ="profit" t-options='{"widget": "monetary", "display_currency":
+                                                  material_line.direct_id.currency_id}'/>
+
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="material_line.total_cost">
+                                                <t t-set="markup" t-value="(((material_line.actual_invoice_subtotal - material_line.total_cost) / material_line.total_cost) * 100)"/>
+                                                    <span t-esc="'%.2f'%markup" />%
+                                            </t>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="material_line.actual_invoice_subtotal">
+                                                <t t-set="margin_profit" t-value="(((material_line.actual_invoice_subtotal - material_line.total_cost) / material_line.actual_invoice_subtotal) * 100)"/>
+                                                    <span t-esc="'%.2f'%margin_profit" />%
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p style="page-break-before:always;"> </p>
+                        <div t-if="doc.job_labour_line_ids">
+                            <h3>Labours</h3>
+                            <table class="table table-sm o_main_table">
+                                <thead>
+                                       <th>Job</th>
+                                       <th class="text-center">Costs</th>
+                                       <th class="text-center">Revenue</th>
+                                       <th class="text-center">Profit / Loss</th>
+                                       <th class="text-center">Markup</th>
+                                       <th class="text-center">Profit Margin</th>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.job_labour_line_ids" t-as="labor_line">
+                                        <t t-set= "profit" t-value="labor_line.total_cost - labor_line.actual_invoice_subtotal"/>
+                                        <t t-set="total_labour_profit" t-value="total_labour_profit + float(profit)"/>
+                                        <t t-set="total_labouractual_invoicecost" t-value="total_labouractual_invoicecost + float(labor_line.total_cost)"/>
+                                        <t t-set="total_labouractual_invoicesubtotal" t-value="total_labouractual_invoicesubtotal + float(labor_line.actual_invoice_subtotal)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Total</strong>
+                                        </td>
+                                        <td class="text-center">
+                                             <strong><span t-esc="total_labouractual_invoicecost" t-options='{"widget": "monetary", "display_currency":
+                                                  doc.currency_id}'/></strong>
+                                        </td>
+                                        <td class="text-center">
+                                             <strong><span t-esc="total_labouractual_invoicesubtotal" t-options='{"widget": "monetary", "display_currency":
+                                                  doc.currency_id}'/></strong>
+                                        </td>
+                                        <td class="text-center">
+                                             <strong><span t-esc="total_labour_profit" t-options='{"widget": "monetary", "display_currency":
+                                                  doc.currency_id}'/></strong>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="doc.job_labour_line_ids" t-as="labor_line">
+                                        <td>
+                                            <span t-field="labor_line.description"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="labor_line.total_cost" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="labor_line.actual_invoice_subtotal" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-set= "profit" t-value="labor_line.total_cost - labor_line.actual_invoice_subtotal"/>
+                                            <span t-esc ="profit" t-options='{"widget": "monetary", "display_currency":
+                                                  labor_line.direct_id.currency_id}' />
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="labor_line.total_cost">
+                                                <t t-set="markup" t-value="(((labor_line.actual_invoice_subtotal - labor_line.total_cost) / labor_line.total_cost) * 100)"/>
+                                                    <span t-esc="'%.2f'%markup" />%
+                                            </t>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="labor_line.actual_invoice_subtotal">
+                                                <t t-set="direct_margin_profit" t-value="(((labor_line.actual_invoice_subtotal - labor_line.total_cost) / labor_line.actual_invoice_subtotal) * 100)"/>
+                                                    <span t-esc="'%.2f'%direct_margin_profit" />%
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p style="page-break-before:always;"> </p>
+                        <div t-if="doc.job_overhead_line_ids">
+                            <h3>Overheads</h3>
+                            <table class="table table-sm o_main_table">
+                                <thead>
+                                    <tr>
+                                        <th>Job</th>
+                                        <th class="text-center">Costs</th>
+                                        <th class="text-center">Revenue</th>
+                                        <th class="text-center">Profit / Loss</th>
+                                        <th class="text-center">Markup</th>
+                                        <th class="text-center">Profit Margin</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="invoice_tbody">
+                                    <tr t-foreach="doc.job_overhead_line_ids" t-as="overhead_line">
+                                        <t t-set="profit" t-value="overhead_line.actual_invoice_subtotal - overhead_line.total_cost"/>
+                                        <t t-set="total_ohd_profit" t-value="total_ohd_profit + float(profit)"/>
+                                        <t t-set="total_ohdactual_invoicecost" t-value="total_ohdactual_invoicecost + float(overhead_line.total_cost)"/>
+                                        <t t-set="total_ohdactual_invoicesubtotal" t-value="total_ohdactual_invoicesubtotal + float(overhead_line.actual_invoice_subtotal)"/>
+                                    </tr>
+                                     <tr>
+                                        <td>
+                                            <strong>Total</strong>
+                                        </td>
+                                        <td class="text-center">
+                                             <strong><span t-esc="total_ohdactual_invoicecost" t-options='{"widget": "monetary", "display_currency": 
+                                                  doc.currency_id}'/></strong>
+                                        </td>
+                                        <td class="text-center">
+                                             <strong><span t-esc="total_ohdactual_invoicesubtotal" t-options='{"widget": "monetary", "display_currency": 
+                                                  doc.currency_id}'/></strong>
+                                        </td>
+                                        <td class="text-center">
+                                             <strong><span t-esc="total_ohd_profit" t-options='{"widget": "monetary", "display_currency": 
+                                                  doc.currency_id}'/></strong>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="doc.job_overhead_line_ids" t-as="overhead_line">
+                                        <td>
+                                            <span t-field="overhead_line.description"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="overhead_line.total_cost" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="overhead_line.actual_invoice_subtotal" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-set="profit" t-value="overhead_line.actual_invoice_subtotal - overhead_line.total_cost"/>
+                                            <span t-esc ="profit" t-options='{"widget": "monetary", "display_currency": 
+                                                  overhead_line.direct_id.currency_id}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="overhead_line.total_cost">
+                                                <t t-set="markup" t-value="(((overhead_line.actual_invoice_subtotal - overhead_line.total_cost) / overhead_line.total_cost) * 100)"/>
+                                                    <span t-esc="'%.2f'%markup" />%
+                                            </t>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="overhead_line.actual_invoice_subtotal">
+                                                <t t-set="ohd_margin_profit" t-value="(((overhead_line.actual_invoice_subtotal - overhead_line.total_cost) / overhead_line.actual_invoice_subtotal) * 100)"/>
+                                                    <span t-esc="'%.2f'%ohd_margin_profit" />%
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    </data>
+</odoo>

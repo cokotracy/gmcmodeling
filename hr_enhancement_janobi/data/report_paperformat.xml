@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payslip_paperformat" model="report.paperformat">
+        <field name="name">Payslip Report</field>
+        <field name="orientation">Landscape</field>
+    </record>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="project_automatic_tasks_form_view" model="ir.ui.view">
+            <field name="name">automatic.tasks.form.view</field>
+            <field name="model">automatic.tasks</field>
+            <field name="arch" type="xml">
+                <form string="Automated Tasks">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Task Name"/>
+                            </h1>
+                        </div>
+                        <group col="4" colspan="4">
+                            <field name="stage_id"/>
+                            <field name="sequence"/>
+                            <field name="is_job_document" attrs="{'invisible': [('is_job_schedule', '=', True)]}"/>
+                            <field name="is_job_schedule" attrs="{'invisible': [('is_job_document', '=', True)]}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="project_automatic_tasks_tree_view" model="ir.ui.view">
+            <field name="name">automatic.tasks.tree.view</field>
+            <field name="model">automatic.tasks</field>
+            <field name="arch" type="xml">
+                <tree string="Automated Tasks">
+                    <field name="name"/>
+                    <field name="stage_id"/>
+                    <field name="sequence"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_automatic_tasks">
+            <field name="name">Automated Tasks List</field>
+            <field name="res_model">automatic.tasks</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_automatic_tasks" name="Automated Task list"
+                  parent="odoo_job_costing_management.menu_job_cost_configuration"
+                  action="action_automatic_tasks"
+                  sequence="5"/>
+
+    </data>
+</odoo>

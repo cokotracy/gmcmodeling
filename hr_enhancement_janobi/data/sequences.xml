@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+
+        <record id="employee_seq" model="ir.sequence">
+            <field name="name">Employee Code</field>
+            <field name="code">employee.code</field>
+            <field name="padding">4</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+
+        <record id="employee_move_seq" model="ir.sequence">
+            <field name="name">Employee Move Code</field>
+            <field name="code">employee.move.code</field>
+            <field name="padding">4</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+
+        <record id="hr_reconcile_seq" model="ir.sequence">
+            <field name="name">HR Reconciliation Code</field>
+            <field name="code">reconciliation.code</field>
+            <field name="padding">4</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+
+        <record id="ir_cron_compute_age" forcecreate="True" model="ir.cron">
+            <field name="name">HR Employee: Compute age</field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="state">code</field>
+            <field name="code">model._compute_age()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="nextcall" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 00:00:05')"/>
+            <field eval="False" name="doall"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_view_move_form_journal_entry" model="ir.ui.view">
+            <field name="name">view_inherit_view_move_form_journal_entry</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="expense_sheet_id" invisible="1"/>
+                    <field name="payment_id" invisible="1"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+
+        <template id="journal_entry_template_report_view_inherit11" inherit_id="bi_print_journal_entries.journal_entry_template_report_view">
+            <xpath expr="//table[1]" position="after">
+                <br/>
+					<br/>
+					<t t-if="o.expense_sheet_id">
+					<div class="row" id="expense_approvals">
+						<div class="col-8">
+							<div>
+								<strong>Expense Creator :</strong>
+								<p t-field="o.expense_sheet_id.create_uid" />
+							</div>
+
+							<div class="text-left">
+								<strong>Expense Revision Manager :</strong>
+								<p t-field="o.expense_sheet_id.manager_revision_id" />
+							</div>
+							<div>
+								<strong>Expense Approval Manager :</strong>
+								<p t-field="o.expense_sheet_id.user_id" />
+							</div>
+						</div>
+
+						<div class="col-8">
+
+
+						</div>
+					</div>
+					</t>
+
+                <t t-if="o.payment_id and not o.expense_sheet_id">
+					<div class="row" id="expense_approvals">
+						<div class="col-8">
+							<div>
+								<strong>Payment Creator :</strong>
+								<p t-field="o.payment_id.create_uid" />
+							</div>
+
+							<div class="text-left">
+								<strong>Payment Approval :</strong>
+								<p t-field="o.payment_id.user_confirmed" />
+							</div>
+
+						</div>
+
+						<div class="col-8">
+
+
+						</div>
+					</div>
+					</t>
+            </xpath>
+        </template>
+    </data>
+</odoo>

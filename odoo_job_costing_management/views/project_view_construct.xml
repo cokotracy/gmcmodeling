@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="edit_project_inherit_construction" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[1]" position="before">
+                <page name="project_tender" string="Project Tender">
+                    <field name="project_tender_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="code"/>
+                            <field name="name" widget="section_and_note_text"/>
+                            <field name="item_type"/>
+                            <field name="related_task_id" options="{'no_create':True}"
+                                   required="0" domain="[('project_id', '=', project_id)]"/>
+                            <field name="tender_qty"/>
+                            <field name="uom_id"/>
+                            <field name="lump_sum_qty"
+                                   attrs="{'column_invisible': [('parent.lump_sum_project','=',False)]}"/>
+                            <field name="job_cost_total" sum="Total"/>
+                            <field name="customer_cost" sum="Total"/>
+                            <field name="project_profit"/>
+                            <field name="total_amount_unit_before_discount" sum="Total"/>
+                            <field name="discount"/>
+                            <field name="total_amount_unit"/>
+                            <field name="total_amount" sum="Total"/>
+                            <field name="project_id" invisible="1"/>
+                            <field name="related_product" invisible="0"/>
+                            <field name="tender_rate" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+                <page name="construction_sites" string="Construction Site Detail">
+                    <group>
+                        <group>
+                            <field name="type_of_construction"/>
+                            <field name="location_id" context="{'search_default_customer':1, 'show_address': 1}"
+                                   options='{"always_reload": True}'/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//form/sheet/div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" icon="fa-tasks" name="view_notes">
+                    <field string="Notes" name="notes_count" widget="statinfo"
+                           options="{'label_field': 'label_notes'}"/>
+                </button>
+            </xpath>
+            <xpath expr="//notebook" position="before">
+                <group>
+                    <group>
+                        <field name="profit_per" string="Over head &amp; Profit %"/>
+                    </group>
+                    <group>
+                        <button string="Update Tender Profit" type="object" name="update_tender_profit"
+                                class="oe_link"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="discount" string="Discount %"/>
+                        <field name="assigned_to"/>
+                        <field name="lump_sum_project" invisible="1"/>
+                    </group>
+                    <group>
+                        <button string="Update Tender Discount" type="object" name="update_tender_discount"
+                                class="oe_link"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_view_task_subtask" model="ir.actions.act_window">
+        <field name="name">Tasks</field>
+        <field name="res_model">project.task</field>
+        <field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
+        <field name="search_view_id" ref="project.view_task_search_form"/>
+        <field name="help" type="html">
+            <p>
+                Odoo's project management allows you to manage the pipeline of your tasks efficiently. You can track
+                progress, discuss on tasks, attach documents, etc.
+            </p>
+        </field>
+    </record>
+
+    <record id="open_view_task_list_kanban_subtask" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">kanban</field>
+        <field name="act_window_id" ref="action_view_task_subtask"/>
+    </record>
+
+    <record id="open_view_task_list_tree_subtask" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="act_window_id" ref="action_view_task_subtask"/>
+    </record>
+
+    <record model="ir.ui.view" id="view_task_form2_inherit_subtask">
+        <field name="name">project.task.view</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/field[@name='stage_id']" position="before">
+                <button string="Create Subtasks" type="action" name="%(action_proejct_subtask_user_wizard)d"
+                        class="oe_highlight" groups="project.group_project_manager" invisible="1"/>
+            </xpath>
+<!--            <xpath expr="//form/sheet/notebook/page[2]" position="after">-->
+<!--                <page name="subtasks" string="Subtasks">-->
+<!--                    <field name="child_task_ids" readonly="True"/>-->
+<!--                </page>-->
+<!--            </xpath>-->
+            <field name="user_id" position="after">
+                <field name="parent_task_id" invisible="1"/>
+            </field>
+
+            <xpath expr="//notebook" position="inside">
+                <page name="job_order_report_date" string="Job Order Report Data">
+                    <group>
+                        <group>
+                            <field name="job_order_no"/>
+                            <field name="project_ID"/>
+                            <field name="client_name"/>
+                            <field name="client_manager"/>
+                        </group>
+                        <group>
+                            <field name="entry_date"/>
+                            <field name="location"/>
+                            <field name="po_number"/>
+                            <field name="po_date"/>
+                            <field name="start_date"/>
+                            <field name="hand_over_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="remarks"/>
+                    </group>
+
+                    <group>
+                        <div>
+                            <group string="KEY PERSONNEL">
+                                <field name="key_personnel_ids">
+                                    <tree editable="bottom">
+                                        <field name="position_id"/>
+                                        <field name="employee_id"/>
+                                        <field name="mobile"/>
+                                        <field name="email_id"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </div>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_task_search_form_inherit_parenttask">
+        <field name="name">project.task.view</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="parent_task_id"/>
+            </xpath>
+            <xpath expr="//search/group" position="inside">
+                <filter string="Parent Task" name="parent_task" context="{'group_by':'parent_task_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

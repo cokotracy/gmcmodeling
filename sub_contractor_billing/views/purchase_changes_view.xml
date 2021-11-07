@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+    
+        <record id="purchase_order_form_inherit_job" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="odoo_job_costing_management.purchase_order_form_inherit_picking"/>
+            <field name="arch" type="xml">
+                <field name="picking_id" position="after">
+                    <field name="job_type"/>
+                    <field name="p_project_id"/>
+                    <field name="project_no"/>
+                    <field name="project_start_date"/>
+                    <field name="project_end_date"/>
+                    <field name="project_period"/>
+                    <field name="job_order_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="purchase_purchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="attributes">
+                    <attribute name="string">Contractor Name</attribute>
+                </field>
+
+                <xpath expr="//notebook//page//field[@name='order_line']//tree//field[@name='product_id']" position="attributes">
+                    <attribute name="string">Work Item</attribute>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='order_line']//tree//field[@name='qty_received']" position="before">
+                    <field name="recently_done_qty"/>
+                    <field name="recently_done_update" invisible='1'/>
+                </xpath>
+
+               
+            </field>
+        </record>
+    
+    </data>
+</odoo>

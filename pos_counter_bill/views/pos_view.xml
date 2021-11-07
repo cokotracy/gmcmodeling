@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/pos_counter_bill/static/src/css/pos.css"/>
+                <script type="text/javascript" src="/pos_counter_bill/static/src/js/pos.js"></script>
+            </xpath>
+        </template>
+
+        <record id="product_template_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.common.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="point_of_sale.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="to_weight" position="after">
+                    <field name="bill_category"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

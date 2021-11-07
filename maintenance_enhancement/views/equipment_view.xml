@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="hr_equipment_view_form_inherit" model="ir.ui.view">
+            <field name="name">maintenance.equipment.inherit</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+            <field name="arch" type="xml">
+
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//field[@name='workcenter_id']" position="after">
+                    <field name="analytic_account_id" required="1"/>
+                    <field name="timesheet_cost"/>
+                </xpath>
+                <xpath expr="//page[@name='maintenance']" position="after">
+                    <page string="Timesheets" name="timesheets">
+                        <field name="timesheet_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="date"/>
+                                <field name="employee_id" required="1" widget="many2one_avatar_employee"/>
+                                <field name="maintenance_id"/>
+                                <field name="name" required="1"/>
+                                <field name="unit_amount" widget="timesheet_uom" decoration-danger="unit_amount &gt; 24"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

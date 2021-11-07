@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <report
+            id="account_invoices_subcontractor"
+            model="account.invoice"
+            string="Subcontractor INV/BILL"
+            report_type="qweb-pdf"
+            name="sale_jobs.report_invoice_subcontractor"
+            file="sale_jobs.report_invoice_subcontractor"
+            attachment="(object.state in ('open','in_payment','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+            print_report_name="(object._get_report_base_filename())"
+            groups="account.group_account_invoice"
+        />
+    </data>
+</odoo>

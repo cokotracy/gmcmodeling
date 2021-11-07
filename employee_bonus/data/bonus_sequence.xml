@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        
+        <record id="bonus_seq" model="ir.sequence">
+            <field name="name">Bonus Sequence</field>
+            <field name="code">emp.bonus</field>
+            <field name="prefix">BONUS/</field>
+            <field name="padding">5</field>
+        </record>
+       
+    </data>
+</openerp>

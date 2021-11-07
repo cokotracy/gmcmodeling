@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_contract_form_view_inherit_number_of_days" model="ir.ui.view">
+            <field name="name">hr contract view form inherit number of days</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_end']" position="after">
+                    <field name="number_of_days"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="hr_payslip_form_number_of_days" model="ir.ui.view">
+            <field name="name">payslip form inherit number of days</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group[1]" position="after">
+                    <group>
+                        <group>
+                            <field name="number_of_days"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

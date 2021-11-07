@@ -1,0 +1,203 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+        <!--Check medical_end_date mail Template And Activity action-->
+        <record id="check_medical_end_date_employee_template" model="mail.template">
+            <field name="name">HR Employee: Check Medical End Date Template</field>
+            <field name="subject">Medical End Date For Employee ${object.name}</field>
+            <field name="email_from">${user.email|safe}</field>
+            <field name="email_to">${object.coach_id.work_email|safe}</field>
+            <field name="model_id" ref="hr_check_dates.model_hr_employee"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Hello ${object.coach_id.name},</p>
+                <p>Employee ${object.name},</p>
+                <p>Medical End Date: ${object.medical_end_date}</p>
+                <p>Date will Expire soon..!</p>
+            ]]>
+            </field>
+        </record>
+        <record model="ir.actions.server" id="check_medical_end_date_server_action">
+            <field name="name">HR Employee: Check Medical End Date Action</field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="sequence">1</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">next_activity</field>
+            <field name="activity_type_id">6</field>
+            <field name="activity_date_deadline_range">0</field>
+            <field name="activity_date_deadline_range_type">days</field>
+            <field name="activity_user_type">generic</field>
+            <field name="activity_user_field_name">coach_user_id</field>
+            <field name="activity_summary">Important!!</field>
+            <field name="activity_note"><![CDATA[
+                <p>Medical End Date will Expire soon..!</p>
+            ]]></field>
+        </record>
+
+        <!--Check residency_end_date mail Template And Activity action-->
+        <record id="check_residency_end_date_employee_template" model="mail.template">
+            <field name="name">HR Employee: Check Residency End Date Template</field>
+            <field name="subject">Residency End Date For Employee ${object.name}</field>
+            <field name="email_from">${user.email|safe}</field>
+            <field name="email_to">${object.coach_id.work_email|safe}</field>
+            <field name="model_id" ref="hr_check_dates.model_hr_employee"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Hello ${object.coach_id.name},</p>
+                <p>Employee ${object.name},</p>
+                <p>Residency End Date: ${object.residency_end_date}</p>
+                <p>Date will Expire soon..!</p>
+            ]]>
+            </field>
+        </record>
+        <record model="ir.actions.server" id="check_residency_end_date_server_action">
+            <field name="name">HR Employee: Check Residency End Date Action</field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="sequence">1</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">next_activity</field>
+            <field name="activity_type_id">6</field>
+            <field name="activity_date_deadline_range">0</field>
+            <field name="activity_date_deadline_range_type">days</field>
+            <field name="activity_user_type">generic</field>
+            <field name="activity_user_field_name">coach_user_id</field>
+            <field name="activity_summary">Important!!</field>
+            <field name="activity_note"><![CDATA[
+                <p>Residency End Date will Expire soon..!</p>
+            ]]></field>
+        </record>
+
+        <!--Check passport_end_date mail Template And Activity action-->
+        <record id="check_passport_end_date_employee_template" model="mail.template">
+            <field name="name">HR Employee: Check Passport End Date Template</field>
+            <field name="subject">Passport End Date For Employee ${object.name}</field>
+            <field name="email_from">${user.email|safe}</field>
+            <field name="email_to">${object.coach_id.work_email|safe}</field>
+            <field name="model_id" ref="hr_check_dates.model_hr_employee"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Hello ${object.coach_id.name},</p>
+                <p>Employee ${object.name},</p>
+                <p>Passport End Date: ${object.passport_end_date}</p>
+                <p>Date will Expire soon..!</p>
+            ]]>
+            </field>
+        </record>
+        <record model="ir.actions.server" id="check_passport_end_date_server_action">
+            <field name="name">HR Employee: Check Passport End Date Action</field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="sequence">1</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">next_activity</field>
+            <field name="activity_type_id">6</field>
+            <field name="activity_date_deadline_range">0</field>
+            <field name="activity_date_deadline_range_type">days</field>
+            <field name="activity_user_type">generic</field>
+            <field name="activity_user_field_name">coach_user_id</field>
+            <field name="activity_summary">Important!!</field>
+            <field name="activity_note"><![CDATA[
+                <p>Passport End Date will Expire soon..!</p>
+            ]]></field>
+        </record>
+
+        <!--Check syndicate_membership_end_date mail Template And Activity action-->
+        <record id="check_syndicate_membership_end_date_employee_template" model="mail.template">
+            <field name="name">HR Employee: Check Syndicate Membership End Date Template</field>
+            <field name="subject">Syndicate Membership End Date For Employee ${object.name}</field>
+            <field name="email_from">${user.email|safe}</field>
+            <field name="email_to">${object.coach_id.work_email|safe}</field>
+            <field name="model_id" ref="hr_check_dates.model_hr_employee"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Hello ${object.coach_id.name},</p>
+                <p>Employee ${object.name},</p>
+                <p>Syndicate Membership End Date: ${object.syndicate_membership_end_date}</p>
+                <p>Date will Expire soon..!</p>
+            ]]>
+            </field>
+        </record>
+        <record model="ir.actions.server" id="check_syndicate_membership_end_date_server_action">
+            <field name="name">HR Employee: Check Syndicate Membership End Date Action</field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="sequence">1</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">next_activity</field>
+            <field name="activity_type_id">6</field>
+            <field name="activity_date_deadline_range">0</field>
+            <field name="activity_date_deadline_range_type">days</field>
+            <field name="activity_user_type">generic</field>
+            <field name="activity_user_field_name">coach_user_id</field>
+            <field name="activity_summary">Important!!</field>
+            <field name="activity_note"><![CDATA[
+                <p>Syndicate Membership End Date will Expire soon..!</p>
+            ]]></field>
+        </record>
+
+        <!--Check visa_expire_date mail Template And Activity action-->
+        <record id="check_visa_expire_date_employee_template" model="mail.template">
+            <field name="name">HR Employee: Check Visa Expire Date Template</field>
+            <field name="subject">Visa Expire Date For Employee ${object.name}</field>
+            <field name="email_from">${user.email|safe}</field>
+            <field name="email_to">${object.coach_id.work_email|safe}</field>
+            <field name="model_id" ref="hr_check_dates.model_hr_employee"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Hello ${object.coach_id.name},</p>
+                <p>Employee ${object.name},</p>
+                <p>Visa Expire Date: ${object.visa_expire_date}</p>
+                <p>Date will Expire soon..!</p>
+            ]]>
+            </field>
+        </record>
+        <record model="ir.actions.server" id="check_visa_expire_date_server_action">
+            <field name="name">HR Employee: Check Visa Expire Date Action</field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="sequence">1</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">next_activity</field>
+            <field name="activity_type_id">6</field>
+            <field name="activity_date_deadline_range">0</field>
+            <field name="activity_date_deadline_range_type">days</field>
+            <field name="activity_user_type">generic</field>
+            <field name="activity_user_field_name">coach_user_id</field>
+            <field name="activity_summary">Important!!</field>
+            <field name="activity_note"><![CDATA[
+                <p>Visa Expire Date will Expire soon..!</p>
+            ]]></field>
+        </record>
+
+        <!--Check driving_license_end_date mail Template And Activity action-->
+        <record id="check_driving_license_end_date_employee_template" model="mail.template">
+            <field name="name">HR Employee: Check Driving License End Date Template</field>
+            <field name="subject">Driving License End Date For Employee ${object.name}</field>
+            <field name="email_from">${user.email|safe}</field>
+            <field name="email_to">${object.coach_id.work_email|safe}</field>
+            <field name="model_id" ref="hr_check_dates.model_hr_employee"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Hello ${object.coach_id.name},</p>
+                <p>Employee ${object.name},</p>
+                <p>Driving License End Date: ${object.driving_license_end_date}</p>
+                <p>Date will Expire soon..!</p>
+            ]]>
+            </field>
+        </record>
+        <record model="ir.actions.server" id="check_driving_license_end_date_server_action">
+            <field name="name">HR Employee: Check Driving License End Date Action</field>
+            <field name="model_id" ref="model_hr_employee"/>
+            <field name="sequence">1</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">next_activity</field>
+            <field name="activity_type_id">6</field>
+            <field name="activity_date_deadline_range">0</field>
+            <field name="activity_date_deadline_range_type">days</field>
+            <field name="activity_user_type">generic</field>
+            <field name="activity_user_field_name">coach_user_id</field>
+            <field name="activity_summary">Important!!</field>
+            <field name="activity_note"><![CDATA[
+                <p>Driving License End Date will Expire soon..!</p>
+            ]]></field>
+        </record>
+
+    </data>
+</odoo>

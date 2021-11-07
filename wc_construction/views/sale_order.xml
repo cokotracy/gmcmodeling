@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_view_order_form" model="ir.ui.view">
+            <field name="name">view_inherit_view_order_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="project_id" readonly="1"/>
+                </xpath>
+                <xpath expr="//notebook/page/field/form/group/group/field[@name='product_id']" position="before">
+                    <field name="code"/>
+                </xpath>
+                <xpath expr="//notebook/page/field/tree/field[@name='product_id']" position="before">
+                    <field name="code"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_view_quotation_tree_with_onboarding" model="ir.ui.view">
+            <field name="name">view_inherit_view_quotation_tree_with_onboarding</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="arch" type="xml">
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="project_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_view_order_tree" model="ir.ui.view">
+            <field name="name">view_inherit_view_order_tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="project_id"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

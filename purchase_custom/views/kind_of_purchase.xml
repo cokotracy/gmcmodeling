@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record id="kind_of_purchase_form_view" model="ir.ui.view">
+            <field name="name">kind.of.purchase.form</field>
+            <field name="model">kind.of.purchase</field>
+            <field name="arch" type="xml">
+                <form string="Kind Of Purchase">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="user_id"/>
+                                <field name="financial_approval"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="kind_of_purchase_tree_view" model="ir.ui.view">
+            <field name="name">kind.of.purchase.tree</field>
+            <field name="model">kind.of.purchase</field>
+            <field name="arch" type="xml">
+                <tree string="Kind Of Purchase">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="financial_approval"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="kind_of_purchase_action" model="ir.actions.act_window">
+            <field name="name">Kind Of Purchase</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kind.of.purchase</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add New Kind Of Purchase
+                </p>
+                <p>
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="kind_of_purchase_action_menu" name="Kind Of Purchase" parent="purchase.menu_purchase_config"
+                  action="kind_of_purchase_action" sequence="6"/>
+
+
+    </data>
+</odoo>

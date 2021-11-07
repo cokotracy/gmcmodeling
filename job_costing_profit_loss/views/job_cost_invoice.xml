@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="account_invoice_line_job_costing_form" model="ir.ui.view">
+            <field name="name">account.invoice.line.inherit.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='company_id']" position="after">
+                    <field name="customer_job_cost_id" invisible="1"/>
+                    <field name="customer_job_cost_line_id" domain="[('direct_id','=',customer_job_cost_id)]" options="{'no_create': True, 'no_open': True}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+

@@ -1,0 +1,85 @@
+<odoo>
+  <data>
+     <!-- Inherit Form View to Modify it -->
+     <record id="view_inherit_view_partner_form" model="ir.ui.view">
+         <field name="name">view_inherit_view_partner_form</field>
+         <field name="model">res.partner</field>
+         <field name="inherit_id" ref="base.view_partner_form"/>
+         <field name="arch" type="xml">
+
+             <!-- position: after|before|replace|attributes|inside -->
+             <xpath expr="//notebook" position="inside">
+                 <page name="tax_info" string="Tax Info">
+                   <group>
+                     <group>
+                         <label for="register_no" string="رقم التسجيل"/>
+
+                        <div class="o_row o_row_readonly o_hr_holidays_dates">
+                            <field name="register_no" class="oe_inline"/>
+                            <span class="oe_inline">
+                                Exp Date
+                            </span>
+                            <field name="register_no_exp_date" class="oe_inline"/>
+                        </div>
+
+                          <label for="file_no" string="رقم الملف"/>
+
+                        <div class="o_row o_row_readonly o_hr_holidays_dates">
+                            <field name="file_no" class="oe_inline"/>
+                            <span class="oe_inline">
+                                Exp Date
+                            </span>
+                            <field name="file_no_exp_date" class="oe_inline"/>
+                        </div>
+                     </group>
+                     <group>
+                       <field name="mission_code"/>
+                       <field name="dealing_nature" string="كود التعامل"/>
+                     </group>
+                   </group>
+                 </page>
+             </xpath>
+             <xpath expr="//field[@name='vat']" position="after">
+                 <label for="national_ID" string="الرقم القومي"/>
+
+                    <div class="o_row o_row_readonly o_hr_holidays_dates">
+                        <field name="national_ID" class="oe_inline"/>
+                        <span class="oe_inline">
+                            Exp Date
+                        </span>
+                        <field name="national_ID_exp_date" class="oe_inline"/>
+                    </div>
+             </xpath>
+
+         </field>
+     </record>
+
+    
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_inherit_view_tax_form" model="ir.ui.view">
+        <field name="name">view_inherit_view_tax_form</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            
+            <!-- position: after|before|replace|attributes|inside -->
+            <xpath expr="//field[@name='amount']" position="after">
+                <field name="discount_type"/>
+            </xpath>
+            
+        </field>
+    </record>
+
+      <record model="ir.cron" id="check_partner_fields_with_expiration_date">
+            <field name="name">Check Partner Fields With Expiration Date</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">model.check_expiration_date()</field>
+         </record>
+
+  </data>
+</odoo>

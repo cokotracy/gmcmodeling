@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="view_inherit_view_partner_form" model="ir.ui.view">
+            <field name="name">view_inherit_view_partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//field[@name='image_1920']" position="after">
+                    <field name="logo2" widget="image" class="oe_avatar"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

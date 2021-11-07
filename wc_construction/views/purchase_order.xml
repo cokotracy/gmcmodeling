@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_purchase_order_form" model="ir.ui.view">
+            <field name="name">view_inherit_purchase_order_form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@id='bid_confirm']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//button[@id='draft_confirm']" position="replace">
+                    <button name="button_confirm" type="object" states="gm_approved" string="Confirm Order"
+                            id="draft_confirm"/>
+                </xpath>
+
+                <xpath expr="//button[@id='draft_confirm']" position="after">
+                    <button name="gm_approve" type="object" states="dep_approved" string="GM Approve"
+                            class="oe_highlight"
+                            groups="wc_construction.rfq_pm_approve"/>
+                </xpath>
+
+                <xpath expr="//button[@name='button_cancel']" position="attributes">
+                    <attribute name="states">draft,dep_approved,gm_approved,to approve,sent,purchase</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_view_purchase_order_filter" model="ir.ui.view">
+            <field name="name">view_inherit_view_purchase_order_filter</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='draft']" position="after">
+                    <filter name="gm_approved" string="GM Approved" domain="[('state', '=', 'gm_approved')]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

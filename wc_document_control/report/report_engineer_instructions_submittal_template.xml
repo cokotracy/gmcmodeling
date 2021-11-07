@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <template id="eng_instruct_submittal_report_template_id">
+		<t t-call="web.html_container">
+			<t t-call="wc_document_control.custom_external_layout_standard_eng_instruct_submittal">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <!--<div>-->
+					        <!--<img src="/wc_document_control/static/description/header.jpeg" alt="Header" style="width:100%"/>-->
+				        <!--</div>-->
+                        <div class="row" style="display:flex;align-items:center;margin-left:2px;width:99.9%;margin-bottom:20px;height:200px;border:2px solid black;">
+                            <div style="margin-top:30px;width:40%;display:flex;align-items:center;">
+                                <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" class="float-left" style="max-height:140px; max-width:300px;"/>
+                            </div>
+                            <div class="row" style="margin-top:30px;width:30%;display:flex;align-items:center;">
+                                <div style="width:50%;display:flex;align-items:center;">
+                                    <img t-if="doc.consultant.logo1" t-att-src="image_data_uri(doc.consultant.logo1)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                                <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">
+                                    <img t-if="doc.consultant.logo2" t-att-src="image_data_uri(doc.consultant.logo2)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:30px;width:30%;display:flex;align-items:center;">
+                                <div style="width:50%;display:flex;align-items:center;">
+                                    <img t-if="doc.project_id.partner_id.image_1920" t-att-src="image_data_uri(doc.project_id.partner_id.image_1920)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                                <div style="margin-left : 30px;width:50%;display:flex;align-items:center;">
+                                    <img t-if="doc.project_id.partner_id.logo2" t-att-src="image_data_uri(doc.project_id.partner_id.logo2)" class="float-left" style="max-height:140spx; max-width:198px;"/>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="text-align: center; font-size:30px;background-color: #4682b4;border: 2px solid black;">
+                            <p style="margin-top:3px;font-weight:bold;color:white;">ENGINEER INSTRUCTION REPORT</p>
+                        </div>
+                        <div class="row" style="margin-right:1px;margin-top:10px; width:99.9%">
+                            <table class="table" style="margin-left:10px;margin-right:2px;height:20px; width: 50%; border-color: rgb(175, 175, 175)">
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold ;width:30%;color:white;border-color: rgb(175, 175, 175);">Reference No</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;color:black ; border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.revision_no"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Project ID</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175)" >
+                                        <span t-field="doc.projectID"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Project Name</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.project_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Client Name</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.client_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >To</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.client_specialist_id.name"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table" style="height:20px; width: 50%; border-color: rgb(175, 175, 175)">
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold ;width:30%;color:white;border-color: rgb(175, 175, 175);">
+                                        Submittal Type</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;color:black ; border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.submittal_type"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Submission Date</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%; border-color: rgb(175, 175, 175)" >
+                                        <span t-field="doc.submission_date"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Scope Details</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.scope_details"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Prepared By</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.prepared_by_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Status</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.code"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row" style="margin-right:1px;margin-top:-13px;width:100%">
+                            <table class="table" style="margin-left:10px;margin-right:2px;height:20px; width: 100%; border-color: rgb(175, 175, 175)">
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold ;width:15%;color:white;border-color: rgb(175, 175, 175);">
+                                        Subject</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:85%;color:black ; border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.subject"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:15%;color:white;border-color: rgb(175, 175, 175);" >Description</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:85%; border-color: rgb(175, 175, 175)" >
+                                        <span t-field="doc.question"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                        <div class="row" style="width:40% ; position:absolute;right: 0px ;position:right;">
+                            <div style="width:50%;">
+                                <label for="time_impact" style="font-size:30px;">Time Impact</label>
+<!--                                <input type="checkbox" />-->
+                                <div style="margin-left:30px;border: 2px solid black; height:50px;width:30px;display: inline-block;">
+
+                                </div>
+                            </div>
+                            <div style="width:50%;">
+                               <label for="cost_impact" style="font-size:30px;">Cost Impact</label>
+<!--                              <input type="checkbox" />-->
+
+                                <div style="margin-left:30px;border: 2px solid black; height:50px;width:30px;display: inline-block;">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-right:1px;margin-top:60px; width:99.9%">
+                            <table class="table" style="margin-left:10px;margin-right:2px;height:20px; width: 50%; border-color: rgb(175, 175, 175)">
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold ;width:30%;color:white;border-color: rgb(175, 175, 175);">
+                                         Prepard By</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;color:black ; border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.prepared_by_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Consultant</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175)" >
+                                        <span t-field="doc.consultant.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Consultant PM</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.consultant_pm"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <table class="table" style="height:20px; width: 50%; border-color: rgb(175, 175, 175)">
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold ;width:30%;color:white;border-color: rgb(175, 175, 175);">
+                                        Received By</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;color:black ; border-color: rgb(175, 175, 175);" >
+<!--                                        <span t-field="doc."/>-->
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Date</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%; border-color: rgb(175, 175, 175)" >
+<!--                                        <span t-field="doc.client_specialist_id.name"/>-->
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >Copies</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+<!--                                        <span t-field="doc.submission_date"/>-->
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+
+                        <div style="text-align: center; font-size:30px;background-color: #4682b4;border: 2px solid black;">
+                            <p style="margin-top:3px;font-weight:bold;color:white;">CONTRACTOR'S RESPONSE</p>
+                        </div>
+
+                    <div style="position: relative;margin-top:4px;height:300px;font-size:30px;border: 2px solid black;">
+                        <div class="row" style="width:40% ; position: absolute; right: 0; bottom: 0;">
+
+                            <div style="width:50%; position:center;">
+                                    <p style="font-size:30px;display: inline-block;">Time Impact</p>
+                                    <div style="margin-left:30px;border: 2px solid black; height:50px;width:30px;display: inline-block;">
+                                    </div>
+                                </div>
+                                <div style="width:50%;">
+                                   <p style="font-size:30px;display: inline-block;">Cost Impact</p>
+                                    <div style="margin-left:30px;border: 2px solid black; height:50px;width:30px;display: inline-block;">
+
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+
+                     <div class="row" style="display: flex;align-items: center;margin-left:2px;margin-top:4px;width:100% ;height:50px;">
+                           <div style="width:30%;border:2px solid black;text-align:left;">
+                                <p style="font-size:30px;">ACTION COMPLETE</p>
+                            </div>
+
+                            <div class="row" style="margin-left:30px;width:30% ;display: flex;align-items: center;">
+
+                                <div style="width:50%;display:flex ; align-items:center;">
+                                        <div style="font-size:30px;display: inline-block;">YES</div>
+                                        <div style="margin-left:30px;border: 2px solid black; height:50px;width:30px;display: inline-block;">
+                                        </div>
+                                </div>
+                                <div style="width:50%;">
+                                   <p style="font-size:30px;display: inline-block;">NO</p>
+                                    <div style="margin-left:30px;border: 2px solid black; height:50px;width:30px;display: inline-block;">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="width:8%;border:2px solid black;text-align:left;">
+                                <p style="font-size:30px;">DATE :</p>
+                            </div>
+                            <div style="margin-left:4px;width:30.7%;border:2px solid black;text-align:left;">
+                                <p style="font-size:30px;"></p>
+                            </div>
+                     </div>
+
+                    <div class="row" style="margin-left:2px;margin-top:4px;width:100% ;height:150px;">
+                        <div style="width:30%;border: 2px solid black;">
+                            <p style="margin-left:3px;font-size:22px;">CONTRACTOR (Name)</p>
+                        </div>
+                        <div style="width:30.5%;border: 2px solid black;margin-left:4px;">
+                            <p style="margin-left:3px;font-size:22px;">SIGNATURE</p>
+                        </div>
+                        <div style="width:38.9%;border: 2px solid black;margin-left:4px;">
+                            <p style="margin-left:3px;font-size:22px;">DATE</p>
+                        </div>
+                    </div>
+
+                     <div style="margin-top:8px;text-align: center; font-size:30px;background-color: #4682b4;border: 2px solid black;">
+                        <p style="margin-top:3px;font-weight:bold;color:white;">RETURNED SIGNED COPY TO RESIDENT ENGINEER</p>
+                    </div>
+                    <div class="row" style="margin-left:2px;margin-top:4px;width:100% ;height:50px;">
+                        <div style="width:30%;border:2px solid black;text-align:left;">
+                            <p style="font-size:30px;">RE-INSPECTION</p>
+                        </div>
+                        <div style="width:22%;">
+                            <p style="margin-left:30px;font-weight:100px;font-size:30px;display: inline-block;">ACCEPTED</p>
+                            <div style="margin-left:30px;border: 2px solid black; height:40px;width:30px;display: inline-block;">
+                            </div>
+                        </div>
+                        <div style="width:22%;">
+                            <p style="margin-left:30px;font-weight:100px;font-size:30px;display: inline-block;">REJECTED</p>
+                            <div style="margin-left:30px;border: 2px solid black; height:40px;width:30px;display: inline-block;">
+                            </div>
+                        </div>
+                        <div style="width:22%;">
+                            <p style="font-size:30px;display: inline-block;">NOT REQUIRED</p>
+                            <div style="margin-left:30px;border: 2px solid black; height:40px;width:30px;display: inline-block;">
+                            </div>
+                        </div>
+                    </div>
+
+                <div style="position: relative;margin-top:4px;height:150px;font-size:30px;border: 2px solid black;">
+
+                </div>
+
+                <div class="row" style="margin-left:2px;margin-top:4px;width:100% ;height:150px;">
+                        <div style="width:30%;border: 2px solid black;">
+                            <p style="margin-left:3px;font-size:22px;">CONTRACTOR (Name)</p>
+                        </div>
+                        <div style="width:30.5%;border: 2px solid black;margin-left:4px;">
+                            <p style="margin-left:3px;font-size:22px;">SIGNATURE</p>
+                        </div>
+                        <div style="width:38.9%;border: 2px solid black;margin-left:4px;">
+                            <p style="margin-left:3px;font-size:22px;">DATE</p>
+                        </div>
+                </div>
+
+
+
+                    </div>
+                </t>
+			</t>
+			</t>
+		</template>
+
+        <template id="custom_external_layout_standard_eng_instruct_submittal">
+            <div class="article o_report_layout_standard">
+                <t t-raw="0"/>
+            </div>
+			<div class="footer" >
+			</div>
+        </template>
+
+
+    </data>
+</odoo>
+

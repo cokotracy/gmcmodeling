@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="module_category_interior_procurment_list">
+        <field name="name">procurment list</field>
+    </record>
+    <record id="group_procurment_list_add" model="res.groups">
+        <field name="name">add</field>
+        <field name="category_id" ref="module_category_interior_procurment_list"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="group_procurment_list_edit" model="res.groups">
+        <field name="name">edit</field>
+        <field name="category_id" ref="module_category_interior_procurment_list"/>
+        <field name="implied_ids" eval="[(4, ref('group_procurment_list_add'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="group_procurment_list_delete" model="res.groups">
+        <field name="name">delete</field>
+        <field name="category_id" ref="module_category_interior_procurment_list"/>
+        <field name="implied_ids" eval="[(4, ref('group_procurment_list_edit'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+
+    <record model="ir.module.category" id="module_category_interior_procurment_list_lines">
+        <field name="name">procurment list lines</field>
+    </record>
+    <record id="group_procurment_list_lines_add" model="res.groups">
+        <field name="name">add</field>
+        <field name="category_id" ref="module_category_interior_procurment_list_lines"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="group_procurment_list_lines_edit" model="res.groups">
+        <field name="name">edit</field>
+        <field name="category_id" ref="module_category_interior_procurment_list_lines"/>
+        <field name="implied_ids" eval="[(4, ref('group_procurment_list_lines_add'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="group_procurment_list_lines_delete" model="res.groups">
+        <field name="name">delete</field>
+        <field name="category_id" ref="module_category_interior_procurment_list_lines"/>
+        <field name="implied_ids" eval="[(4, ref('group_procurment_list_lines_edit'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+
+    <record model="ir.module.category" id="module_category_interior_procurment_list_lines_attachment">
+        <field name="name">procurment list Attachment</field>
+    </record>
+    <record id="group_procurment_list_lines_attachment_add" model="res.groups">
+        <field name="name">add</field>
+        <field name="category_id" ref="module_category_interior_procurment_list_lines_attachment"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="group_procurment_list_lines_attachment_edit" model="res.groups">
+        <field name="name">edit</field>
+        <field name="category_id" ref="module_category_interior_procurment_list_lines_attachment"/>
+        <field name="implied_ids" eval="[(4, ref('group_procurment_list_lines_attachment_add'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="group_procurment_list_lines_attachment_delete" model="res.groups">
+        <field name="name">delete</field>
+        <field name="category_id" ref="module_category_interior_procurment_list_lines_attachment"/>
+        <field name="implied_ids" eval="[(4, ref('group_procurment_list_lines_attachment_edit'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="group_control_po_validate" model="res.groups">
+        <field name="name">Control PO Validate</field>
+        <field name="category_id" ref="base.module_category_inventory_purchase"/>
+    </record>
+
+    <record id="group_control_po_validate_type_c" model="res.groups">
+        <field name="name">Control PO Validate (C)</field>
+        <field name="category_id" ref="base.module_category_inventory_purchase"/>
+    </record>
+
+    <record id="group_control_po_validate_type_e" model="res.groups">
+        <field name="name">Control PO Validate (E)</field>
+        <field name="category_id" ref="base.module_category_inventory_purchase"/>
+    </record>
+
+    <record id="group_control_po_validate_type_m" model="res.groups">
+        <field name="name">Control PO Validate (M)</field>
+        <field name="category_id" ref="base.module_category_inventory_purchase"/>
+    </record>
+
+
+</odoo>

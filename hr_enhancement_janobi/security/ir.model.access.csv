@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_loans_manager,hr.loan.manager,hr_enhancement_janobi.model_hr_employee_loan,hr.group_hr_manager,1,1,1,1
+access_employee_working_manager,hr.employee.working.manager,hr_enhancement_janobi.model_hr_employee_working,hr.group_hr_manager,1,1,1,1
+access_employee_move_manager,hr.employee.move.manager,hr_enhancement_janobi.model_hr_employee_move,hr.group_hr_manager,1,1,1,1
+access_reconciliation_manager,hr.reconciliation.manager,hr_enhancement_janobi.model_hr_reconciliation,hr.group_hr_manager,1,1,1,1
+access_reconciliation_line_manager,hr.reconciliation.line.manager,hr_enhancement_janobi.model_hr_reconciliation_line,hr.group_hr_manager,1,1,1,1
+access_send_offer_manager,hr.offer.manager,hr_enhancement_janobi.model_hr_applicant_offer_send,hr.group_hr_manager,1,1,1,1
+access_send_contract_manager,hr.contract.manager,hr_enhancement_janobi.model_hr_applicant_contract_send,hr.group_hr_manager,1,1,1,1
+access_loan_lines,loan_lines_access,hr_enhancement_janobi.model_hr_employee_loan_lines,,1,1,1,1
+approval_approver_employee,approval_approver_employee,model_approval_approver_employee,,1,1,1,1

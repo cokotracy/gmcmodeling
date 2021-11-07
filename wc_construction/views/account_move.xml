@@ -1,0 +1,315 @@
+<odoo>
+    <data>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_view_tax_form" model="ir.ui.view">
+            <field name="name">view_inherit_view_tax_form</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type_tax_use']" position="after">
+                    <field name="is_contract_tax"/>
+                    <field name="down_payment_tax_account_id" attrs="{'invisible':[('is_contract_tax','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_view_move_form" model="ir.ui.view">
+            <field name="name">view_inherit_view_move_form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="open_related_invoices_contract" type="object" class="oe_stat_button" icon="fa-tasks"
+                            attrs="{'invisible':['|',('move_type','!=','out_invoice'),('is_contract_invoice','=',False)]}">
+                        <field string="Contract Invoices" name="prev_contract_invoices" widget="statinfo"/>
+                    </button>
+                    <button name="open_related_bills_contract" type="object" class="oe_stat_button" icon="fa-tasks"
+                            attrs="{'invisible':['|',('move_type','!=','in_invoice'),('is_contract_invoice','=',False)]}">
+                        <field string="Contract Bills" name="prev_contract_bills" widget="statinfo"/>
+                    </button>
+                </xpath>
+
+                <xpath expr="//button[@name='action_post']" position="before">
+                    <field name="is_need_approve" invisible="1"/>
+                    <field name="lines_updated" invisible="1"/>
+                    <button name="update_deduction_lines" string="Update Deduction Lines" class="oe_highlight"
+                            type="object"
+                            attrs="{'invisible': ['|', '|', ('state', '!=', 'draft'), ('lines_updated','=',True), ('contract_type', 'not in', ('contractor', 'subcontractor'))]}"/>
+                    <button name="action_dep_approve" string="Validate" class="oe_highlight" type="object"
+                            attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('is_need_approve','=',False)]}"/>
+                    <button name="action_gm_approve" string="GM Approve" class="oe_highlight" type="object"
+                            attrs="{'invisible': [('state', '!=', 'dep_approved')]}"/>
+                </xpath>
+
+                <xpath expr="//button[@name='action_post']" position="replace">
+                    <button name="action_post" string="Post" class="oe_highlight" type="object"
+                            groups="account.group_account_invoice"
+                            attrs="{'invisible': [('state', '!=', 'gm_approved')]}"/>
+
+                </xpath>
+
+                <xpath expr="//group[1]/group[1]/div[@class='o_td_label']" position="before">
+                    <field name="contract_project_id" attrs="{'invisible':[('is_contract_invoice','=',False)]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="contract_products_ids" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="is_contract_invoice" invisible="1"/>
+                    <field name="invoice_final"
+                           attrs="{'invisible': ['|', ('contract_type', 'not in', ('contractor', 'subcontractor')), ('is_contract_invoice', '=', True)]}"/>
+                    <field name="contract_id" attrs="{'invisible':[('is_contract_invoice','=',False)]}"/>
+                    <field name="contract_type_id" attrs="{'invisible':[('is_contract_invoice','=',False)]}"/>
+                    <field name="contract_type" invisible="1"/>
+                    <field name="contract_quotation_id" attrs="{'invisible':[('is_contract_invoice','=',False)]}"/>
+                </xpath>
+
+                <xpath expr="//button[@name='button_cancel']" position="replace">
+                    <button name="button_cancel" string="Cancel Entry" type="object"
+                            groups="account.group_account_invoice"
+                            attrs="{'invisible' : ['|', ('id', '=', False), ('state', 'not in', ('draft', 'dep_approved', 'gm_approved'))]}"/>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='quantity']"
+                       position="after">
+                    <field name="completed_percentage_view"/>
+                    <field name="project_contract_id" ivisible="1" force_save="1"/>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='price_unit']"
+                       position="after">
+                    <field name="price_unit2" force_save="1"/>
+                    <field name="work_plan_item_id" force_save="1" invisible="1"/>
+                </xpath>
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='price_unit']"
+                       position="replace">
+                    <field name="price_unit" invisible="1" force_save="1"/>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='line_ids']//tree//field[@name='price_unit']"
+                       position="after">
+                    <field name="price_unit2" invisible="1" force_save="1"/>
+                    <field name="completed_percentage_view" invisible="1"/>
+                    <field name="work_plan_item_id" force_save="1" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='product_id']"
+                       position="before">
+                    <field name="update_product" invisible="1"/>
+                    <field name="is_deduction" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree" position="attributes">
+                    <attribute name="decoration-danger">is_deduction == True</attribute>
+                    <attribute name="decoration-success">is_deduction == False</attribute>
+                </xpath>
+
+                <xpath expr="//notebook" position="inside">
+                    <page name="additions_deductions"
+                          attrs="{'invisible':['|', ('move_type','=','entry'), ('invoice_final', '=', True)]}"
+                          string="Additions &amp; Deductions">
+                        <group string="Deductions">
+                            <div>
+                                <field name="deduction_ids">
+                                    <tree editable="bottom">
+                                        <field name="deduction_accounts_id"/>
+                                        <field name="account_id"/>
+                                        <field name="name"/>
+                                        <field name="is_percentage"/>
+                                        <field name="percentage_value"/>
+                                        <field name="value"/>
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                        <group string="Additions">
+                            <div>
+                                <field name="addition_ids">
+                                    <tree editable="bottom">
+                                        <field name="deduction_accounts_id"/>
+                                        <field name="account_id"/>
+                                        <field name="name"/>
+                                        <field name="is_percentage"/>
+                                        <field name="percentage_value"/>
+                                        <field name="value"/>
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                    </page>
+
+                    <page name="down_payment_performance_retention"
+                          attrs="{'invisible':['|', ('move_type','=','entry'), ('invoice_final', '=', True)]}"
+                          string="Down Payment &amp; Retention &amp; Performance">
+                        <group>
+                            <group>
+                                <label for="down_payment_percentage"/>
+                                <div class="d-flex">
+                                    <field name="down_payment_percentage" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Amount</span>
+                                    <field name="down_payment_fixed" style="width:40%" force_save="1"/>
+                                </div>
+                                <field name="down_payment_account_id"
+                                       attrs="{'invisible':[('down_payment_percentage','=',0.0)],'required':[('down_payment_percentage','!=',0.0)]}"/>
+
+                                <label for="performance"/>
+                                <div class="d-flex">
+                                    <field name="performance" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Amount</span>
+                                    <field name="performance_amount" style="width:40%" force_save="1"/>
+                                </div>
+                                <field name="performance_account_id"
+                                       attrs="{'invisible':[('performance','=',0.0)],'required':[('performance','!=',0.0)]}"/>
+
+                                <label for="retation_amount"/>
+                                <div class="d-flex">
+                                    <field name="retation_amount" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Amount</span>
+                                    <field name="retation_amount_value" style="width:40%" force_save="1"/>
+                                </div>
+                                <field name="retention_account_id"
+                                       attrs="{'invisible':[('retation_amount','=',0.0)],'required':[('retation_amount','!=',0.0)]}"/>
+
+
+                                <field name="talyat_id"
+                                       attrs="{'invisible':[('talyat','=',0.0)],'required':[('talyat','!=',0.0)]}"/>
+                                <field name="deductions_id"
+                                       attrs="{'invisible':[('deductions','=',0.0)],'required':[('deductions','!=',0.0)]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+
+                <xpath expr="//group[hasclass('oe_subtotal_footer')]/field[@name='amount_total'][2]" position="after">
+                <!-- <xpath expr="//field[@name='amount_total'][1]" position="after"> -->
+                    <field name="total_deductions" readonly="1"/>
+                    <field name="total_additions" readonly="1"/>
+                    <field name="total_down_payment" readonly="1"/>
+                    <field name="total_performance" readonly="1"/>
+                    <field name="total_retention" readonly="1"/>
+                    <field name="talyat" attrs="{'readonly': [('lines_updated', '=', True)]}"/>
+                    <field name="deductions" attrs="{'readonly': [('lines_updated', '=', True)]}"/>
+                    <field name="total_with_deduct_addition"/>
+                    <br/>
+                    <br/>
+                    <field name="previous_chashing"/>
+                </xpath>
+
+                <xpath expr="//field[@name='amount_residual']" position="after">
+                    <field name="discount_amount"/>
+                </xpath>
+
+                <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position="after">
+<!--                    <field name="amount_words"/>-->
+                    <group string="الاجمالى" invisible="0">
+                        <group>
+                            <field name="all_total_amount_invoices" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <field name="all_cashing_done" widget="monetary" options="{'currency_field': 'currency_id'}"
+                                   attrs="{'invisible':[('contract_type','!=','contractor')]}"/>
+                            <field name="cashing_done" widget="monetary" options="{'currency_field': 'currency_id'}"
+                                   attrs="{'invisible':[('contract_type','!=','subcontractor')]}"/>
+                            <field name="total_amount_invoices_all_cashing_done" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </xpath>
+
+                <xpath expr="//page[@id='other_tab']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund',
+                        'in_invoice', 'in_refund'))]}
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!--////////////////////////////////////// New Screen For Talyat Menue /////////////////////////////////////////-->
+
+        <record id="view_talyat_form" model="ir.ui.view">
+            <field name="name">view_talyat_form</field>
+            <field name="model">talyat.talyat</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="account_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_talyat_tree" model="ir.ui.view">
+            <field name="name">view_talyat_tree</field>
+            <field name="model">talyat.talyat</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="account_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_talyat_view" model="ir.actions.act_window">
+            <field name="name">تعليـــات</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">talyat.talyat</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_talyat_view" name="تعليـــات"
+                  parent="odoo_job_costing_management.menu_job_cost_configuration" action="action_talyat_view"
+                  sequence="300"/>
+        <!--///////////////////////////////////// End Screen ////////////////////////////////////////////////////////-->
+
+
+        <!--////////////////////////////////////// New Screen For Deductions Menue /////////////////////////////////////////-->
+
+        <record id="view_deductions_form" model="ir.ui.view">
+            <field name="name">view_deductions_form</field>
+            <field name="model">deduct.deduct</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="account_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_deductions_tree" model="ir.ui.view">
+            <field name="name">view_deductions_tree</field>
+            <field name="model">deduct.deduct</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="account_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_deductions_view" model="ir.actions.act_window">
+            <field name="name">استقطـاعات</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">deduct.deduct</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_deductions_view" name="استقطــاعات"
+                  parent="odoo_job_costing_management.menu_job_cost_configuration" action="action_deductions_view"
+                  sequence="301"/>
+
+        <!--///////////////////////////////////// End Screen ////////////////////////////////////////////////////////-->
+
+    </data>
+</odoo>

@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id="site_handover_record" model="constrained.by">
+            <field name="name">Site Handover</field>
+            <field name="type">site_handover</field>
+        </record>
+
+        <record id="signing_of_contract_record" model="constrained.by">
+            <field name="name">Signing of Contract</field>
+            <field name="type">signing_of_contract</field>
+        </record>
+
+        <record id="advanced_payment_record" model="constrained.by">
+            <field name="name">Advanced Payment</field>
+            <field name="type">advanced_payment</field>
+        </record>
+
+        <record id="IFC_drawings_record" model="constrained.by">
+            <field name="name">IFC drawings</field>
+            <field name="type">IFC_drawings</field>
+        </record>
+    </data>
+</odoo>

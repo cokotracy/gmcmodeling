@@ -1,0 +1,889 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* custody
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-28 15:39+0200\n"
+"PO-Revision-Date: 2020-03-28 15:40+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar_EG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+
+#. module: janobi_custody
+#: model:mail.template,body_html:janobi_custody.email_custody_creation_template
+msgid ""
+"\n"
+"                <p>Dear ${object.employee.name},</p>\n"
+"                <p>Date: ${object.date}</p>\n"
+"                <p>Custody Submitted..!</p>\n"
+"                <p>A custody was submitted to you by, ${user.name}.</p>\n"
+"                <p>Old custody value : ${object.old_custody_value}.</p>\n"
+"                <p>Custody value : ${object.custody_value}.</p>\n"
+"                <p style=\"font-size: 12px;\">\n"
+"                <br></br>\n"
+"                Note: Custody will be locked after 7 Days.\n"
+"                </p>\n"
+"            \n"
+"            "
+msgstr ""
+"\n"
+"                <p>السيد ${object.employee.name},</p>\n"
+"                <p>تاريخ: ${object.date}</p>\n"
+"                <p>تم إنشاء العهدة ..!</p>\n"
+"                <p>لقد تم إنشاء عهدة بواسطة, ${user.name}.</p>\n"
+"                <p>رصيد العهدة السابق : ${object.old_custody_value}.</p>\n"
+"                <p>مبلغ العهدة : ${object.custody_value}.</p>\n"
+"                <p style=\"font-size: 12px;\">\n"
+"                <br></br>\n"
+"                تنوية : سيتم غلق العهدة بعد مرور 7 أيام .\n"
+"                </p>\n"
+"            \n"
+"            "
+
+#. module: janobi_custody
+#: model:ir.actions.report,print_report_name:janobi_custody.report_custody_custody_report
+msgid "'Custody - %s' % (object.name)"
+msgstr "'عهدتى - %s' % (object.name)"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Approve Date:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>تاريخ الإعتماد:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Approved Custody Value:</"
+"strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>المبلغ المعتمد:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Balance:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>الرصيد:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Bank Account:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>الحساب البنكى:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Custody Value:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>مبلغ العهدة:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Department:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>القسم:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Paid Value:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>المبلغ المدفوع:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Reject Date:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>تاريخ الرفض:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Rejected Custody Value:</"
+"strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>المبلغ المرفوض:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Request Date:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>تاريخ الطلب:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<br/>\n"
+"                                            <strong>Status:</strong>"
+msgstr ""
+"<br/>\n"
+"                                            <strong>الحالة:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size: 18px;"
+"\">توقيع صاحب العهدة</span>\n"
+"                                        <br/>\n"
+"                                        <span style=\"font-size: 16px;"
+"align=right\">\n"
+"                                            الإسم:.........................................\n"
+"                                        </span>\n"
+"                                        <br/>\n"
+"                                        <span style=\"font-size: 16px;"
+"align=right\">\n"
+"                                            التوقيع:.......................................\n"
+"                                        </span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid ""
+"<strong>\n"
+"                                        <span style=\"font-size: 18px;"
+"\">توقيع مستلم الأرشفة</span>\n"
+"                                        <br/>\n"
+"                                        <span style=\"font-size: 16px;"
+"align=right\">\n"
+"                                            الإسم:.........................................\n"
+"                                        </span>\n"
+"                                        <br/>\n"
+"                                        <span style=\"font-size: 16px;"
+"align=right\">\n"
+"                                            التوقيع:.......................................\n"
+"                                        </span>\n"
+"                                    </strong>"
+msgstr ""
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid "<strong>Custody Number:</strong>"
+msgstr "<strong>رقم العهدة:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid "<strong>Employee:</strong>"
+msgstr "<strong>الموظف:</strong>"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid "<strong>Old Custody Value:</strong>"
+msgstr "<strong>رصيد العهدة السابق:</strong>"
+
+#. module: janobi_custody
+#: model:res.groups,name:janobi_custody.custody_accountant
+msgid "Accountant"
+msgstr "المحاسب"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+msgid "Accountant Approve"
+msgstr "إعتماد المحاسب"
+
+#. module: janobi_custody
+#: model:ir.model.fields.selection,name:janobi_custody.selection__custody_custody__state__accountant
+msgid "Accountant Approved"
+msgstr "إعتماد المحاسب"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+msgid "Accountant Reject"
+msgstr "رفض المحاسب"
+
+#. module: janobi_custody
+#: model:ir.model.fields.selection,name:janobi_custody.selection__custody_custody__state__accountant_reject
+msgid "Accountant Rejected"
+msgstr "رفض المحاسب"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__analytic_account_id
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Analytic Account"
+msgstr "الحساب التحليلي"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+msgid "Analytic account"
+msgstr "الحساب التحليلي"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__approve
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Approve"
+msgstr "إعتماد"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__approve_date
+msgid "Approve Date"
+msgstr "تاريخ الإعتماد"
+
+#. module: janobi_custody
+#: model:ir.model.fields.selection,name:janobi_custody.selection__custody_custody__state__approve
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Approved"
+msgstr "تم الإعتماد"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__approved_custody_value
+msgid "Approved Custody Value"
+msgstr "المبلغ المعتمد"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__asset_id
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Asset"
+msgstr "الأصل"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__attachment
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__attachment2
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__attachment3
+msgid "Attachment"
+msgstr "مرفق"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__balance
+msgid "Balance"
+msgstr "الرصيد"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__bank_account
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_search_view
+msgid "Bank Account"
+msgstr "الحساب البنكى"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__bio
+msgid "Bio"
+msgstr "السيرة الذاتية"
+
+#. module: janobi_custody
+#: model:ir.model,name:janobi_custody.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__create_uid
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__create_date
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__create_date
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+#. module: janobi_custody
+#: model:ir.actions.act_window,name:janobi_custody.custody_custody_action
+#: model:ir.actions.report,name:janobi_custody.report_custody_custody_report
+#: model:ir.model,name:janobi_custody.model_custody_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__custody
+#: model:ir.module.category,name:janobi_custody.custody_security_category
+#: model:ir.ui.menu,name:janobi_custody.custody_custody
+#: model:ir.ui.menu,name:janobi_custody.custody_custody_menu
+#: model:ir.ui.menu,name:janobi_custody.custody_man_menu
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_graph_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_pivot_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_tree_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Custody"
+msgstr "عهدتى"
+
+#. module: janobi_custody
+#: model:mail.template,subject:janobi_custody.email_custody_creation_template
+msgid "Custody Creation ${object.name}"
+msgstr "إنشاء عهدة  ${object.name}"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+msgid "Custody Description"
+msgstr "بيان العهدة"
+
+#. module: janobi_custody
+#: model:ir.actions.act_window,name:janobi_custody.custody_line_action
+#: model:ir.actions.report,name:janobi_custody.report_direct_line_report
+#: model:ir.ui.menu,name:janobi_custody.custody_line_menu
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody__line_tree_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_form_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Custody Lines"
+msgstr "تفاصيل العهدة"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__name
+msgid "Custody Sequence"
+msgstr "رقم العهدة"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Custody Status"
+msgstr "حالة العهدة"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__custody_value
+#: model:ir.model.fields,field_description:janobi_custody.field_hr_employee__custody_value
+msgid "Custody Value"
+msgstr "مبلغ العهدة"
+
+#. module: janobi_custody
+#: model:ir.model.constraint,message:janobi_custody.constraint_custody_custody_check_custody_name
+msgid "Custody number already existed!"
+msgstr "رقم العهدة موجود بالفعل!"
+
+#. module: janobi_custody
+#: model:ir.actions.server,name:janobi_custody.ir_cron_check_custody_ir_actions_server
+#: model:ir.cron,cron_name:janobi_custody.ir_cron_check_custody
+#: model:ir.cron,name:janobi_custody.ir_cron_check_custody
+msgid "Custody: Check Custody date"
+msgstr "العهدة: فحص التاريخ"
+
+#. module: janobi_custody
+#: model:base.automation,name:janobi_custody.custody_creation_server_action_activity
+#: model:ir.actions.server,name:janobi_custody.custody_creation_server_action_activity_ir_actions_server
+msgid "Custody: Custody Creation notification"
+msgstr "العهدة: تنبيه إنشاء العهدة"
+
+#. module: janobi_custody
+#: model:base.automation,name:janobi_custody.custody_creation_server_action
+#: model:ir.actions.server,name:janobi_custody.custody_creation_server_action_ir_actions_server
+msgid "Custody: Custody creation"
+msgstr "العهدة:  إنشاء العهدة"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__partner_id
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Customer"
+msgstr "العميل"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__date
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__date
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__department
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__department
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Department"
+msgstr "القسم"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__description
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Description"
+msgstr "البيان"
+
+#. module: janobi_custody
+#: model:res.groups,name:janobi_custody.custody_direct_manager
+msgid "Direct Manager"
+msgstr "المدير المباشر"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+msgid "Direct Manager Approve"
+msgstr "إعتماد المدير المباشر"
+
+#. module: janobi_custody
+#: model:ir.model.fields.selection,name:janobi_custody.selection__custody_custody__state__manager
+msgid "Direct Manager Approved"
+msgstr "إعتماد المدير المباشر"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+msgid "Direct Manager Reject"
+msgstr "رفض المدير المباشر"
+
+#. module: janobi_custody
+#: model:ir.model.fields.selection,name:janobi_custody.selection__custody_custody__state__direct_manager_reject
+msgid "Direct Manager Rejected"
+msgstr "رفض المدير المباشر"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__display_name
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__display_name
+msgid "Display Name"
+msgstr "الاسم"
+
+#. module: janobi_custody
+#: model:ir.model,name:janobi_custody.model_hr_employee
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__employee
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__employee
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.view_employee_janobi_custody_form
+msgid "Employee Custody"
+msgstr "عهدة الموظف"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__employee_user_id
+msgid "Employee User"
+msgstr "مستخدم الموظف"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_res_company__financial_manager
+#: model:res.groups,name:janobi_custody.custody_manager
+msgid "Financial Manager"
+msgstr "المدير المالي"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_search_view
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__id
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__message_needaction
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "إذا حددت هذا الاختيار، فسيتم إخطارك بالرسائل الجديدة."
+
+#. module: janobi_custody
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__message_has_error
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields.selection,name:janobi_custody.selection__custody_custody__state__progress
+msgid "In Progress"
+msgstr "تحت الطلب"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+msgid "Internal Note"
+msgstr "ملاحظات"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody____last_update
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__write_uid
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__write_date
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__write_date
+msgid "Last Updated on"
+msgstr "تاريخ اخر تحديث"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__line_ids
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+msgid "Lines"
+msgstr "سطور العهدة"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+msgid "Lock"
+msgstr "غلق"
+
+#. module: janobi_custody
+#: model:ir.model.fields.selection,name:janobi_custody.selection__custody_custody__state__locked
+msgid "Locked"
+msgstr "مغلق"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "مرفق"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ فى الإستلام"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_search_view
+msgid "Month"
+msgstr "شهر"
+
+#. module: janobi_custody
+#: model:ir.model.fields.selection,name:janobi_custody.selection__custody_custody__state__new
+msgid "New"
+msgstr "جديد"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__old_custody_value
+msgid "Old Custody Value"
+msgstr "رصيد العهدة السابق"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__paid_value
+msgid "Paid Value"
+msgstr "المبلغ المدفوع"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+msgid "Print"
+msgstr "طباعة التقرير"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+msgid "Progress"
+msgstr "تحت الطلب"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_form_view
+msgid "Reject"
+msgstr "رفض"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__reject_date
+msgid "Reject Date"
+msgstr "تاريخ الرفض"
+
+#. module: janobi_custody
+#: model:ir.model.fields.selection,name:janobi_custody.selection__custody_custody__state__reject
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_line_search_view
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Rejected"
+msgstr "تم الرفض"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__rejected_custody_value
+msgid "Rejected Custody Value"
+msgstr "المبلغ المرفوض"
+
+#. module: janobi_custody
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__employee_user_id
+msgid "Related user name for the resource to manage its access."
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__state
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__custody_state
+msgid "State"
+msgstr "الحالة"
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.custody_search_view
+msgid "Status"
+msgstr "الحالة"
+
+#. module: janobi_custody
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.constraint,message:janobi_custody.constraint_custody_custody_check_custody_value
+#: model:ir.model.constraint,message:janobi_custody.constraint_custody_line_check_value
+msgid "The Value Cannot be negative!"
+msgstr "المبلغ لا يمكن أن يقل عن صفر!"
+
+#. module: janobi_custody
+#: model:res.groups,comment:janobi_custody.custody_employee
+msgid "The user can be read and create only"
+msgstr ""
+
+#. module: janobi_custody
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Total"
+msgstr "الإجمالى"
+
+#. module: janobi_custody
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_unread
+msgid "Unread Messages"
+msgstr "الرسائل الغير مقروءة"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: janobi_custody
+#: model:res.groups,name:janobi_custody.custody_employee
+msgid "User"
+msgstr "المستخدم"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_line__value
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_custody_custody_doc
+#: model_terms:ir.ui.view,arch_db:janobi_custody.report_direct_line_doc
+msgid "Value"
+msgstr "المبلغ"
+
+#. module: janobi_custody
+#: model:ir.model.fields,field_description:janobi_custody.field_custody_custody__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model.fields,help:janobi_custody.field_custody_custody__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: janobi_custody
+#: model:ir.model,name:janobi_custody.model_custody_line
+msgid "custody.line"
+msgstr "سطر العهدة"
+
+#~ msgid ""
+#~ "<br/>\n"
+#~ "                                    <strong>رقم العهدة:</strong>"
+#~ msgstr ""
+#~ "<br/>\n"
+#~ "                                            <strong>رقم العهدة:</strong>"
+
+#~ msgid "Approve Custody"
+#~ msgstr "إعتماد العهدة"
+
+#~ msgid "Approved Wizard"
+#~ msgstr "الإعتماد"
+
+#~ msgid "Cancel"
+#~ msgstr "إلغاء"
+
+#~ msgid "Custody state"
+#~ msgstr "حالة العهدة"
+
+#~ msgid "Manager"
+#~ msgstr "المدير"
+
+#~ msgid "<span>Custody Report°</span>"
+#~ msgstr "تقرير العُهد"
+
+#~ msgid "Initial Approve"
+#~ msgstr "إعتماد مبدئي"
+
+#~ msgid "Initially Approved"
+#~ msgstr "تم الإعتماد المبدئي"
+
+#~ msgid "Request Date"
+#~ msgstr "تاريخ الطلب"
+
+#~ msgid "Done"
+#~ msgstr "تم"
+
+#~ msgid "Category"
+#~ msgstr "الفئة"
+
+#~ msgid "Closed"
+#~ msgstr "مغلق"
+
+#~ msgid "Code"
+#~ msgstr "الكود"
+
+#~ msgid "Configuration"
+#~ msgstr "الاعدادات"
+
+#~ msgid "Delivard"
+#~ msgstr "تم التوصيل"
+
+#~ msgid "Equipment"
+#~ msgstr "المعدات"
+
+#~ msgid "Equipment Category"
+#~ msgstr "فئة المعدات"
+
+#~ msgid "Equipment Item"
+#~ msgstr "اجزاء المعده"
+
+#~ msgid "Item"
+#~ msgstr "اجزاء"
+
+#~ msgid "Name"
+#~ msgstr "اﻻسم"
+
+#~ msgid "Serial Num"
+#~ msgstr "الرقم السري"
+
+#, fuzzy
+#~ msgid "Specifications"
+#~ msgstr "المواصفات"

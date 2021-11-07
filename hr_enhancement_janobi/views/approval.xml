@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_approval_category_janobi_form" model="ir.ui.view">
+        <field name="name">approval.category.janobi.form</field>
+        <field name="model">approval.category</field>
+        <field name="inherit_id" ref="approvals.approval_category_view_form"/>
+        <field name="arch" type="xml">
+          <field name="company_id" position="after">
+            <field name="is_disclaimer"/>
+          </field>
+        </field>
+    </record>
+    <record id="view_approval_request_janobi_form" model="ir.ui.view">
+        <field name="name">approval.request.janobi.form</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+        <field name="arch" type="xml">
+          <field name="request_owner_id" position="after">
+            <field name="is_disclaimer"/>
+            <field name="employee_id" attrs="{'invisible':[('is_disclaimer','!=',True)],'required':[('is_disclaimer','=',True)]}"/>
+<!--            <field name="loans" attrs="{'invisible':[('is_disclaimer','!=',True)]}"/>-->
+<!--            <field name="custody" attrs="{'invisible':[('is_disclaimer','!=',True)]}"/>-->
+<!--            <field name="equal_amount" attrs="{'invisible':[('is_disclaimer','!=',True)]}"/>-->
+<!--            <field name="maintenance" attrs="{'invisible':[('is_disclaimer','!=',True)]}"/>-->
+<!--            <field name="engineering" attrs="{'invisible':[('is_disclaimer','!=',True)]}"/>-->
+          </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+        <record id="group_revision_expense_manager" model="res.groups">
+            <field name="name">Expense Revision Managers</field>
+            <field name="category_id" ref="base.module_category_human_resources_expenses"/>
+        </record>
+
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_view_hr_expense_sheet_form" model="ir.ui.view">
+            <field name="name">view_inherit_view_hr_expense_sheet_form</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+            <field name="arch" type="xml">
+
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="is_expense_manager" invisible="1"/>
+                    <field name="manager_revision_id" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submit,manager_revision,approve,post,done"/>
+
+                </xpath>
+
+                <xpath expr="//button[@name='reset_expense_sheets']" position="after">
+                    <button name="manager_revision_button" states="submit"
+                            groups="wc_expense.group_revision_expense_manager" string="Manager Revision" type="object"
+                            class="btn-primary"/>
+                </xpath>
+
+                <xpath expr="//button[@name='approve_expense_sheets']" position="replace">
+                    <button name="approve_expense_sheets" string="Approve" type="object"
+                            attrs="{'invisible':[('is_expense_manager','=',False)]}"
+                            class="oe_highlight o_expense_sheet_approve"/>
+                </xpath>
+
+                <xpath expr="//button[@name='%(hr_expense.hr_expense_refuse_wizard_action)d']" position="attributes">
+                    <attribute name="states">submit,approve,manager_revision</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_hr_expense_view_form" model="ir.ui.view">
+            <field name="name">view_inherit_hr_expense_view_form</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+            <field name="arch" type="xml">
+
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//field[@name='analytic_account_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

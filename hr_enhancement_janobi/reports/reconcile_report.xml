@@ -1,0 +1,404 @@
+<odoo>
+    <data>
+        <template id="employee_reconcile_doc">
+            <t t-call="web.html_container">
+
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div>
+                                <table align="center" cellspacing="0" border="1" dir="ltr">
+                                    <tr>
+                                        <td colspan="10" height="31" align="center" valign="middle"
+                                            style="border:none;">
+                                            <font face="DejaVu Sans" size="4">تســويـة حســــاب مـوظـــف</font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: none;" colspan="3" rowspan="2" height="49"
+                                            align="center" valign="top">
+                                        </td>
+                                        <td style="border: none;" colspan="3" rowspan="2" height="49"
+                                            align="center" valign="top">
+                                            <font face="DejaVu Sans">مخالصه - اجازة اعتيادية</font>
+                                        </td>
+                                        <td style="border-top: 1px solid #3f3f3f; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #3f3f3f; border-right: 1px solid #3f3f3f"
+                                            colspan="3" align="center" valign="bottom">
+                                            <font color="#000000">
+                                                <font face="DejaVu Sans" size="2">
+                                                    <span t-field="o.id"/>
+                                                </font>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #3f3f3f; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #3f3f3f;border-right: 1px solid #3f3f3f"
+                                            colspan="1" align="right" valign="top">
+                                            <b>
+                                                <font face="DejaVu Sans" size="2">رقم المخالصة</font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid #3f3f3f; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #3f3f3f; border-right: 1px solid #3f3f3f"
+                                            colspan="3" align="center" valign="bottom">
+                                            <font color="#000000">
+                                                <font face="DejaVu Sans" size="2">
+                                                    <span t-field="o.employee_id.code"/>
+                                                </font>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #3f3f3f; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #3f3f3f;border-right: 1px solid #3f3f3f"
+                                            colspan="1" align="right" valign="top">
+                                            <b>
+                                                <font face="DejaVu Sans" size="2">رقم الموظف</font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: none;" colspan="5" height="70" align="right"
+                                            valign="top">
+                                            <font face="DejaVu Sans">
+                                                <br/>
+                                                <span t-esc="o.date"/>
+                                                : التاريخ
+                                            </font>
+                                        </td>
+                                        <td style="border: none;" colspan="5" height="70" align="right"
+                                            valign="top">
+                                            <font face="DejaVu Sans">: تاريخ المباشرة<br/>: اخر يوم عمل
+                                            </font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" height="27" align="center" valign="middle"
+                                            style="border: none;">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4">مفردات الراتب</font>
+                                            </b>
+                                        </td>
+                                        <td colspan="6" height="27" align="center" valign="middle"
+                                            style="border: none;">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4">بيانات الموظف</font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="3" height="34" align="center" valign="middle">
+                                            <font color="#000000">
+                                                <font face="DejaVu Sans" size="3">
+                                                    <span t-field="o.employee_id.contract_id.wage"/>
+                                                </font>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="top">
+                                            <font face="DejaVu Sans" size="3">أساسى</font>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="4" align="center" valign="middle">
+                                            <font color="#000000">
+                                                <font face="DejaVu Sans" size="3">
+                                                    <span t-field="o.employee_id.name"/>
+                                                </font>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-right: 1px solid #000000"
+                                            colspan="2" align="center" valign="top">
+                                            <font face="DejaVu Sans" size="3">إسم الموظف</font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="3" height="40" align="center" valign="middle">
+                                            <font color="#000000">
+                                                <font face="DejaVu Sans" size="3">
+                                                    <span t-esc="o.employee_id.contract_id.total_wage - o.employee_id.contract_id.wage"/>
+                                                </font>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            align="center" valign="top">
+                                            <font face="DejaVu Sans" size="3">بدلات أخرى</font>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="4" align="center" valign="middle">
+                                            <font color="#000000">
+                                                <font face="DejaVu Sans" size="3">
+                                                    <span t-field="o.employee_id.job_id"/>
+                                                </font>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-right: 1px solid #000000"
+                                            colspan="2" align="center" valign="top">
+                                            <font face="DejaVu Sans" size="3">المهنة</font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #3f3f3f; border-right: 1px solid #3f3f3f"
+                                            colspan="3" height="40" align="center" valign="middle">
+                                            <font color="#000000">
+                                                <font face="DejaVu Sans" size="3">
+                                                    <span t-field="o.employee_id.contract_id.total_wage"/>
+                                                </font>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #3f3f3f; border-right: 1px solid #3f3f3f"
+                                            align="center" valign="top">
+                                            <b>
+                                                <font face="DejaVu Sans">اجمالى</font>
+                                            </b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="4" align="center" valign="middle">
+                                            <font color="#000000">
+                                                <font face="DejaVu Sans" size="3">
+                                                    <span t-field="o.employee_id.country_id.name"/>
+                                                </font>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-right: 1px solid #000000"
+                                            colspan="2" align="center" valign="top">
+                                            <font face="DejaVu Sans" size="3">الجنسية</font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #3f3f3f; border-right: 1px solid #3f3f3f;background-color:#A5A5A5;"
+                                            colspan="4" height="40" align="center" valign="middle">
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #3f3f3f; border-right: 1px solid #3f3f3f"
+                                            colspan="4" align="center" valign="middle">
+                                            <font color="#000000">
+                                                <font face="DejaVu Sans" size="3">
+                                                    <span t-field="o.employee_id.department_id.name"/>
+                                                </font>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #3f3f3f;border-right: 1px solid #000000"
+                                            colspan="2" align="center" valign="top">
+                                            <b>
+                                                <font face="DejaVu Sans">الموقع</font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #000000;border-right: 1px solid #000000"
+                                            colspan="10" height="12" align="center" valign="bottom">
+                                            <font color="#000000">
+                                                <br/>
+                                            </font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="3" height="38" align="center" valign="middle">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4">المبلغ</font>
+                                            </b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000"
+                                            colspan="5" align="center" valign="middle">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4">البيان</font>
+                                            </b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-right: 1px solid #000000"
+                                            colspan="2" align="center" valign="top">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4">النوع</font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #000000; border-left: 1px solid #3f3f3f; border-right: 1px solid #3f3f3f;background-color:#A5A5A5;"
+                                            colspan="8" height="38" align="center" valign="middle" bgcolor="#A5A5A5">
+                                            <font color="#000000">
+                                                <br/>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #3f3f3f; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #3f3f3f;border-right: 1px solid #3f3f3f"
+                                            colspan="2" height="38" align="center" valign="top">
+                                            <b>
+                                                <font face="DejaVu Sans">مستحقات</font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <t t-set="benefits_total" t-value="0"/>
+                                    <t t-foreach="o.line_ids" t-as="line">
+                                        <t t-if="line.type=='add'">
+                                            <tr>
+                                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #000000;border-right: 1px solid #000000"
+                                                    colspan="3" height="30" align="center" valign="middle">
+                                                    <font color="#000000">
+                                                        <font face="DejaVu Sans" size="2">
+                                                            <span t-esc="'{:.2f}'.format(line.amount)"/>
+                                                            <t t-set="benefits_total"
+                                                               t-value="benefits_total + line.amount"/>
+                                                        </font>
+                                                    </font>
+                                                </td>
+                                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #000000;border-right: 1px solid #000000"
+                                                    colspan="7" height="30" align="right" valign="middle">
+                                                    <font color="#000000">
+                                                        <font face="DejaVu Sans" size="2">
+                                                            <span t-field="line.name"/>
+                                                        </font>
+                                                    </font>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="3" height="38" align="center" valign="middle">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4">
+                                                    <span t-esc="'{:.2f}'.format(benefits_total)"/>
+                                                </font>
+                                            </b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="7" height="38" align="center" valign="middle">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4"></font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #000000; border-left: 1px solid #3f3f3f; border-right: 1px solid #3f3f3f;background-color:#A5A5A5;"
+                                            colspan="8" height="38" align="center" valign="middle" bgcolor="#A5A5A5">
+                                            <font color="#000000">
+                                                <br/>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #3f3f3f; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #3f3f3f;border-right: 1px solid #3f3f3f"
+                                            colspan="2" height="38" align="center" valign="top">
+                                            <b>
+                                                <font face="DejaVu Sans">حسميات</font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <t t-set="deductions_total" t-value="0"/>
+                                    <t t-foreach="o.line_ids" t-as="line">
+                                        <t t-if="line.type=='sub'">
+                                            <tr>
+                                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #000000;border-right: 1px solid #000000"
+                                                    colspan="3" height="30" align="center" valign="middle">
+                                                    <font color=" #cc3300">
+                                                        <font face="DejaVu Sans" size="2">
+                                                            <span t-esc="'{:.2f}'.format(line.amount)"/>
+                                                            <t t-set="deductions_total"
+                                                               t-value="deductions_total + line.amount"/>
+                                                        </font>
+                                                    </font>
+                                                </td>
+                                                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #000000;border-right: 1px solid #000000"
+                                                    colspan="7" height="30" align="right" valign="middle">
+                                                    <font color="#cc3300">
+                                                        <font face="DejaVu Sans" size="2">
+                                                            <span t-field="line.name"/>
+                                                        </font>
+                                                    </font>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="3" height="38" align="center" valign="middle">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4">
+                                                    <span t-esc="'{:.2f}'.format(deductions_total)"/>
+                                                </font>
+                                            </b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="7" height="38" align="center" valign="middle">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4"></font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #3f3f3f; border-left: 1px solid #000000;border-right: 1px solid #000000"
+                                            colspan="10" height="12" align="center" valign="bottom">
+                                            <font color="#000000">
+                                                <br/>
+                                            </font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000"
+                                            colspan="7" height="32" align="right" valign="middle">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4">صافي المستحق</font>
+                                            </b>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000;border-right: 1px solid #000000"
+                                            colspan="3" align="center" valign="middle">
+                                            <b>
+                                                <font face="DejaVu Sans" size="4">
+                                                    <span t-esc="'{:.2f}'.format(o.total_amount)"/>
+                                                </font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left:1px solid #000000;border-right:none;"
+                                            colspan="6" height="27" align="right" valign="middle">
+                                            <font face="DejaVu Sans" size="4">
+                                                <span t-raw="o.convert_to_letters('{:.2f}'.format(o.total_amount),'SAR')"/>
+                                            </font>
+                                        </td>
+                                        <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left:none; border-right:1px solid #000000;"
+                                            colspan="4" height="27" align="right" valign="right">
+                                            <font face="DejaVu Sans" size="4">: إجمالى المستحق كتابة</font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" height="24" align="center" valign="left"
+                                            style="border-right:none;">
+                                            <b>
+                                                <font face="DejaVu Sans" size="3">يعتمد</font>
+                                            </b>
+                                        </td>
+                                        <td colspan="2" height="24" align="center" valign="middle"
+                                            style="border-left:none; border-right:none;">
+                                            <b>
+                                                <font face="DejaVu Sans" size="3">تدقيق</font>
+                                            </b>
+                                        </td>
+                                        <td colspan="3" height="24" align="center" valign="middle"
+                                            style="border-left:none; border-right:none;">
+                                            <b>
+                                                <font face="DejaVu Sans" size="3">مدير الشئون الإدارية</font>
+                                            </b>
+                                        </td>
+                                        <td colspan="3" height="24" align="right" valign="right"
+                                            style="border-left:none;">
+                                            <b>
+                                                <font face="DejaVu Sans" size="3">المحاسب</font>
+                                            </b>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <report
+                id="employee_reconcile_report"
+                string="Employee Reconciliation"
+                model="hr.reconciliation"
+                report_type="qweb-pdf"
+                file="hr_enhancement_janobi.employee_reconcile_doc"
+                name="hr_enhancement_janobi.employee_reconcile_doc"
+        />
+
+
+    </data>
+</odoo>

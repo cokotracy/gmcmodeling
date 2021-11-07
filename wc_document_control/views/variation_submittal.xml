@@ -1,0 +1,127 @@
+<odoo>
+    <data>
+        <record id="view_variation_submittal_form" model="ir.ui.view">
+            <field name="name">view_variation_submittal_form</field>
+            <field name="model">variation.submittal</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="resbmittal_button" string="Resubmittal"
+                                attrs="{'invisible':[('is_reviewed','=',True)]}" class="btn-primary" type="object"/>
+                        <button name="action_dc_send" type="object" class="oe_highlight" string="Send By Email"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="open_related_revisions" type="object" class="oe_stat_button" icon="fa-tasks"
+                                    attrs="{'invisible':[('revision_no_seq','!=',0)]}">
+                                <field string="Revisions" name="revisions_num" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="projectID" readonly="1" force_save="1"/>
+                                <field name="client_specialist_id" force_save="1"/>
+                                <field name="contractor" force_save="1"/>
+                                <field name="client_id" invisible="0"/>
+                                <field name="variationID" readonly="1" string="Transaction ID" force_save="1"/>
+                                <field name="revision_no" readonly="1" force_save="1"/>
+                                <field name="po_date" force_save="1"/>
+                                <field name="po_loi_no" force_save="1"/>
+                                <field name="prepared_by_id"/>
+                                <field name="subject"/>
+
+
+                                <field name="client_manager_id" invisible="1"/>
+                                <field name="is_reviewed" invisible="1"/>
+                                <field name="revision_no_seq" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="project_id" required="1"/>
+                                <field name="delivery_validity"/>
+                                <field name="quotation_validity"/>
+                                <field name="initial_contract_amount"/>
+                                <field name="previously_approved_variation"/>
+                                <field name="requested_variation_amount"/>
+                                <field name="accumulated_contract_amount"/>
+                                <field name="total_amount"/>
+                                <field name="submission_date"/>
+                                <field name="current_completion_date"/>
+                                <field name="revised_completion_date"/>
+                                <field name="code"/>
+                                <field name="title"/>
+                                <field name="company_id" readonly="1" force_save="1"/>
+                            </group>
+
+                            <group>
+                                <field name="justification"/>
+                                <field name="description"/>
+                                <field name="narative_of_work"/>
+                                <field name="remarks"/>
+                                <field name="amount_in_words"/>
+
+
+                            </group>
+                        </group>
+
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_variation_submittal_tree" model="ir.ui.view">
+            <field name="name">view_variation_submittal_tree</field>
+            <field name="model">variation.submittal</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="projectID"/>
+                    <field name="project_id"/>
+                    <field name="prepared_by_id"/>
+                    <field name="code"/>
+                    <field name="variationID" string="Transaction ID"/>
+                    <field name="revision_no"/>
+                    <field name="submission_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_variation_search" model="ir.ui.view">
+            <field name="name">view_variation_search</field>
+            <field name="model">variation.submittal</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="project_id" string="string" domain="[('project_ID', 'ilike', self)]"/>
+                    <field name="projectID"/>
+                    <field name="project_id"/>
+                    <field name="variationID"/>
+                    <field name="revision_no"/>
+                    <field name="code"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_variation_submittal_view" model="ir.actions.act_window">
+            <field name="name">Variation Form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">variation.submittal</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+
+                </p>
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_variation_submittal_view" name="Variation Form" parent="menu_document_control_categ"
+                  action="action_variation_submittal_view" sequence="9"/>
+    </data>
+</odoo>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--Email template -->
+        <record id="email_template_document_control" model="mail.template">
+            <field name="name">Document Control by mail</field>
+            <field name="subject">${object.subject_2}</field>
+            <field name="email_from">${object.prepared_by_id.partner_id.email}</field>
+            <field name="email_to">${object.client_specialist_id.email or object.project_id.partner_id.email}</field>
+            <field name="partner_to">${object.mail_partner.ids}</field>
+            <field name="model_id" ref="wc_document_control.model_document_control"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.prepared_by_id.lang}</field>
+            <field name="report_template" ref="wc_document_control.drawing_report_landscape"/>
+            <field name="report_name">${(object.transaction_id or '').replace('/','-')}</field>
+
+            <field name="body_html"><![CDATA[
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Hello Dear ${object.client_specialist_id.name},${object.project_id.partner_id.name},${object.prepared_by_id.partner_id.name}, </p>
+                        <p>Please Find Attachment, your ${object.transaction_id or 'n/a' } from ${object.company_id.name}.</p>
+
+                        <p>If you have any questions, do not hesitate to contact HR.</p><br/>
+                        <p>Thank you.</p>
+                        <p>HR Department.</p>
+                        <p>${object.company_id.name}</p>
+                    </div>
+                    ]]></field>
+
+        </record>
+
+
+        <!--&lt;!&ndash;Email template &ndash;&gt;-->
+        <!--<record id="email_template_change_request" model="mail.template">-->
+        <!--<field name="name">Change Request by mail</field>-->
+        <!--<field name="subject"> ${object.change_reqID or 'n/a' }</field>-->
+        <!--<field name="email_from">${object.prepared_by_id.partner_id.email}</field>-->
+        <!--<field name="email_to">${object.client_specialist_id.email or object.project_id.partner_id.email}</field>-->
+        <!--<field name="partner_to">${object.client_specialist_id.id or object.project_id.partner_id.id}</field>-->
+        <!--<field name="model_id" ref="wc_document_control.model_change_req_submittal"/>-->
+        <!--<field name="auto_delete" eval="True"/>-->
+        <!--<field name="lang">${object.prepared_by_id.lang}</field>-->
+        <!--<field name="report_template" ref="wc_document_control.dc_report"/>-->
+        <!--<field name="report_name">${(object.transaction_id or '').replace('/','-')}</field>-->
+        <!--<field name="body_html"><![CDATA[-->
+        <!--<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">-->
+        <!--<p>Hello Dear ${object.client_specialist_id.name or object.project_id.partner_id.name}, </p>-->
+        <!--<p>Please Find Attachment, your ${object.transaction_id or 'n/a' } from ${object.company_id.name}.</p>-->
+
+        <!--<p>If you have any questions, do not hesitate to contact HR.</p><br/>-->
+        <!--<p>Thank you.</p>-->
+        <!--<p>HR Department.</p>-->
+        <!--<p>${object.company_id.name}</p>-->
+        <!--</div>-->
+        <!--]]></field>-->
+        <!--</record>-->
+
+        <!--CVI Email template -->
+        <record id="email_template_cvi_submittal" model="mail.template">
+            <field name="name">CVI Submittal by mail</field>
+            <field name="subject">${object.cviID or 'n/a' }</field>
+            <field name="email_from">${object.prepared_by_id.partner_id.email}</field>
+            <field name="email_to">${object.client_specialist_id.email or object.project_id.partner_id.email}</field>
+            <field name="partner_to">${object.client_specialist_id.id or object.project_id.partner_id.id}</field>
+            <field name="model_id" ref="wc_document_control.model_cvi_submittal"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.prepared_by_id.lang}</field>
+            <field name="report_template" ref="wc_document_control.cvi_report_id"/>
+            <field name="report_name">${(object.cviID or '').replace('/','-')}</field>
+            <field name="body_html"><![CDATA[
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Hello Dear ${object.client_specialist_id.name or object.project_id.partner_id.name}, </p>
+                        <p>Please Find Attachment, your ${object.cviID or 'n/a' } from ${object.company_id.name}.</p>
+
+                        <p>If you have any questions, do not hesitate to contact HR.</p><br/>
+                        <p>Thank you.</p>
+                        <p>HR Department.</p>
+                        <p>${object.company_id.name}</p>
+                    </div>
+                    ]]></field>
+        </record>
+
+        <!--Daily Activity Email template -->
+        <record id="email_template_daily_activity_submittal" model="mail.template">
+            <field name="name">Daily Activity Submittal by mail</field>
+            <field name="subject">${object.daily_activityID or 'n/a' }</field>
+            <field name="email_from">${object.prepared_by_id.partner_id.email}</field>
+            <field name="email_to">${object.client_specialist_id.email or object.project_id.partner_id.email}</field>
+            <field name="partner_to">${object.client_specialist_id.id or object.project_id.partner_id.id}</field>
+            <field name="model_id" ref="wc_document_control.model_daily_activity_submittal"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.prepared_by_id.lang}</field>
+            <field name="report_template" ref="wc_document_control.daily_activity_submittal_report_id"/>
+            <field name="report_name">${(object.daily_activityID or '').replace('/','-')}</field>
+            <field name="body_html"><![CDATA[
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Hello Dear ${object.client_specialist_id.name or object.project_id.partner_id.name}, </p>
+                        <p>Please Find Attachment, your ${object.daily_activityID or 'n/a' } from ${object.company_id.name}.</p>
+
+                        <p>If you have any questions, do not hesitate to contact HR.</p><br/>
+                        <p>Thank you.</p>
+                        <p>HR Department.</p>
+                        <p>${object.company_id.name}</p>
+                    </div>
+                    ]]></field>
+        </record>
+
+        <!--eng_instruct_submittal Activity Email template -->
+        <record id="email_template_eng_instruct_submittal" model="mail.template">
+            <field name="name">Eng Instruct Submittal by mail</field>
+            <field name="subject">${object.eng_instructID or 'n/a' }</field>
+            <field name="email_from">${object.prepared_by_id.partner_id.email}</field>
+            <field name="email_to">${object.client_specialist_id.email or object.project_id.partner_id.email}</field>
+            <field name="partner_to">${object.client_specialist_id.id or object.project_id.partner_id.id}</field>
+            <field name="model_id" ref="wc_document_control.model_eng_instruct_submittal"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.prepared_by_id.lang}</field>
+            <field name="report_template" ref="wc_document_control.eng_instruct_submittal_report_id"/>
+            <field name="report_name">${(object.eng_instructID or '').replace('/','-')}</field>
+            <field name="body_html"><![CDATA[
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Hello Dear ${object.client_specialist_id.name or object.project_id.partner_id.name}, </p>
+                        <p>Please Find Attachment, your ${object.eng_instructID or 'n/a' } from ${object.company_id.name}.</p>
+
+                        <p>If you have any questions, do not hesitate to contact HR.</p><br/>
+                        <p>Thank you.</p>
+                        <p>HR Department.</p>
+                        <p>${object.company_id.name}</p>
+                    </div>
+                    ]]></field>
+        </record>
+
+
+        <!--mir submittal Activity Email template -->
+        <record id="email_template_mir_submittal" model="mail.template">
+            <field name="name">Mir Submittal by mail</field>
+            <field name="subject">${object.mirID or 'n/a' }</field>
+            <field name="email_from">${object.prepared_by_id.partner_id.email}</field>
+            <field name="email_to">${object.client_specialist_id.email or object.project_id.partner_id.email}</field>
+            <field name="partner_to">${object.client_specialist_id.id or object.project_id.partner_id.id}</field>
+            <field name="model_id" ref="wc_document_control.model_mir_submittal"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.prepared_by_id.lang}</field>
+            <field name="report_template" ref="wc_document_control.mir_report"/>
+            <field name="report_name">${(object.mirID or '').replace('/','-')}</field>
+            <field name="body_html"><![CDATA[
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Hello Dear ${object.client_specialist_id.name or object.project_id.partner_id.name}, </p>
+                        <p>Please Find Attachment, your ${object.mirID or 'n/a' } from ${object.company_id.name}.</p>
+
+                        <p>If you have any questions, do not hesitate to contact HR.</p><br/>
+                        <p>Thank you.</p>
+                        <p>HR Department.</p>
+                        <p>${object.company_id.name}</p>
+                    </div>
+                    ]]></field>
+        </record>
+
+        <!--Rfi submittal Activity Email template -->
+        <record id="email_template_rfi_submittal" model="mail.template">
+            <field name="name">Rfi Submittal by mail</field>
+            <field name="subject">${object.rfiID or 'n/a' }</field>
+            <field name="email_from">${object.prepared_by_id.partner_id.email}</field>
+            <field name="email_to">${object.client_specialist_id.email or object.project_id.partner_id.email}</field>
+            <field name="partner_to">${object.client_specialist_id.id or object.project_id.partner_id.id}</field>
+            <field name="model_id" ref="wc_document_control.model_rfi_submittal"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.prepared_by_id.lang}</field>
+            <field name="report_template" ref="wc_document_control.rfi_report"/>
+            <field name="report_name">${(object.rfiID or '').replace('/','-')}</field>
+            <field name="body_html"><![CDATA[
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Hello Dear ${object.client_specialist_id.name or object.project_id.partner_id.name}, </p>
+                        <p>Please Find Attachment, your ${object.rfiID or 'n/a' } from ${object.company_id.name}.</p>
+
+                        <p>If you have any questions, do not hesitate to contact HR.</p><br/>
+                        <p>Thank you.</p>
+                        <p>HR Department.</p>
+                        <p>${object.company_id.name}</p>
+                    </div>
+                    ]]></field>
+        </record>
+
+        <!--SIR submittal Activity Email template -->
+        <record id="email_template_sir_submittal" model="mail.template">
+            <field name="name">SIR Submittal by mail</field>
+            <field name="subject">${object.sirID or 'n/a' }</field>
+            <field name="email_from">${object.prepared_by_id.partner_id.email}</field>
+            <field name="email_to">${object.client_specialist_id.email or object.project_id.partner_id.email}</field>
+            <field name="partner_to">${object.client_specialist_id.id or object.project_id.partner_id.id}</field>
+            <field name="model_id" ref="wc_document_control.model_sir_submittal"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.prepared_by_id.lang}</field>
+            <field name="report_template" ref="wc_document_control.sir_report"/>
+            <field name="report_name">${(object.sirID or '').replace('/','-')}</field>
+            <field name="body_html"><![CDATA[
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Hello Dear ${object.client_specialist_id.name or object.project_id.partner_id.name}, </p>
+                        <p>Please Find Attachment, your ${object.sirID or 'n/a' } from ${object.company_id.name}.</p>
+
+                        <p>If you have any questions, do not hesitate to contact HR.</p><br/>
+                        <p>Thank you.</p>
+                        <p>HR Department.</p>
+                        <p>${object.company_id.name}</p>
+                    </div>
+                    ]]></field>
+        </record>
+
+        <!--SIR submittal Activity Email template -->
+        <record id="email_template_variation_submittal" model="mail.template">
+            <field name="name">Variation Submittal by mail</field>
+            <field name="subject">${object.variationID or 'n/a' }</field>
+            <field name="email_from">${object.prepared_by_id.partner_id.email}</field>
+            <field name="email_to">${object.client_specialist_id.email or object.project_id.partner_id.email}</field>
+            <field name="partner_to">${object.client_specialist_id.id or object.project_id.partner_id.id}</field>
+            <field name="model_id" ref="wc_document_control.model_variation_submittal"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.prepared_by_id.lang}</field>
+            <field name="report_template" ref="wc_document_control.variation_submittal_report_id"/>
+            <field name="report_name">${(object.variationID or '').replace('/','-')}</field>
+            <field name="body_html"><![CDATA[
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Hello Dear ${object.client_specialist_id.name or object.project_id.partner_id.name}, </p>
+                        <p>Please Find Attachment, your ${object.variationID or 'n/a' } from ${object.company_id.name}.</p>
+
+                        <p>If you have any questions, do not hesitate to contact HR.</p><br/>
+                        <p>Thank you.</p>
+                        <p>HR Department.</p>
+                        <p>${object.company_id.name}</p>
+                    </div>
+                    ]]></field>
+        </record>
+
+
+    </data>
+</odoo>

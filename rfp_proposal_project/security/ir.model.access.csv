@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+user_access_rfp,rfp.access.user,model_rfp_rfp,,1,1,1,1
+user_access_rfp_description,rfp.description.access.user,model_rfp_description,,1,1,1,1
+
+
+user_access_proposal,proposal.access.user,model_proposal_proposal,,1,1,1,1
+user_access_proposal_est,proposal.access.user.est,model_sale_estimate_line_job_proposal,,1,1,1,1

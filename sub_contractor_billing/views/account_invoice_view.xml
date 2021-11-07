@@ -1,0 +1,103 @@
+<odoo>
+    <data>
+
+        <record id="invoice_supplier_form_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="final_invoice"/>
+                </xpath>
+                <xpath expr="//page[@name='other_info']/group" position="after">
+                    <group>
+                        <group string="Project Information" name="project_information">
+                            <field name="project_name_id"/>
+                            <field name="project_no"/>
+                            <field name="project_start_date"/>
+                            <field name="project_end_date"/>
+                            <field name="project_period"/>
+                        </group>
+                        <group string="Extra Information" name="Extra Info">
+                            <field name="job_type_id"/>
+                            <field name="previous_invoice_id"/>
+                            <field name="sub_contractor" string='Contract Invoice'/>
+                            <field name="period_from"/>
+                            <field name="period_to"/>
+                        </group>
+                    </group>
+
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="account_move_no" force_save="1" invisible="1"/>
+
+                </xpath>
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='product_id']"
+                       position="attributes">
+                    <attribute name="string">Work Item</attribute>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='quantity']"
+                       position="attributes">
+                    <attribute name="string">Current QTY</attribute>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='price_subtotal']"
+                       position="attributes">
+                    <attribute name="string">Current Amount</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='amount_total']" position="attributes">
+                    <attribute name="string">Net to be paid</attribute>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='quantity']"
+                       position="after">
+                    <field name="actual_quant" force_save="1"/>
+                    <field name="previous_qty" force_save="1"/>
+                    <field name="current_qty2" force_save="1"/>
+                </xpath>
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='quantity']"
+                       position="replace">
+                    <field name="quantity" invisible="0"/>
+                    
+                </xpath>
+                <xpath expr="//notebook//page//field[@name='line_ids']//tree//field[@name='price_unit']"
+                       position="after">
+                    <field name="total_contract_qty" invisible="1" force_save="1"/>
+                    <field name="total_qty" force_save="1"/>
+                    <field name="actual_quant" force_save="1" invisible="1"/>
+                    <field name="previous_qty" force_save="1" invisible="1"/>
+                    <field name="current_qty2" force_save="1" invisible="1"/>
+                    <field name="total_amount" force_save="1" invisible="1"/>
+                    <field name="completed_percentage" force_save="1" invisible="1"/>
+
+                </xpath>
+
+                <!--                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='quantity']" position="before">-->
+                <!--                    <field name="previous_qty" />-->
+                <!--                    <field name="total_contract_qty" />-->
+                <!--                </xpath>-->
+
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='quantity']"
+                       position="after">
+                    <field name="tender_qty" force_save="1"/>
+                    <field name="tender_amount" force_save="1"/>
+                    <field name="total_qty" force_save="1"/>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='price_unit']"
+                       position="after">
+                    
+                    <field name="completed_percentage" invisible="1"/>
+                </xpath>
+                <xpath expr="//notebook//page//field[@name='invoice_line_ids']//tree//field[@name='tax_ids']"
+                       position="after">
+                       <field name="total_amount"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

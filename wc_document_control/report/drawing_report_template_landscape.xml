@@ -1,0 +1,294 @@
+<odoo>
+    <data>
+        <template id="document_control_template_landscape">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="wc_document_control.custom_external_layout_standard">
+                        <div class="page">
+                            <div class="row"
+                                 style="display:flex;align-items:center;margin-left:2px;width:99.9%;margin-bottom:20px;height:200px;border:2px solid black;">
+                                <div style="margin-top:30px;width:40%;display:flex;align-items:center;">
+                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                                         class="float-left" style="max-height:140px; max-width:300px;"/>
+                                </div>
+                                <div class="row" style="margin-top:30px;width:30%;display:flex;align-items:center;">
+                                    <div style="width:50%;display:flex;align-items:center;">
+                                        <img t-if="o.consultant.logo1" t-att-src="image_data_uri(o.consultant.logo1)"
+                                             class="float-left" style="max-height:140px; max-width:198px;"/>
+                                    </div>
+                                    <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">
+                                        <img t-if="o.consultant.logo2" t-att-src="image_data_uri(o.consultant.logo2)"
+                                             class="float-left" style="max-height:140px; max-width:195px;"/>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:30px;width:30%;display:flex;align-items:center;">
+                                    <div style="width:50%;display:flex;align-items:center;">
+                                        <img t-if="o.project_id.partner_id.image_1920"
+                                             t-att-src="image_data_uri(o.project_id.partner_id.image_1920)"
+                                             class="float-left" style="max-height:140px; max-width:198px;"/>
+                                    </div>
+                                    <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">
+                                        <img t-if="o.project_id.partner_id.logo2"
+                                             t-att-src="image_data_uri(o.project_id.partner_id.logo2)"
+                                             class="float-left" style="max-height:140px; max-width:198px;"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th scope="col">
+                                            <span>Submittal</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="dict(o.fields_get(allfields=['submittal_type'])['submittal_type']['selection'])[o.submittal_type]"/>
+                                        </td>
+                                        <th scope="col">
+                                            <span>Transmittal ID</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.transaction_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">
+                                            <span>Project Name</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.project_id.name"/>
+                                        </td>
+                                        <th scope="col">
+                                            <span>Revision No</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.revision_no"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="col">
+                                            <span>Client Name</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.client_id.name"/>
+                                        </td>
+                                        <th scope="col">
+                                            <span>Submission Date</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.submission_date"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="col">
+                                            <span>Attention</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.client_specialist_id.name"/>
+                                        </td>
+                                        <th scope="col">
+                                            <span>Last Update</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.last_update"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div style="height:340px;">
+                                <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                    <t t-if="o.dc_line_ids">
+                                        <thead>
+                                            <tr style="background-color: #4682b4;color:white">
+                                                <th scope="col">Sheet No</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Type</th>
+                                                <th scope="col">Manufacturer/supplier/specification</th>
+                                                <th scope="col">Copies</th>
+                                                <th scope="col">Action Code</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach='o.dc_line_ids' t-as='line'>
+                                                <t t-if="line.code != 'p'">
+                                                    <tr>
+                                                        <td>
+                                                            <span t-esc="line.sheet_no"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-esc="line.description"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-esc="line.product_type"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-esc="line.specification.name"/>
+                                                            <t t-if="line.supplier">
+                                                                /
+                                                                <span t-esc="line.supplier"/>
+                                                            </t>
+                                                        </td>
+                                                        <td>
+                                                            <span t-esc="line.copy"/>
+                                                        </td>
+                                                        <td>
+                                                            <span t-esc="line.action_code"/>
+                                                        </td>
+
+                                                    </tr>
+                                                </t>
+
+                                            </t>
+                                        </tbody>
+                                    </t>
+                                </table>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+
+                            <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                <tbody>
+                                    <tr style="background-color: #4682b4;color:white">
+                                        <th scope="col" colspan="4">
+                                            <span>CONTRACTOR'S SUBMISSION :</span>
+                                        </th>
+                                        <th scope="col" colspan="2">
+                                            <span>CONTRACTOR'S RECEIVED :</span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" style="background-color: #4682b4;color:white;width:13%">
+                                            <span>SCOPE DETAILS:</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.scope_details"/>
+                                        </td>
+                                        <th scope="col" style="width:10%">
+                                            <span>Name :</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.prepared_by_id.name"/>
+                                        </td>
+                                        <th scope="col" style="width:10%">
+                                            <span>Name :</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.prepared_by_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" colspan="2" rowspan="3">
+                                            <span t-esc="o.scope_details"/>
+                                        </th>
+                                        <!--<td scope="col"></td>-->
+                                        <th scope="col" style="width:10%">
+                                            <span>Title :</span>
+                                        </th>
+                                        <td scope="col">
+                                            <span t-esc="o.employee_title"/>
+                                        </td>
+                                        <th scope="col" style="width:10%">
+                                            <span>Title :</span>
+                                        </th>
+                                        <td scope="col"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" style="width:10%">
+                                            <span>SIGNATURE :</span>
+                                        </th>
+                                        <td scope="col"></td>
+                                        <th scope="col" style="width:10%">
+                                            <span>SIGNATURE :</span>
+                                        </th>
+                                        <td scope="col"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" style="width:10%">
+                                            <span>DATE :</span>
+                                        </th>
+                                        <td scope="col"></td>
+                                        <th scope="col" style="width:10%">
+                                            <span>DATE :</span>
+                                        </th>
+                                        <td scope="col"></td>
+                                    </tr>
+                                    <tr style="background-color: #4682b4;color:white">
+                                        <th scope="col" colspan="4">
+                                            <span>CONSULTANT'S REVIEW COMMENTS :</span>
+                                        </th>
+                                        <th scope="col" colspan="2">
+                                            <span>CONSULTANT'S RECEIVED :</span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" colspan="4">
+                                            <span></span>
+                                        </th>
+                                        <td scope="col" style="width:10%">
+                                            <span>NAME :</span>
+                                        </td>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" colspan="4">
+                                            <span></span>
+                                        </th>
+                                        <td scope="col" style="width:10%">
+                                            <span>TITLE :</span>
+                                        </td>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" colspan="4">
+                                            <span></span>
+                                        </th>
+                                        <td scope="col" style="width:10%">
+                                            <span>SIGNATURE :</span>
+                                        </td>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" colspan="4">
+                                            <span></span>
+                                        </th>
+                                        <td scope="col" style="width:10%">
+                                            <span>DATE :</span>
+                                        </td>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    <tr style="background-color: #4682b4;color:white">
+                                        <th scope="col">
+                                            <span>ACTION CODE</span>
+                                        </th>
+
+                                    </tr>
+                                    <tr style="background-color:#C0C0C0;">
+                                        <th scope="col" colspan="3">
+                                            <span>A - APPROVED AS SUBMITTED.</span>
+                                        </th>
+                                        <th scope="col" colspan="3">
+                                            <span>C - REVISED AND RE-SUBMITTAL REQUIRED.</span>
+                                        </th>
+                                    </tr>
+                                    <tr style="background-color:#C0C0C0;">
+                                        <th scope="col" colspan="3">
+                                            <span>B - APPROVED WITH COMMENTS.</span>
+                                        </th>
+                                        <th scope="col" colspan="3">
+                                            <span>D - DISAPPROVED. SEE ATTACHED SHEET.</span>
+                                        </th>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

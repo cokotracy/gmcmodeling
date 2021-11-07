@@ -1,0 +1,32 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_custody_custody_employee,Custody Employee,model_custody_custody,custody_employee,1,1,0,0
+access_custody_lines_employee,Custody Lines Employee,model_custody_line,custody_employee,1,1,1,1
+access_account_asset_custody_employee,Account Asset Custody Employee,account_asset.model_account_asset,custody_employee,1,0,0,0
+access_hr_employee_custody_employee,HR Employee Custody Employee,hr.model_hr_employee,custody_employee,1,1,0,0
+access_account_analytic_custody_employee,Account Analytic Custody Employee,analytic.model_account_analytic_account,custody_employee,1,0,0,0
+access_partner_custody_employee,Partner Custody Employee,base.model_res_partner,custody_employee,1,0,0,0
+
+access_custody_custody_accountant,Custody Accountant,model_custody_custody,custody_accountant,1,1,1,1
+access_custody_lines_accountant,Custody Lines Accountant,model_custody_line,custody_accountant,1,1,1,1
+access_account_asset_custody_accountant,Account Asset Custody Accountant,account_asset.model_account_asset,custody_accountant,1,0,0,0
+access_hr_employee_custody_accountant,HR Employee Custody Accountant,hr.model_hr_employee,custody_accountant,1,1,0,0
+access_account_analytic_custody_accountant,Account Analytic Custody Accountant,analytic.model_account_analytic_account,custody_accountant,1,0,0,0
+access_partner_custody_accountant,Partner Custody Accountant,base.model_res_partner,custody_accountant,1,0,0,0
+
+access_custody_custody_direct_manager,Custody direct_manager,model_custody_custody,custody_direct_manager,1,1,1,0
+access_custody_lines_direct_manager,Custody Lines direct_manager,model_custody_line,custody_direct_manager,1,1,1,1
+access_account_asset_custody_direct_manager,Account Asset Custody direct_manager,account_asset.model_account_asset,custody_direct_manager,1,0,0,0
+access_hr_employee_custody_direct_manager,HR Employee Custody direct_manager,hr.model_hr_employee,custody_direct_manager,1,1,0,0
+access_account_analytic_custody_direct_manager,Account Analytic Custody direct_manager,analytic.model_account_analytic_account,custody_direct_manager,1,0,0,0
+access_partner_custody_direct_manager,Partner Custody direct_manager,base.model_res_partner,custody_direct_manager,1,0,0,0
+
+
+access_custody_custody_manager,Custody Manager,model_custody_custody,custody_manager,1,1,1,1
+access_custody_lines_manager,Custody Lines Manager,model_custody_line,custody_manager,1,1,1,1
+access_account_asset_custody_manager,Account Asset Custody Manager,account_asset.model_account_asset,custody_manager,1,0,0,0
+access_hr_employee_custody_manager,HR Employee Custody Manager,hr.model_hr_employee,custody_manager,1,1,0,0
+access_account_analytic_custody_manager,Account Analytic Custody Manager,analytic.model_account_analytic_account,custody_manager,1,0,0,0
+access_partner_custody_manager,Partner Custody Manager,base.model_res_partner,custody_manager,1,0,0,0
+
+
+

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_card_wiz,access_stock_card_wiz,model_stock_card_report_wizard,,1,1,1,1
+access_stock_card_view,access_stock_card_view,model_stock_card_view,,1,1,1,1
+access_stock_card_rep,access_stock_card_rep,model_report_stock_card_report,,1,1,1,1
+access_stock_card_excel,access_stock_card_excel,model_report_stock_card_report_report_stock_card_report_xlsx,,1,1,1,1

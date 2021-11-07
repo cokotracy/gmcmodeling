@@ -1,0 +1,289 @@
+<odoo>
+    <data>
+        <record id="view_document_control_form_dc" model="ir.ui.view">
+            <field name="name">view_document_control_form</field>
+            <field name="model">document.control</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <field name="x" invisible="1"/>
+                        <button name="update_procurment_list_sample_lines" string="Update procurement list"
+                                class="btn-primary" type="object"
+                                attrs="{'invisible':['|', ('x','=',True),('submittal_type', 'in', ('hse', 'rams'))]}"/>
+                        <button name="update_procurment_list_sample_lines2" string="Update procurement list"
+                                class="btn-danger" type="object" invisible="1"/>
+
+                        <button name="resbmittal_button" string="Resubmittal"
+                                attrs="{'invisible':[('is_reviewed','=',True)]}" class="btn-primary" type="object"/>
+                        <button name="create_mir" invisible="1" string="Create MIR" class="btn-primary" type="object"/>
+                        <button name="create_sir" invisible="1" string="Create SIR" class="btn-primary" type="object"/>
+                        <button name="action_dc_send" type="object" class="oe_highlight" string="Send By Email"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,send_by_email,pro_list_updated,resubmitted"
+                               attrs="{'invisible': [('submittal_type', 'not in', ('dc', 'mt', 'dw'))]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="open_related_revisions" type="object" class="oe_stat_button" icon="fa-tasks"
+                                    attrs="{'invisible':[('revision_no_seq','!=','0')]}">
+                                <field string="Revisions" name="revisions_num" widget="statinfo"/>
+                            </button>
+                            <button name="open_related_sirs" type="object" class="oe_stat_button" icon="fa-tasks"
+                                    invisible="1">
+                                <field string="SIRs" name="sir_counts" widget="statinfo"/>
+                            </button>
+                            <button name="open_related_mirs" type="object" class="oe_stat_button" icon="fa-tasks"
+                                    invisible="1">
+                                <field string="MIRs" name="mir_counts" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="projectID"/>
+                                <field name="project_id"/>
+                                <field name="client_id"/>
+                                <field name="client_specialist_id"/>
+                                <field name="consultant"/>
+                                <field name="attention" invisible="1"/>
+                                <field name="prepared_by_id"/>
+                                <field name="parent_dc" invisible="1"/>
+                                <field name="trans_dc_seq" invisible="1"/>
+                                <field name="trans_wd_seq" invisible="1"/>
+                                <field name="trans_hse_seq" invisible="1"/>
+                                <field name="trans_rams_seq" invisible="1"/>
+                                <field name="trans_mt_seq" invisible="1"/>
+                                <field name="procurment_list_id" invisible="1"/>
+                                <field name="revision_no_seq" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="submittal_type" readonly="1"/>
+                                <field name="scope_of_work_id" required="1"/>
+                                <field name="division"/>
+                                <field name="scope_details"/>
+                                <field name="employee_title"/>
+                                <field name="transaction_id"/>
+                                <field name="revision_no"/>
+                                <field name="submission_date"/>
+                                <field name="specifications" invisible="1"/>
+                                <field name="last_update" attrs="{'invisible':[('submittal_type','!=','mt')]}"/>
+                                <field name="ref" attrs="{'invisible':[('submittal_type','!=','mt')]}"/>
+                                <field name="reviewed_by_id" attrs="{'invisible':[('submittal_type','!=','mt')]}"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                            <field name="remarks"/>
+                            <field name="old_line_ids" invisible="1"/>
+                            <field name="is_reviewed" invisible="1"/>
+                        </group>
+
+                        <group attrs="{'invisible':[('is_reviewed','=',True)]}">
+                            <div>
+                                <field name="dc_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="sheet_no"/>
+                                        <field name="product_id"/>
+                                        <field name="description"/>
+                                        <field name="categ_id"/>
+                                        <field name="copy"/>
+                                        <field name="product_type"/>
+                                        <field name="code"/>
+                                        <field name="action_code"/>
+                                        <field name="return_date"/>
+                                        <field name="specification"/>
+                                        <field name="supplier"/>
+
+                                        <field name="attachment" invisible="1"/>
+                                        <button class="oe_stat_button" name="attachment_view" type="object"
+                                                string="Attachments"/>
+                                        <field name="doc_count"/>
+
+                                        <field name="transaction_id" force_save="1" invisible="1"/>
+                                        <field name="revision_no" force_save="1" invisible="1"/>
+                                        <field name="projectID" force_save="1" invisible="1"/>
+                                        <field name="project_id" force_save="1" invisible="1"/>
+                                        <field name="scope_of_work_id" force_save="1" invisible="1"/>
+                                        <field name="submittal_type" force_save="1" invisible="1"/>
+                                        <field name="submission_date" force_save="1" invisible="1"/>
+                                        <field name="action_code" force_save="1" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                        <group attrs="{'invisible':[('is_reviewed','=',False)]}">
+                            <div>
+                                <field name="dc_lines_copy" readonly="1">
+                                    <tree>
+                                        <field name="sheet_no"/>
+                                        <field name="product_id"/>
+                                        <field name="description"/>
+                                        <field name="categ_id"/>
+                                        <field name="copy"/>
+                                        <field name="product_type"/>
+                                        <field name="code"/>
+                                        <!--<field name="action_code"/>-->
+                                        <field name="return_date"/>
+                                        <field name="specification"/>
+                                        <field name="supplier"/>
+
+                                        <field name="attachment" invisible="1"/>
+                                        <button class="oe_stat_button" name="attachment_view" type="object"
+                                                string="Attachments"/>
+                                        <field name="doc_count"/>
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_document_control_tree" model="ir.ui.view">
+            <field name="name">view_document_control_tree</field>
+            <field name="model">document.control</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="projectID"/>
+                    <field name="project_id"/>
+                    <field name="client_id"/>
+                    <field name="consultant"/>
+                    <field name="client_specialist_id"/>
+                    <field name="prepared_by_id"/>
+                    <field name="submittal_type"/>
+                    <field name="scope_of_work_id"/>
+                    <field name="transaction_id"/>
+                    <field name="revision_no"/>
+                    <field name="submission_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_document_control_search" model="ir.ui.view">
+            <field name="name">view_document_control_search</field>
+            <field name="model">document.control</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="project_id" string="string" domain="[('project_ID', 'ilike', self)]"/>
+                    <field name="projectID"/>
+                    <field name="project_id"/>
+                    <field name="transaction_id"/>
+                    <field name="revision_no"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_document_control_view_dc" model="ir.actions.act_window">
+            <field name="name">Document Control</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">document.control</field>
+            <field name="domain">[('submittal_type','=','dc')]</field>
+            <field name="context">{'default_submittal_type':'dc'}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+
+                </p>
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+        <record id="action_document_control_view_mt" model="ir.actions.act_window">
+            <field name="name">Material</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">document.control</field>
+            <field name="domain">[('submittal_type','=','mt')]</field>
+            <field name="context">{'default_submittal_type':'mt'}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+
+                </p>
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+        <record id="action_document_control_view_dw" model="ir.actions.act_window">
+            <field name="name">Drawing</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">document.control</field>
+            <field name="domain">[('submittal_type','=','dw')]</field>
+            <field name="context">{'default_submittal_type':'dw'}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+
+                </p>
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+        <record id="action_document_control_view_hse" model="ir.actions.act_window">
+            <field name="name">HSE Submittal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">document.control</field>
+            <field name="domain">[('submittal_type','=','hse')]</field>
+            <field name="context">{'default_submittal_type':'hse'}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+
+                </p>
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+        <record id="action_document_control_view_rams" model="ir.actions.act_window">
+            <field name="name">RAMS Submittal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">document.control</field>
+            <field name="domain">[('submittal_type','=','rams')]</field>
+            <field name="context">{'default_submittal_type':'rams'}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+
+                </p>
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_document_control_root" name="DC"
+                  web_icon="wc_document_control,static/description/icon.png" sequence="5"/>
+
+        <menuitem id="menu_document_control_conf_categ" name="Configuration" parent="menu_document_control_root"
+                  sequence="100"/>
+
+        <menuitem id="menu_document_control_categ" name="Submittal Form" parent="menu_document_control_root"
+                  sequence="1"/>
+        <menuitem id="menu_dw_view" name="Drawing" parent="menu_document_control_categ"
+                  action="action_document_control_view_dw" sequence="1"/>
+        <menuitem id="menu_mt_view" name="Material" parent="menu_document_control_categ"
+                  action="action_document_control_view_mt" sequence="2"/>
+        <menuitem id="menu_dc_view" name="Document Control" parent="menu_document_control_categ"
+                  action="action_document_control_view_dc" sequence="3"/>
+
+        <menuitem id="menu_hse_view" name="HSE Submittal" parent="menu_document_control_categ"
+                  action="action_document_control_view_hse" sequence="4"/>
+        <menuitem id="menu_rams_view" name="RAMS Submittal" parent="menu_document_control_categ"
+                  action="action_document_control_view_rams" sequence="5"/>
+    </data>
+</odoo>

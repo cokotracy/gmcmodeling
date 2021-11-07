@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_edit_project" model="ir.ui.view">
+            <field name="name">view_inherit_edit_project</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//header" position="inside">
+                    <button name="create_new_quotation" string="New Quotation" type="object" class="btn-primary"/>
+<!--                    attrs="{'invisible':[('so_id','!=',False)]}"-->
+                    <button name="guarantee_letter_request" string="Guarantee Letter Request" type="object" attrs="{'invisible':[('guarantee_count','!=',0)]}" class="btn-primary"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="so_id"/>
+                </xpath>
+
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" name="open_linked_quotation" type="object" icon="fa-file-text-o">
+                        <field name="quotation_count" string="Quotations" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" name="open_related_guarantee_letter" type="object" icon="fa-file-text-o" attrs="{'invisible':[('guarantee_count','=',0)]}">
+                        <field string="Guar Letter" name="guarantee_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <!--<default html for any html filed values></default>-->
+        <!--<p class='text-right' style='float:right; width:100%;font-size: 15px;' dir='rtl'><span> </span></p>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </data>
+</odoo>

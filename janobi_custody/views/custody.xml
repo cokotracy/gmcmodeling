@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+        <!--Custody Form View-->
+        <record id="custody_form_view" model="ir.ui.view">
+            <field name="name">Custody Form View</field>
+            <field name="model">custody.custody</field>
+            <field name="arch" type="xml">
+                <form string="Custody">
+                    <header>
+                        <button name="%(janobi_custody.report_custody_custody_report)d"
+                                string="Print"
+                                type="action"
+                                states="approve"
+                                class="btn-primary"/>
+                        <button name="action_progress"
+                                string="Progress"
+                                type="object"
+                                groups="janobi_custody.custody_accountant,janobi_custody.custody_direct_manager"
+                                states="new,direct_manager_reject,accountant_reject"
+                                class="btn-primary"/>
+                        <button name="action_lock"
+                                string="Lock"
+                                type="object"
+                                groups="janobi_custody.custody_manager,janobi_custody.custody_accountant,janobi_custody.custody_direct_manager"
+                                states="progress"
+                                class="btn-primary"/>
+                        <button name="action_accountant_reject"
+                                states="manager,progress"
+                                groups="janobi_custody.custody_accountant"
+                                string="Accountant Reject"
+                                class="btn-primary"
+                                type="object"/>
+                        <button name="action_direct_manager_reject"
+                                states="progress,locked,"
+                                groups="janobi_custody.custody_direct_manager,janobi_custody.custody_manager"
+                                string="Direct Manager Reject"
+                                class="btn-primary"
+                                type="object"/>
+                        <button name="action_reject"
+                                states="accountant"
+                                groups="janobi_custody.custody_manager"
+                                string="Reject"
+                                class="btn-primary"
+                                type="object"/>
+                        <button name="action_direct_manager"
+                                states="progress,locked"
+                                groups="janobi_custody.custody_direct_manager,janobi_custody.custody_manager"
+                                string="Direct Manager Approve"
+                                class="btn-primary"
+                                type="object"/>
+                        <button name="action_accountant"
+                                states="manager,progress"
+                                groups="janobi_custody.custody_accountant"
+                                string="Accountant Approve"
+                                class="btn-primary"
+                                type="object"/>
+                        <button name="action_approve"
+                                states="accountant,reject"
+                                groups="janobi_custody.custody_manager"
+                                string="Approve"
+                                class="btn-primary"
+                                type="object"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="new,progress,manager,accountant,approve,reject"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="employee" options="{'no_create': True, 'no_create_edit':True}"/>
+                                <field name="department"/>
+                                <field name="bank_account"/>
+                            </group>
+                            <group>
+                                <field name="old_custody_value"/>
+                                <field name="custody_value"/>
+                                <field name="paid_value"/>
+                                <field name="date"/>
+                                <field name="approve_date" states="approve"/>
+                                <field name="reject_date" states="reject"/>
+                                <field name="approved_custody_value"/>
+                                <field name="rejected_custody_value"/>
+                                <field name="balance"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Lines">
+                                <field name="line_ids" attrs="{'readonly':[('state','!=','progress')]}">
+                                    <form string="Custody Lines">
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="description"/>
+                                                    <field name="value"/>
+                                                    <field name="date"/>
+                                                </group>
+                                                <group>
+                                                    <field name="asset_id"/>
+                                                    <field name="analytic_account_id"/>
+                                                    <field name="partner_id"/>
+                                                    <field name="approve"
+                                                           groups="janobi_custody.custody_manager,janobi_custody.custody_accountant,janobi_custody.custody_direct_manager"/>
+                                                </group>
+                                            </group>
+                                            <group>
+                                                <field name="attachment" widget="binary"/>
+                                                <field name="attachment2" widget="pdf_viewer" class="oe_read_only"/>
+                                                <field name="attachment3" widget="image" class="oe_read_only"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                    <tree editable="">
+                                        <field name="description"/>
+                                        <field name="value"/>
+                                        <field name="partner_id"/>
+                                        <field name="asset_id"/>
+                                        <field name="analytic_account_id"/>
+                                        <field name="date"/>
+                                        <field name="approve"
+                                               groups="janobi_custody.custody_manager,janobi_custody.custody_accountant,janobi_custody.custody_direct_manager"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Internal Note">
+                                <field name="bio"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="inherited_custody_form_view_accountant_write_access" model="ir.ui.view">
+            <field name="name">inherited.custody.form.custom.accountatnt</field>
+            <field name="model">custody.custody</field>
+            <field name="inherit_id" ref="janobi_custody.custody_form_view"/>
+            <field name="groups_id" eval="[(6, 0, [ref('janobi_custody.custody_accountant')])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']" position="attributes">
+                    <attribute name="attrs">
+                        {'readonly':[('state','in',['approve','reject','accountant','accountant_reject'])]}
+                    </attribute>
+                </xpath>
+            </field>
+
+        </record>
+
+        <record id="inherited_custody_form_view_manager_write_access" model="ir.ui.view">
+            <field name="name">inherited.custody.form.custom</field>
+            <field name="model">custody.custody</field>
+            <field name="inherit_id" ref="janobi_custody.custody_form_view"/>
+            <field name="groups_id" eval="[(6, 0, [ref('janobi_custody.custody_manager')])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','in',['approve','reject'])]}</attribute>
+                </xpath>
+            </field>
+
+        </record>
+
+        <!--Custody Graph View-->
+        <record model="ir.ui.view" id="custody_graph_view">
+            <field name="name">Custody Graph View</field>
+            <field name="model">custody.custody</field>
+            <field name="arch" type="xml">
+                <graph string="Custody">
+                    <field name="employee" type="col"/>
+                    <field name="custody_value" type="row"/>
+                </graph>
+            </field>
+        </record>
+
+        <!--Custody Pivot View-->
+        <record model="ir.ui.view" id="custody_pivot_view">
+            <field name="name">Custody Pivot View</field>
+            <field name="model">custody.custody</field>
+            <field name="arch" type="xml">
+                <pivot string="Custody">
+                    <field name="date" interval="month" type="row"/>
+                    <field name="employee" type="col"/>
+                    <field name="custody_value" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!--Custody Kanban View-->
+        <record id="custody_kanban_view" model="ir.ui.view">
+            <field name="name">custody.kanban</field>
+            <field name="model">custody.custody</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column o_opportunity_kanban"
+                        archivable="false" records_draggable="false">
+                    <field name="name"/>
+                    <field name="color"/>
+                    <field name="employee"/>
+                    <field name="department"/>
+                    <field name="bank_account"/>
+                    <field name="state"/>
+                    <field name="custody_value"/>
+                    <field name="approved_custody_value"/>
+                    <field name="message_needaction_counter"/>
+                    <field name="activity_summary"/>
+                    <field name="activity_state"/>
+                    <field name="activity_ids"/>
+                    <progressbar field="activity_state"
+                                 colors='{"planned": "success", "today": "warning", "overdue": "danger"}'
+                                 sum_field="custody_value"
+                                 help="This bar allows to filter the custodies based on scheduled activities."/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''} oe_kanban_global_click">
+                                <div class="o_dropdown_kanban dropdown">
+
+                                    <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown"
+                                       data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                        <span class="fa fa-ellipsis-v"/>
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <t t-if="widget.editable">
+                                            <a role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                                        </t>
+                                        <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div>
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                    <div>
+                                        <field name="employee"/>
+                                    </div>
+                                    <div>
+                                        <field name="department"/>
+                                    </div>
+                                    <div>
+                                        <field name="bank_account"/>
+                                    </div>
+                                    <div class="text-muted o_kanban_record_subtitle">
+                                        <t t-if="record.custody_value">
+                                            <field name="custody_value" widget="monetary"/>
+                                        </t>
+                                    </div>
+
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <field name="activity_ids" widget="kanban_activity"/>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <img t-att-src="kanban_image('res.users', 'image_128', record.employee.user_id)"
+                                                 t-att-title="record.employee.user_id"
+                                                 t-att-alt="record.employee.user_id"
+                                                 class="oe_kanban_avatar"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!--Custody Calender View-->
+        <record id="custody_calender_view" model="ir.ui.view">
+            <field name="name">custody.calendar</field>
+            <field name="model">custody.custody</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Custody" mode="month" date_start="date" color="employee"
+                          hide_time="true" event_limit="5">
+                    <field name="custody_value"/>
+                    <field name="employee" avatar_field="image_128"/>
+                </calendar>
+            </field>
+        </record>
+
+
+
+        <!--Custody Activity View-->
+        <record id="custody_view_activity" model="ir.ui.view">
+            <field name="name">custody.view.activity</field>
+            <field name="model">custody.custody</field>
+            <field name="arch" type="xml">
+                <activity string="Custody">
+                    <field name="name"/>
+                    <templates>
+                        <div t-name="activity-box">
+                            <img t-att-src="activity_image('res.users', 'image_128', record.employee.user_id)"
+                                 t-att-title="record.employee.user_id" t-att-alt="record.employee.user_id"/>
+                            <div>
+                                <field name="name" display="full"/>
+                                <field name="employee" display="full"/>
+                                <field name="custody_value" widget="monetary" display="full" muted="1"/>
+                            </div>
+                        </div>
+                    </templates>
+                </activity>
+            </field>
+        </record>
+
+        <!--Custody Search View-->
+        <record id="custody_search_view" model="ir.ui.view">
+            <field name="name">custody search view</field>
+            <field name="model">custody.custody</field>
+            <field name="arch" type="xml">
+                <search string="Custody">
+                    <field name="name"/>
+                    <field name="employee"/>
+                    <field name="department"/>
+                    <field name="bank_account"/>
+                    <group expand="0" string="Group By">
+                        <filter name="groupby_employee" context="{'group_by':'employee'}" string="Employee"/>
+                        <filter name="groupby_bank_account" context="{'group_by':'bank_account'}"
+                                string="Bank Account"/>
+                        <filter name="state" context="{'group_by': 'state'}" string="Status"/>
+                        <filter name="groupby_month" context="{'group_by': 'date:month'}" string="Month"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--Custody Cohort View-->
+        <record id="custody_view_cohort" model="ir.ui.view">
+            <field name="name">custody.view.cohort</field>
+            <field name="model">custody.custody</field>
+            <field name="arch" type="xml">
+                <cohort string="Custody" date_start="date" date_stop="approve_date" interval="week" mode="churn"/>
+            </field>
+        </record>
+
+        <!--Custody Dashboard View-->
+        <record id="custody_view_dashboard" model="ir.ui.view">
+            <field name="name">custody.view.dashboard</field>
+            <field name="model">custody.custody</field>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <dashboard>
+                    <group>
+                        <group>
+                            <aggregate name="custody" string="Custody" group_operator="count" field="id"
+                                       measure="__count__"/>
+                            <aggregate name="custody_value_total" field="custody_value"
+                                       string="Custody Value"/>
+                            <formula name="custody_value_average" string="Average Custody Value"
+                                     value="record.custody_value_total / record.custody"
+                                     widget="monetary"/>
+                            <aggregate name="approved_custody_value_total" field="approved_custody_value"
+                                       string="Custody Approved Value"/>
+                            <aggregate name="rejected_custody_value_total" field="rejected_custody_value"
+                                       string="Custody Rejected Value"/>
+                        </group>
+                        <group col="1">
+                            <widget name="pie_chart" title="Employee" attrs="{'groupby': 'employee'}"/>
+                            <widget name="pie_chart" title="Status" attrs="{'groupby': 'state'}"/>
+                        </group>
+                    </group>
+                    <view type="pivot" ref="janobi_custody.custody_pivot_view"/>
+                    <view type="cohort" ref="janobi_custody.custody_view_cohort"/>
+                </dashboard>
+            </field>
+        </record>
+
+        <!--action of module-->
+
+     <record id="custody_custody_action" model="ir.actions.act_window">
+        <field name="res_model">custody.custody</field>
+        <field name="name">custody</field>
+        <field name="view_mode">kanban,tree,graph,pivot,form,calendar,activity,dashboard</field>
+    </record>
+
+
+        <record id="custody_tree_view" model="ir.ui.view">
+            <field name="name">Custody Tree View</field>
+            <field name="model">custody.custody</field>
+            <field name="arch" type="xml">
+                <tree string="Custody">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="employee"/>
+                    <field name="old_custody_value"/>
+                    <field name="custody_value"/>
+                    <field name="paid_value"/>
+                    <field name="approved_custody_value"/>
+                    <field name="rejected_custody_value"/>
+                    <field name="balance"/>
+                    <field name="department"/>
+                    <field name="bank_account"/>
+                    <field name="approve_date"/>
+                    <field name="reject_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="custody_line_form_view" model="ir.ui.view">
+            <field name="name">Custody Lines Form View</field>
+            <field name="model">custody.line</field>
+            <field name="arch" type="xml">
+                <form string="Custody Lines" create="false" edit="false" delete="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="custody"/>
+                                <field name="date"/>
+                                <field name="description"/>
+                                <field name="value"/>
+                                <field name="partner_id"/>
+                            </group>
+                            <group>
+                                <field name="asset_id"/>
+                                <field name="analytic_account_id"/>
+                                <field name="approve"
+                                       groups="janobi_custody.custody_manager,janobi_custody.custody_accountant,janobi_custody.custody_direct_manager"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="attachment" widget="binary"/>
+                            <field name="attachment2" widget="pdf_viewer"/>
+                            <field name="attachment3" widget="image"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="custody__line_tree_view" model="ir.ui.view">
+            <field name="name">Custody Line Tree View</field>
+            <field name="model">custody.line</field>
+            <field name="arch" type="xml">
+                <tree string="Custody Lines" delete="false" create="false" edit="false">
+                    <field name="custody"/>
+                    <field name="custody_state"/>
+                    <field name="date"/>
+                    <field name="employee"/>
+                    <field name="department"/>
+                    <field name="description"/>
+                    <field name="partner_id"/>
+                    <field name="asset_id"/>
+                    <field name="analytic_account_id"/>
+                    <field name="value"/>
+                    <field name="approve"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="custody_line_search_view" model="ir.ui.view">
+            <field name="name">custody line search view</field>
+            <field name="model">custody.line</field>
+            <field name="arch" type="xml">
+                <search string="Custody Lines">
+                    <field name="custody"/>
+                    <field name="employee"/>
+                    <field name="department"/>
+                    <field name="description"/>
+                    <field name="partner_id"/>
+                    <field name="asset_id"/>
+                    <field name="analytic_account_id"/>
+                    <field name="date"/>
+                    <filter name="approve" domain="[('approve','=',True)]" string="Approved"/>
+                    <filter name="reject" domain="[('approve','=',False)]" string="Rejected"/>
+                    <group expand="0" string="Group By">
+                        <filter name="groupby_custody" context="{'group_by':'custody'}" string="Custody"/>
+                        <filter name="groupby_custody_state" context="{'group_by':'custody_state'}"
+                                string="Custody Status"/>
+                        <filter name="groupby_employee" context="{'group_by':'employee'}" string="Employee"/>
+                        <filter name="groupby_department" context="{'group_by':'department'}" string="Department"/>
+                        <filter name="groupby_partner_id" context="{'group_by':'partner_id'}" string="Customer"/>
+                        <filter name="groupby_asset_id" context="{'group_by':'asset_id'}" string="Asset"/>
+                        <filter name="groupby_analytic_account_id" context="{'group_by':'analytic_account_id'}"
+                                string="Analytic account"/>
+
+                        <filter name="groupby_date" context="{'group_by': 'date'}" string="Date"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="custody_line_graph_view">
+            <field name="name">Custody Line Graph View</field>
+            <field name="model">custody.line</field>
+            <field name="arch" type="xml">
+                <graph string="Custody Lines">
+                    <field name="employee" type="col"/>
+                    <field name="value" type="row"/>
+                </graph>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="custody_line_pivot_view">
+            <field name="name">Custody Line Pivot View</field>
+            <field name="model">custody.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Custody Lines">
+                    <field name="date" interval="month" type="row"/>
+                    <field name="employee" type="col"/>
+                    <field name="value" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!--Custody Dashboard View-->
+        <record id="custody_line_view_dashboard" model="ir.ui.view">
+            <field name="name">custody.line.view.dashboard</field>
+            <field name="model">custody.line</field>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <dashboard>
+                    <group>
+                        <group>
+                            <aggregate name="custody_line" string="Custody Lines" group_operator="count" field="id"
+                                       measure="__count__"/>
+                            <aggregate name="custody_line_value_total" field="value"
+                                       string="Custody Value"/>
+                            <formula name="custody_line_value_average" string="Average Custody Line Value"
+                                     value="record.custody_line_value_total / record.custody_line"
+                                     widget="monetary"/>
+                        </group>
+                        <group col="1">
+                            <widget name="pie_chart" title="Approve" attrs="{'groupby': 'approve'}"/>
+                            <widget name="pie_chart" title="Customer" attrs="{'groupby': 'partner_id'}"/>
+                            <widget name="pie_chart" title="Asset" attrs="{'groupby': 'asset_id'}"/>
+                            <widget name="pie_chart" title="Analytic Account"
+                                    attrs="{'groupby': 'analytic_account_id'}"/>
+                        </group>
+                    </group>
+                    <view type="pivot" ref="janobi_custody.custody_line_pivot_view"/>
+                </dashboard>
+            </field>
+        </record>
+
+
+        <record id="custody_line_action" model="ir.actions.act_window">
+            <field name="name">Custody Lines</field>
+            <field name="res_model">custody.line</field>
+            <field name="view_mode">tree,graph,pivot,form,dashboard</field>
+        </record>
+
+        <!--MENUITEM-->
+        <menuitem name="Custody" id="custody_man_menu" web_icon="janobi_custody,static/description/icon.png" sequence="70"/>
+        <menuitem name="Custody" id="custody_custody_menu" parent="custody_man_menu"/>
+        <menuitem name="Custody" id="custody_custody" parent="custody_custody_menu"
+                  action="custody_custody_action" sequence="1"/>
+        <menuitem name="Custody Lines" id="custody_line_menu" parent="custody_custody_menu"
+                  action="custody_line_action" groups="janobi_custody.custody_manager" sequence="2"/>
+
+
+</odoo>

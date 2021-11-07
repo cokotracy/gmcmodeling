@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_employee_loan_janobi_form" model="ir.ui.view">
+      <field name="name">hr.employee.loan.janobi.form</field>
+      <field name="model">hr.employee.loan</field>
+      <field name="arch" type="xml">
+        <form>
+        <group>
+          <group>
+            <field name="date"/>
+            <field name="amount"/>
+            <field name="currency_id"/>
+            <field name="state"/>
+              <field name="installment_type"/>
+              <button name="calculate_installment" string="Compute"
+                      attrs="{'invisible':[('installment_type','!=','automated')]}" type="object" class="btn-primary"/>
+
+
+          </group>
+          <group>
+            <field name="employee_id"/>
+            <field name="desc"/>
+            <field name="install_count"/>
+            <field name="loan_document"/>
+          </group>
+        </group>
+        <group>
+          <field name="loan_lines">
+            <tree editable="buttom">
+              <field name="date"/>
+              <field name="amount"/>
+            </tree>
+          </field>
+        </group>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_employee_janobi_form" model="ir.ui.view">
+        <field name="name">hr.employee.janobi.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="employee_total_loans"
+                        class="oe_stat_button"
+                        icon="fa-money"
+                        type="button">
+                    <field name="loans_total" widget="statinfo" string="Loan(s)"/>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="code" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="after">
+                <field name="project_id" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='gender']" position="after">
+                <field name="blood_group"/>
+            </xpath>
+            <xpath expr="//page[@name='hr_settings']" position="after">
+                <page name="labor_office" string="Labor Office" groups="hr.group_hr_manager">
+                    <group>
+                        <group string='Visa' name="visa_group">
+                            <field name="visa_no"/>
+                            <field name="visa_career"/>
+                            <field name="visa_expire_date" widget="date"/>
+                            <field name="visa_cost" widget="monetary"/>
+                            <field name="date_of_arrival" widget="date"/>
+                        </group>
+                        <group string="Labor Office" name="labor_office_group">
+                            <field name="employee_labor_office_number"/>
+                            <field name="company_labor_office_number"/>
+                            <field name="company_name"/>
+                            <field name="boundary_number"/>
+                            <field name="port_of_entry"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="social_insurance" string="Social Insurance" groups="hr.group_hr_manager">
+                    <group>
+                        <group>
+                            <field name="employee_social_insurance_number"/>
+                            <field name="company_social_insurance_number"/>
+                            <field name="social_insurance_pay" widget="monetary"/>
+                            <field name="social_insurance_enroll_date" widget="date"/>
+                            <field name="social_insurance_min_pay" widget="monetary"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </page>
+                <page name="medical_insurance" string="Medical Insurance" groups="hr.group_hr_manager">
+                    <group>
+                        <group>
+                            <field name="medical_policy_number"/>
+                            <field name="age" readonly="1"/>
+                            <field name="medical_start_date" widget="date"/>
+                            <field name="medical_end_date" widget="date"/>
+                            <field name="annual_medical_pay" widget="monetary"/>
+                            <field name="monthly_medical_pay" widget="monetary"/>
+                        </group>
+                        <group>
+                            <field name="medical_card_document" widget="pdf_viewer"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="residence" string="Residence" groups="hr.group_hr_manager">
+                    <group>
+                        <group>
+                            <group>
+                                <field name="residency_number"/>
+                                <field name="residency_issue_place"/>
+                                <field name="residency_issue_date" widget="date"/>
+                                <field name="residency_end_date" widget="date"/>
+                            </group>
+                            <group>
+                                <field name="passport_number"/>
+                                <field name="passport_issue_place"/>
+                                <field name="passport_issue_date" widget="date"/>
+                                <field name="passport_end_date" widget="date"/>
+                                <field name="passport_fees" widget="monetary"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="labor_license_cost" widget="monetary"/>
+                                <field name="residency_cost" widget="monetary"/>
+                                <field name="residency_deduction_type"/>
+                                <field name="residency_deduction" readonly="1" force_save="1" widget="monetary"/>
+                                <field name="residency_total_cost" widget="monetary"/>
+                                <field name="sponsorship_transfer"/>
+                                <field name="sponsor_name"
+                                       attrs="{'readonly': [('sponsorship_transfer', '=', False)]}"/>
+                            </group>
+                        </group>
+                    </group>
+                    <group>
+                        <!-- <field name="residency_document" widget="pdf_viewer"/> -->
+                        <field name="residency_document" widget="image" width="500" height="250">Residency Image</field>
+                    </group>
+                </page>
+                <page name="syndicate" string="Syndicate" groups="hr.group_hr_manager">
+                    <group>
+                        <group>
+                            <field name="syndicate_name"/>
+                            <field name="syndicate_category"/>
+                            <field name="syndicate_membership_id"/>
+                            <field name="syndicate_membership_start_date" widget="date"/>
+                            <field name="syndicate_membership_end_date" widget="date"/>
+                        </group>
+                        <group>
+                            <field name="syndicate_card" widget="pdf_viewer"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="wps" string="Wage Protection" groups="hr.group_hr_manager">
+                    <group>
+                        <group>
+                            <field name="employee_wps_number"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <group>
+                        <group string="Main Bank">
+                            <field name="main_bank_account"/>
+                            <field name="main_transferred_amount" widget="monetary"/>
+                            <field name="main_bank_commission" widget="monetary"/>
+                        </group>
+                        <group string="Sub Bank">
+                            <field name="sub_bank_account"/>
+                            <field name="sub_transferred_amount" widget="monetary"/>
+                            <field name="sub_bank_commission" widget="monetary"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="driving_licence" string="Driving Licence" groups="hr.group_hr_manager">
+                    <group>
+                        <group>
+                            <field name="driving_license_number"/>
+                            <field name="driving_license_origin"/>
+                            <field name="driving_license_type"/>
+                            <field name="driving_license_end_date" widget="date"/>
+                            <field name="car_type"/>
+                        </group>
+                        <group>
+                            <field name="driving_license_card" widget="pdf_viewer"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="working" string="Working" groups="hr.group_hr_manager">
+                    <field name="working_line_ids_edit" invisible="1"/>
+                    <field name="working_line_ids" attrs="{'readonly':[('working_line_ids_edit','=',False)]}">
+                        <tree string="Working" editable="bottom" >
+                            <field name="visa_no" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="visa_date" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="leave_date" required="0" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="arrival_date" required="0" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="duration" readonly="1"/>
+                            <field name="visa_cost" widget="monetary" readonly="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="work_start_date" required="0" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="work_end_date" required="0" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="work_duration" readonly="1"/>
+                            <field name="state" readonly="1"/>
+                            <field name="notes"/>
+                        </tree>
+                    </field>
+                </page>
+
+                <page name="loan" string="Loans" groups="hr.group_hr_manager">
+                    <field name="loan_ids">
+                      <!-- editable="bottom" -->
+                        <tree string="Loans" edit="true" create="false">
+                            <field name="desc" attrs="{'readonly': [('state', '=', 'approve')]}"/>
+                            <field name="date" attrs="{'readonly': [('state', '=', 'approve')]}"
+                                   required="1"/>
+                            <field name="amount" attrs="{'readonly': [('state', '=', 'approve')]}" required="1"/>
+                            <field name="install_count" col="3" attrs="{'readonly': [('state', '=', 'approve')]}"
+                                   required="1"/>
+                            <field name="install_amount" widget="monetary" readonly="1" col="2"
+                                   attrs="{'readonly': [('state', '=', 'approve')]}"/>
+                            <field name="loan_document" col="2" attrs="{'readonly': [('state', '=', 'approve')]}"
+                                   required="1"/>
+                            <field name="state" readonly="1"/>
+                            <button name="set_approved" states="draft" string="Approve" type="object"/>
+                        </tree>
+                    </field>
+                </page>
+
+                <page name="disclaimer" string="Disclaimer" groups="hr.group_hr_manager">
+                    <field name="approver_lines">
+                        <tree string="Disclaimer" create="false" edit="false">
+                            <field name="user_id"/>
+                            <field name="date"/>
+                            <field name="status"/>
+                        </tree>
+                    </field>
+
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

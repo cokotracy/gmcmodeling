@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    
+    <!-- Bonus Reasons -->
+    <record model="ir.ui.view" id="bonus_reason_form">
+        <field name="name">Bonus Reasons</field>
+        <field name="model">bonus.reason</field>
+        <field name="arch" type="xml">
+            <form string="Bonus Reason">
+                <sheet>
+                    <group>
+                        <group>
+                                <field name="name"/> 
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="bonus_reason_tree_view" model="ir.ui.view">
+        <field name="name">Bonus Reason</field>
+        <field name="model">bonus.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Bonus">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_bonus_reason">
+        <field name="name">Reasons</field>
+        <field name="res_model">bonus.reason</field>
+<!--        <field name="view_type">form</field-->
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <!-- Employee Bonus -->
+    <record model="ir.ui.view" id="employee_bonus_form">
+        <field name="name">Employee Bonus</field>
+        <field name="model">employee.bonus</field>
+        <field name="arch" type="xml">
+            <form string="Employee Bonus">
+                <header>
+                        <button string="Confirm" type="object" name="get_confirm" 
+                                states="draft" class="oe_highlight" groups="hr.group_hr_user"/>
+                        <button string="Cancel" type="object" name="get_cancel" groups="hr.group_hr_user"
+                                states="draft"/>
+                        <button string="Approve by Department" type="object" name="get_apprv_dept_manager"
+                                states="confirm" groups="employee_bonus.group_department_manager_for_bonus" class="oe_highlight"/>
+                        <button string="Approve by HR" type="object" name="get_apprv_hr_manager"
+                                states="approved_dept_manager" groups="hr.group_hr_user" class="oe_highlight"/>
+                        <button string="Reject" type="object" name="get_reject"
+                                groups="hr.group_hr_user,employee_bonus.group_department_manager_for_bonus" states="confirm,approved_dept_manager"/>
+                        <button string="Reset to Draft" type="object" name="get_reset" groups="hr.group_hr_user,employee_bonus.group_department_manager_for_bonus"
+                                states="reject,cancel,approved_hr_manager" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,approved_dept_manager,approved_hr_manager"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                        <label for="employee_id" class="oe_edit_only" />
+                        <h1>
+                            <field name="employee_id" placeholder="Employee's Name" attrs="{'readonly': [('state','!=','draft')]}"/> 
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="department_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="job_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="reason_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <!--<field name="inculde_in_payroll" />-->
+                        </group>
+                        <group >
+                            <field name="manager_id" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="date" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            <field name="bonus_amount"  widget="monetary" options="{'currency_field': 'currency_id'}" />
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="confirm_date"/>
+                            <field name="approved_date"/>
+                            <field name="approved_manager_date"/>
+                            <!--<field name="payroll_date" attrs="{'invisible': [('inculde_in_payroll','=',False)]}"/>-->
+                        </group>
+                        <group >
+                            <field name="confirm_uid"/>
+                            <field name="approved_by"/>
+                            <field name="approved_manager_uid"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <record id="employee_bonus_tree_view" model="ir.ui.view">
+        <field name="name">employee.bonus.tree</field>
+        <field name="model">employee.bonus</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Bonus">
+                <field name="name"/>
+                <field name="employee_id" />
+                <field name="department_id" />
+                <field name="manager_id"/>
+                <field name="date"/>
+                <field name="reason_id"/>
+                <field name="currency_id" invisible="1" groups="base.group_multi_currency"/>
+                <field name="bonus_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_employee_bonus_filter" model="ir.ui.view">
+        <field name="name">employee.bonus.filter.select</field>
+        <field name="model">employee.bonus</field>
+        <field name="arch" type="xml">
+            <search string="Search Employee Bonus">
+                <field name="employee_id"/>
+                <field name="department_id" string="Department"/>
+                <field name="job_id" string="Job Position"/>
+                <field name="manager_id" string="Manager"/>
+                <field name="date" string="Date"/>
+                <!--<field name="payroll_date"/>-->
+                <field name="reason_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state" string="Status"/>
+                <!--<separator/>
+                    <filter string="Include In Payroll" domain="[('inculde_in_payroll','=',True)]" name = "inculde_in_payroll" />
+                <separator/>-->
+                <group expand="0" string="Group By...">
+                    <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}" name = "employee_id"/>
+                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}" name = "department_id"/>
+                    <filter string="Manager" domain="[]" context="{'group_by':'manager_id'}" name = "manager_id"/>
+                    <filter string="Job Position" domain="[]" context="{'group_by':'job_id'}" name = "job_id"/>
+                    <filter string="Bonus Reason" domain="[]" context="{'group_by':'reason_id'}" name = "reason_id"/>
+                    <filter string="Status" context="{'group_by': 'state'}" name = "state"/>
+                    <filter string="Company" domain="[]" context="{'group_by':'company_id'}" name = "company_id" groups="base.group_multi_company"/>
+                </group>
+           </search>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_view_employee_bonus">
+        <field name="name">Employee Bonuses</field>
+        <field name="res_model">employee.bonus</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_bonus_department_approve">
+        <field name="name">Bonuses To Approve by Department</field>
+        <field name="res_model">employee.bonus</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state', '=', 'confirm')]</field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_bonus_officer">
+        <field name="name">Bonuses To Approve by Officer</field>
+        <field name="res_model">employee.bonus</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state', '=', 'approved_dept_manager')]</field>
+    </record>
+
+<!--    <menuitem id="menu_employee_bonus" name="Bonus" sequence="16" groups="base.group_user"/>-->
+<!--    <menuitem id="menu_item_employee_bonus" parent="menu_employee_bonus" name="Bonus" sequence="16" groups="base.group_user"/>-->
+<!--    <menuitem id="menu_employee_bonus_action" name="Bonuses" parent="menu_item_employee_bonus" action="action_view_employee_bonus" sequence="0" groups="base.group_user"/>-->
+<!--    <menuitem id="menu_dept_bonus_action" parent="menu_item_employee_bonus" action="action_bonus_department_approve" sequence="0" groups="employee_bonus.group_department_manager_for_bonus"/>-->
+<!--    <menuitem id="menu_officer_bonus_action" parent="menu_item_employee_bonus" action="action_bonus_officer" sequence="0" groups="hr.group_hr_user"/>-->
+<!--    <menuitem id="menu_item_config_bonus" parent="menu_employee_bonus" name="Configuration" sequence="17" groups="hr.group_hr_user"/>-->
+<!--    <menuitem id="menu_bonus_action" name="Bonus Reasons" parent="menu_item_config_bonus" action="action_bonus_reason" sequence="0" groups="hr.group_hr_user"/>-->
+     
+    </data>
+</odoo>

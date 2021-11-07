@@ -1,0 +1,94 @@
+<odoo>
+    <data>
+
+        <!--///////////////////////// MIR Lins Screen /////////////////////////////////-->
+        <record id="view_mir_lines_form" model="ir.ui.view">
+            <field name="name">view_mir_lines_form</field>
+            <field name="model">mir.line</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="delivered_qty"/>
+                                <field name="delivered_note"/>
+                                <field name="test_or_mill_certificate"/>
+                                <field name="action"/>
+                            </group>
+                            <group>
+                                <field name="mirID"/>
+                                <field name="revision_no"/>
+                                <field name="projectID"/>
+                                <field name="project_id"/>
+                                <field name="scope_of_work_id" force_save="1"/>
+                                <field name="submittal_type" force_save="1"/>
+                                <field name="submission_date" force_save="1"/>
+                                <field name="description" force_save="1"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_mir_lines_tree" model="ir.ui.view">
+            <field name="name">view_mir_lines_tree</field>
+            <field name="model">mir.line</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="mirID"/>
+                    <field name="revision_no"/>
+                    <field name="projectID"/>
+                    <field name="project_id"/>
+                    <field name="scope_of_work_id"/>
+                    <field name="submittal_type"/>
+                    <field name="description"/>
+                    <field name="submission_date"/>
+                    <field name="delivered_qty"/>
+                    <field name="delivered_note"/>
+                    <field name="test_or_mill_certificate"/>
+                    <field name="action"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_mir_lines_search" model="ir.ui.view">
+            <field name="name">view_mir_lines_search</field>
+            <field name="model">mir.line</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="project_id" string="string" domain="[('project_ID', 'ilike', self)]"/>
+                    <field name="project_id"/>
+                    <field name="projectID"/>
+                    <field name="mirID"/>
+                    <field name="revision_no"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_mir_lines_view" model="ir.actions.act_window">
+            <field name="name">MIR List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mir.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+
+                </p>
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+<!--        <menuitem id="menu_mir_lines_view" name="MIR List" parent="menu_submittal_list_categ"-->
+<!--                  action="action_mir_lines_view" sequence="4"/>-->
+
+
+        <!--////////////////////////////// SIR Line Screen /////////////////////////////////////////////////-->
+
+
+    </data>
+</odoo>

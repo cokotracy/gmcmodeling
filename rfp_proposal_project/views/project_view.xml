@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+		<record id="project_prefix_sequence" model="ir.sequence">
+            <field name="name">Project</field>
+            <field name="code">project.project</field>
+            <field name="prefix">J-20-</field>
+            <field name="padding">4</field>
+        </record>
+
+    	<record id="view_project_project_form" model="ir.ui.view">
+	        <field name="name">view.project.form</field>
+	        <field name="model">project.project</field>
+	        <field name="inherit_id" ref="project.edit_project"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//field[@name='partner_id']" position="replace">
+	            </xpath>
+	            <xpath expr="//field[@name='analytic_account_id']" position="replace">
+	            </xpath>
+
+	            <xpath expr="//notebook" position="before">
+	            	<group>
+	            		<group>
+	            			<field name="project_no"/>
+	            			<field name="project_beginning"/>
+	            			<field name="project_end_date"/>
+	            			<field name="project_period"/>
+	            			<field name="proposal_id"/>
+
+
+	            		</group>
+	            		<group>
+	            			<field name="partner_id" required="1"/>
+	            			<field name="analytic_account_id"/>
+	            		</group>
+	            		
+	            	</group>
+
+	            </xpath>
+	        </field>
+    	</record>
+
+    	<record id="project.open_create_project" model="ir.actions.act_window">
+            <field name="name">Create a Project</field>
+            <field name="res_model">project.project</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="project.edit_project"/>
+            <field name="target">current</field>
+        </record>
+	</data>
+</odoo>

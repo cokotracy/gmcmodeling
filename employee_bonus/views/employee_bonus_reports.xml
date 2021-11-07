@@ -1,0 +1,98 @@
+<odoo>
+    <data>
+        
+        <report
+            id="emp_bonus_report"
+            model="employee.bonus"
+            string="Print Employee Bonus" 
+            name="employee_bonus.bonus_report_id"
+            file="employee_bonus.bonus_report_id"
+            report_type="qweb-pdf" />
+
+        <template id="bonus_report_id">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                  <t t-call="web.internal_layout">
+                    <div class="page">
+                        <div class="text-center">
+                             <h2><span t-field="doc.name"/> - <span t-field="doc.state"/></h2>
+                        </div>
+                        <table class="table">
+                          <tr style="border: 2px solid black;">
+                            <td><strong>Employee</strong></td>
+                            <td><span t-field="doc.employee_id.name"/></td>
+                             <td><strong>Department</strong></td>
+                            <td><span t-field="doc.department_id.name"/></td>
+                          </tr>
+                          <tr style="border: 2px solid black;">
+                            <td><strong>Manager</strong></td>
+                            <td><span t-field="doc.manager_id.name"/></td>
+                            <td><strong>Job Position </strong></td>
+                            <td><span t-field="doc.job_id.name"/></td>
+                          </tr>
+                          <tr style="border: 2px solid black;"> 
+                            <td><strong>Date</strong></td>
+                            <td><span t-field="doc.date"/></td>
+                            <td><strong>Bonus Reason </strong></td>
+                            <td><span t-field="doc.reason_id.name"/></td>
+                          </tr>
+                          <tr style="border: 2px solid black;">
+                            <td><strong>Bonus Reason </strong></td>
+                            <td><span t-field="doc.reason_id.name"/></td>
+                            <td><strong>Bonus Amount </strong></td>
+                            <td><span t-field="doc.bonus_amount" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/></td>
+                          </tr>
+                         <!-- <tr style="border: 2px solid black;">
+                                   <td><strong>Include In Payroll?</strong></td>
+                                   <td>
+                                       <t t-if="doc.inculde_in_payroll">Yes</t>
+                                       <t t-if="not doc.inculde_in_payroll">No</t>
+                                   </td>
+                                   <td><strong>Payroll Date</strong></td>
+                                   <td> <span t-field="doc.payroll_date"/></td>
+                               </tr>-->
+                        </table>
+                         <h3>General Information</h3>
+                            <table class="table">
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Confirmed Date</strong></td><td><span t-field="doc.confirm_date"/></td>
+                                   <td><strong>Confirmed By</strong> </td><td><span t-field="doc.confirm_uid"/></td>
+                               </tr>
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Approved Department Date</strong></td><td> <span t-field="doc.approved_date"/></td>
+                                   <td><strong>Approved Department By</strong> </td><td> <span t-field="doc.approved_by"/></td>
+                               </tr>
+                                <tr style="border: 2px solid black;">
+                                   <td><strong>Approved Manager Date</strong></td><td> <span t-field="doc.approved_manager_date"/></td>
+                                   <td><strong>Approved Manager By</strong> </td><td> <span t-field="doc.approved_manager_uid"/></td>
+                               </tr>
+                            </table>
+                            <div t-if="doc.notes">
+                                 <strong>Notes :</strong><br/><span t-field="doc.notes"/>
+                            </div>
+                            <div class="row">
+                                 <div class="col-6 text-left">
+                                     <strong>Department Signature:____________________</strong>
+                                 </div>
+                                 <div class="col-6 text-right">
+                                     <strong>Date:____________________</strong>
+                                 </div>
+                           </div>
+                           <p></p>
+                           <p></p>
+                           <div class="row">
+                                 <div class="col-6 text-left">
+                                     <strong>Officer Signature:____________________</strong>
+                                 </div>
+                                 <div class="col-6 text-right">
+                                     <strong>Date:____________________</strong>
+                                 </div>
+                           </div>
+                    </div>
+                </t>
+            </t>
+          </t>
+        </template>
+        
+    </data>
+</odoo>

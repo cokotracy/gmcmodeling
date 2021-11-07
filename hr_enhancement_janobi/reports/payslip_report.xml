@@ -1,0 +1,497 @@
+<odoo>
+    <data>
+        <template id="payslip_header">
+            <div class="header col-12">
+                <div class="row">
+                    <div style="position: absolute;white-space: nowrap;top: 0.9072em; left:0.97em;">
+                        <div dir="ltr" style="display: inline;">
+                            <span style="word-spacing:0.25em;font-size: 0.83em;font-family:&quot;Times New Roman&quot;;color: #000000;line-height: 1.134962em;"
+                                  t-esc="datetime.date.today().strftime('%Y-%m-%d')"/>&#160;
+                        </div>
+                        <div dir="ltr" style="display: inline;">
+                            <span style="font-weight:bold; word-spacing:0.25em;font-size: 0.83em;color: #000000;line-height: 1.119307em;">
+                                :التاريخ &#160;
+                            </span>
+                        </div>
+                    </div>
+                    <div style="position: absolute;white-space: nowrap;top: 1.2571em; left:60.45em;background-color:#FFFF04;">
+                        <div dir="ltr" style="display: inline;">
+                            <span style="font-weight:bold; word-spacing:0.04em;font-size: 1.17em;color: #000000;line-height: 1.665751em;letter-spacing: -0.03em;">
+                                شركة&#160;الجنوبي&#160;للمقاولات
+                            </span>
+                        </div>
+                    </div>
+                    <div style="position: absolute;white-space: nowrap;top: 2.5177em; left:1.42em;">
+                        <div dir="ltr" style="display: inline;">
+                            <span style="font-size: 1.08em;font-family:&quot;Times New Roman&quot;;color: #000000;line-height: 1.119308em;">
+                                <span class="topage"/> &#160;/<span class="page"/>&#160;
+                            </span>
+                        </div>
+                    </div>
+                    <div style="position: absolute;white-space: nowrap;top: 2.4572em; left:5.47em;">
+                        <div dir="ltr" style="display: inline;">
+                            <span style="font-weight:bold; word-spacing:0.26em;font-size: 0.83em;color: #000000;line-height: 1.119307em;letter-spacing: 0em;">
+                                :صفحة
+                            </span>
+                        </div>
+                    </div>
+                    <div style="position: absolute;white-space: nowrap;top: 3.8781em; left:28.56em;z-index:31;background-color:#FFFF04;">
+                        <span style="font-weight:bold; word-spacing:0.01em;font-size: 1em;color: #000080;line-height: 1.665757em;letter-spacing: -0.01em;">
+                            &#160;كشف&#160;الرواتب&#160;الشهرية&#160;للموظفين&#160;
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template id="report_payslip_doc">
+            <t t-call="web.html_container">
+                <t t-call="hr_enhancement_janobi.payslip_header"/>
+                <t t-set="department_dict" t-value="{}"/>
+                <t t-foreach="docs" t-as="payslip">
+                    <t t-set="dep" t-value="payslip.employee_id.department_id"/>
+                    <t t-if="dep in department_dict">
+                        <span t-esc="department_dict[dep].append(payslip)"/>
+                    </t>
+                    <t t-if="dep not in department_dict">
+                        <span t-esc="department_dict.update({dep: [payslip]})"/>
+                    </t>
+                </t>
+                <t t-call="web.external_layout">
+                    <t t-foreach="department_dict" t-as="department">
+                        <t t-set="department_days" t-value="0"/>
+                        <t t-set="department_basic" t-value="0"/>
+                        <t t-set="department_housing" t-value="0"/>
+                        <t t-set="department_transport" t-value="0"/>
+                        <t t-set="department_overtime" t-value="0"/>
+                        <t t-set="department_phone" t-value="0"/>
+                        <t t-set="department_nature" t-value="0"/>
+                        <t t-set="department_meal" t-value="0"/>
+                        <t t-set="department_other_allowance" t-value="0"/>
+                        <t t-set="department_bonus" t-value="0"/>
+                        <t t-set="department_gross" t-value="0"/>
+                        <t t-set="department_loan" t-value="0"/>
+                        <t t-set="department_infraction" t-value="0"/>
+                        <t t-set="department_insurance" t-value="0"/>
+                        <t t-set="department_deduction" t-value="0"/>
+                        <t t-set="department_net" t-value="0"/>
+                        <div class="page" style="padding-top=0px">
+                            <div dir="rtl"
+                                 style="display: inline;background-color:#FFFF04;position: absolute;left:70.45em;">
+                                <span style="font-weight:bold; word-spacing:0.04em;font-size: 1.17em;color: #000000;line-height: 1.665751em;letter-spacing: -0.03em;text-align:right;">
+                                    موقع&#160;العمل&#160;:&#160;<span t-esc="department.name"/>
+                                </span>
+                            </div>
+                            <div dir="rtl"
+                                 style="display: inline;background-color:#FFFF04;position: absolute;left:20.45em;">
+                                <span style="font-weight:bold; word-spacing:0.04em;font-size: 1.17em;color: #000000;line-height: 1.665751em;letter-spacing: -0.03em;text-align:left;">
+                                    <t t-if="len(department_dict[department]) != 0">
+                                        <span t-esc="department_dict[department][0].date_from.strftime('%B')"/>
+                                        &#160;
+                                        <span t-esc="department_dict[department][0].date_from.strftime('%Y')"/>
+                                    </t>
+                                </span>
+                            </div>
+                            <br/>
+                            <br/>
+                            <table style="cellspacing:0;page-break-after: always;"
+                                   class="table-condensed table-bordered table" dir="rtl">
+                                <tr>
+                                    <th style="min-width:50px;padding: 0in;border: 1px solid #000000;border-bottom:none;background-color:#FFFF04;text-align:right;">
+                                        رقم
+                                    </th>
+                                    <th style="min-width:50px; border: none;padding: 0in;background-color:#FFFF04;"></th>
+                                    <th style="min-width:50px; border: none;padding: 0in;background-color:#FFFF04;"></th>
+                                    <th style="min-width:50px; border: none;padding: 0in;background-color:#FFFF04;"></th>
+                                    <th style="min-width:50px; border: none;padding: 0in;background-color:#FFFF04;"></th>
+                                    <th style="min-width:50px; border: none;padding: 0in;background-color:#FFFF04;"></th>
+                                    <th style="min-width:50px; border: none;padding: 0in;background-color:#FFFF04;"></th>
+                                    <th style="min-width:50px; border: none;padding: 0in;background-color:#FFFF04;"></th>
+                                    <th style="min-width:50px; border: none;padding: 0in;background-color:#FFFF04;"></th>
+                                    <th style="min-width:50px; border: none;padding: 0in;background-color:#FFFF04;"></th>
+                                    <th style="min-width:50px;padding: 0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        ايام
+                                    </th>
+                                    <th style="min-width:50px; text-align:center;padding: 0in;border: 1px solid #000000;background-color:#FFFF04;"
+                                        colspan="10">المستحقات
+                                    </th>
+                                    <th style="min-width:50px; text-align:center;padding: 0in;border: 1px solid #000000;background-color:#FFFF04;"
+                                        colspan="4">الحسميات
+                                    </th>
+                                    <th style="min-width:50px;padding: 0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        صافي
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="min-width:50px;padding: 0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        الموظف
+                                    </th>
+                                    <th style="min-width:50px; text-align:center;padding: 0in;border: 1px solid #000000;background-color:#FFFF04;"
+                                        colspan="5">اسم الموظف
+                                    </th>
+                                    <th style="min-width:50px; text-align:center;padding: 0in;border: 1px solid #000000;background-color:#FFFF04;"
+                                        colspan="4">المهنة
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        العمل
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        الاساسي
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        السكن
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        انتقالات
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        اضافي
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        اتصالات
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        طبيعة.ع
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        طعام
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        اخري
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        مكافأة
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        الاجمالي
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        سلف
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        جزاءات
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        تأمينات
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        الاجمالي
+                                    </th>
+                                    <th style="min-width:50px;padding:0in;border: 1px solid #000000;background-color:#FFFF04;">
+                                        المستحق
+                                    </th>
+                                </tr>
+                                <t t-foreach="department_dict[department]" t-as="payslip">
+                                    <tr>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <span t-esc="payslip.employee_id.code"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;"
+                                            colspan="5">
+                                            <span t-esc="payslip.employee_id.name"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;"
+                                            colspan="4">
+                                            <span t-esc="payslip.employee_id.job_id.name"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="number_of_days" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'WORKDAYS' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="number_of_days" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="number_of_days == 0">
+                                                <span t-esc="number_of_days"/>
+                                            </t>
+                                            <t t-set="department_days"
+                                               t-value="department_days + number_of_days"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="basic" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'BASIC' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="basic" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="basic == 0">
+                                                <span t-esc="'{:.2f}'.format(basic)"/>
+                                            </t>
+                                            <t t-set="department_basic"
+                                               t-value="department_basic + basic"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="housing" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'HOUSE' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="housing" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="housing == 0">
+                                                <span t-esc="'{:.2f}'.format(housing)"/>
+                                            </t>
+                                            <t t-set="department_housing"
+                                               t-value="department_housing + housing"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="transport" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'TRANS' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="transport" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="transport == 0">
+                                                <span t-esc="'{:.2f}'.format(transport)"/>
+                                            </t>
+                                            <t t-set="department_transport"
+                                               t-value="department_transport + transport"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="overtime" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'OVERTIME' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="overtime" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="overtime == 0">
+                                                <span t-esc="'{:.2f}'.format(overtime)"/>
+                                            </t>
+                                            <t t-set="department_overtime"
+                                               t-value="department_overtime + overtime"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="phone" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'PHONE' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="phone" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="phone == 0">
+                                                <span t-esc="'{:.2f}'.format(phone)"/>
+                                            </t>
+                                            <t t-set="department_phone"
+                                               t-value="department_phone + phone"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="nature" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'NATURE' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="nature" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="nature == 0">
+                                                <span t-esc="'{:.2f}'.format(nature)"/>
+                                            </t>
+                                            <t t-set="department_nature"
+                                               t-value="department_nature + nature"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="meal" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'MEAL' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="meal" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="meal == 0">
+                                                <span t-esc="'{:.2f}'.format(meal)"/>
+                                            </t>
+                                            <t t-set="department_meal"
+                                               t-value="department_meal + meal"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="other_allowance" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'OTHERALW' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="other_allowance" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="other_allowance == 0">
+                                                <span t-esc="'{:.2f}'.format(other_allowance)"/>
+                                            </t>
+                                            <t t-set="department_other_allowance"
+                                               t-value="department_other_allowance + other_allowance"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="bonus" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'BONUS' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="bonus" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="bonus == 0">
+                                                <span t-esc="'{:.2f}'.format(bonus)"/>
+                                            </t>
+                                            <t t-set="department_bonus"
+                                               t-value="department_bonus + bonus"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="gross"
+                                               t-value="basic + housing + transport + overtime + phone + nature + meal + other_allowance + bonus"/>
+                                            <span t-esc="'{:.2f}'.format(gross)"/>
+                                            <t t-set="department_gross"
+                                               t-value="department_gross + gross"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="loan" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'LOAN' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="loan" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="loan == 0">
+                                                <span t-esc="'{:.2f}'.format(loan)"/>
+                                            </t>
+                                            <t t-set="department_loan"
+                                               t-value="department_loan + loan"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="infraction" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'INFRACTION' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="infraction" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="infraction == 0">
+                                                <span t-esc="'{:.2f}'.format(infraction)"/>
+                                            </t>
+                                            <t t-set="department_infraction"
+                                               t-value="department_infraction + infraction"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="insurance" t-value="0"/>
+                                            <t t-foreach="payslip.line_ids" t-as="line">
+                                                <t t-if="line.code == 'INSURANCE' and line.total != 0">
+                                                    <span t-esc="'{:.2f}'.format(line.total)"/>
+                                                    <t t-set="insurance" t-value="line.total"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="insurance == 0">
+                                                <span t-esc="'{:.2f}'.format(insurance)"/>
+                                            </t>
+                                            <t t-set="department_insurance"
+                                               t-value="department_insurance + insurance"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="deduction"
+                                               t-value="loan+infraction+insurance"/>
+                                            <span t-esc="'{:.2f}'.format(deduction)"/>
+                                            <t t-set="department_deduction"
+                                               t-value="department_deduction + deduction"/>
+                                        </td>
+                                        <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;">
+                                            <t t-set="net" t-value="gross-deduction"/>
+                                            <t t-set="net" t-value="int(net)+1 if net%1 >=0.5 else int(net)"/>
+                                            <span t-esc="'{:.2f}'.format(net)"/>
+                                            <t t-set="department_net"
+                                               t-value="department_net + net"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td style="border: none"></td>
+                                    <td style="text-align:right;padding: 0.1in;border:none;background-color:#FAFF90;"
+                                        colspan="5">
+                                        الإجــمــالــي:
+                                    </td>
+                                    <td style="text-align:center;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;"
+                                        colspan="4">
+                                        <span t-esc="len(department_dict[department])"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="department_days"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_basic)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_housing)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_transport)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_overtime)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_phone)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_nature)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_meal)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_other_allowance)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_bonus)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_gross)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_loan)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_infraction)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_insurance)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_deduction)"/>
+                                    </td>
+                                    <td style="text-align:right;padding: 0.1in;border: 1px solid #000000;background-color:#FAFF90;">
+                                        <span t-esc="'{:.2f}'.format(department_net)"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="footer o_standard_footer">
+                            <div class="text-center" style="border-top: 1px solid black;height: 100%; width:100%;">
+                                <div style="display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 16px;width: 20%;">
+                                    <span>الرئيس و المدير العام</span>
+                                </div>
+                                <div style="display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 16px;width: 20%;">
+                                    <span>مدير الحسابات</span>
+                                </div>
+                                <div style="display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 16px;width: 20%;">
+                                    <span>مدير الشئون الإدارية</span>
+                                </div>
+                                <div style="display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 16px;width: 20%;">
+                                    <span>الشئون الإدارية</span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <report
+                id="report_payslip_report"
+                string="Payslip al-Janobi"
+                model="hr.payslip"
+                report_type="qweb-pdf"
+                file="hr_enhancement_janobi.report_payslip_doc"
+                name="hr_enhancement_janobi.report_payslip_doc"
+        />
+
+        <record id="report_payslip_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="hr_enhancement_janobi.payslip_paperformat"/>
+        </record>
+
+    </data>
+</odoo>

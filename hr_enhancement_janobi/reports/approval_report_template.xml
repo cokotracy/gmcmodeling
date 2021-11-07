@@ -1,0 +1,110 @@
+<odoo>
+    <data>
+        <template id="approval_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="approval">
+                    <t t-call="web.external_layout">
+                        <div class="page" style="page-break-after: always;">
+                            <div class="row">
+                                <div class="col-12 text-right" >
+                                    <img src="/hr_enhancement_janobi/static/src/img/logo_janobi.png" width='300'
+                                         height='300'/>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-12" >
+                                   <h1><span t-esc="approval.category_id.name"/></h1>
+                                </div>
+
+                            </div>
+                            <br></br>
+                            <div class="row text-left">
+                                <div class="col-2">
+                                    <h3 > Employee :</h3>
+                                </div>
+                                <div class="col-4 text-left">
+                                    <h3 ><span t-esc="approval.employee_id.name"/></h3>
+                                </div>
+
+                                <div class="col-2">
+                                    <h3 > Department :</h3>
+                                </div>
+                                <div class="col-4 text-left">
+                                    <h3 ><span t-esc="approval.employee_id.department_id.name"/></h3>
+                                </div>
+                            </div>
+
+                            <div class="row text-left">
+                                <div class="col-2">
+                                    <h3 > Mobile :</h3>
+                                </div>
+                                <div class="col-4 text-left">
+                                    <h3 ><span t-esc="approval.employee_id.mobile_phone"/></h3>
+                                </div>
+
+                                <div class="col-2">
+                                    <h3 > Job Title :</h3>
+                                </div>
+                                <div class="col-4 text-left">
+                                    <h3 ><span t-esc="approval.employee_id.job_title"/></h3>
+                                </div>
+                            </div>
+                            <div class="row text-left">
+                                <div class="col-2">
+                                    <h3 > Phone :</h3>
+                                </div>
+                                <div class="col-4 text-left">
+                                    <h3 ><span t-esc="approval.employee_id.work_phone"/></h3>
+                                </div>
+
+                                <div class="col-2">
+                                    <h3 > Manger :</h3>
+                                </div>
+                                <div class="col-4 text-left">
+                                    <h3 ><span t-esc="approval.employee_id.parent_id.name"/></h3>
+                                </div>
+                            </div>
+                            <div class="row text-left">
+                                <div class="col-2">
+                                    <h3 > Email :</h3>
+                                </div>
+                                <div class="col-4 text-left">
+                                    <h3 ><span t-esc="approval.employee_id.work_email"/></h3>
+                                </div>
+                            </div>
+
+                            <br></br>
+
+                            <t t-if="approval.approver_ids">
+                                <table  class="o_list_view table table-sm table-hover table-striped o_list_view_ungrouped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Approver</th>
+                                            <th class="text-center">Signature</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="approval.approver_ids" t-as="line">
+                                            <tr>
+                                                <td class="text-center">
+                                                    <span t-esc="line.user_id.name"/>
+                                                </td>
+                                                <td >
+
+                                                </td>
+                                            </tr>
+                                        </t>
+
+                                    </tbody>
+                                </table>
+                            </t>
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

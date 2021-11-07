@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_account_letter_of_credit_tree" model="ir.ui.view">
+            <field name="name">account.letter.tree</field>
+            <field name="model">account.letter</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Letter of Credit">
+                    <field name="name" />
+                    <field name="number" />
+                    <field name="lc_value" />
+                    <!--<field name="lc_bank" />-->
+                    <field name="journal_id" />
+                    <field name="lc_date_start" />
+                    <field name="lc_date_end" />
+                    <field name="currency_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_account_letter_of_credit_form" model="ir.ui.view">
+            <field name="name">account.letter.form</field>
+            <field name="model">account.letter</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Letter of Credit">
+                    <field name="type" invisible="1"/>
+                    <field name="is_draw" invisible="1"/>
+                    <field name="move_ids" invisible="1"/>
+                    <header groups="base.group_user">
+                        <button name="confirm_validate" states="draft" string="Validate"
+                                type="object" class="oe_highlight"/>
+                        <button name="confirm_release" states="validate,release" class="oe_highlight" string="Release"
+                                type="object" />
+                        <button name="confirm_done" states="validate,release" class="oe_highlight" string="Done"
+                                type="object" />
+                        <button name="confirm_cancel" states="validate,release" string="Cancel"
+                                type="object" />
+                        <button name="action_draw_lg"
+                                attrs="{'invisible':['|', '|', ('state','!=','done'),('is_draw','=',True), ('type','!=','guarantee')]}"
+                                string="With Draw LG"
+                                type="object" />
+                        <button name="action_renewal_lg"
+                                attrs="{'invisible':['|',('state','!=','validate'),('type','!=','guarantee')]}"
+                                string="LG Renewal"
+                                type="object" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,validate,release,done" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="button_journal_entries" string="Journal Entries"
+                                    type="object" groups="account.group_account_manager"
+                                    attrs="{'invisible':[('move_ids','=',[])]}" icon="fa-bars"/>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <table>
+                                    <tr>
+                                        <td><field name="number" placeholder="Number" style="padding-right:10px" /></td>
+                                        <td/>
+                                        <td><field name="name" placeholder="Name" style="padding-right:10px" /></td>
+                                    </tr>
+                                </table>
+                            </h1>
+                            <label for="form_for"/>
+                            <field name="form_for" readonly="1"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="lc_value" string="PO Value"/>
+                                <field name="journal_id" domain="[('type','=','bank')]"/>
+                                <field name="currency_id" />
+                                <field name="type_id" attrs="{'invisible':[('type','=','credit')],
+                            'required':[('type','=','guarantee')]}"/>
+                                <field name="lc_date_start" />
+                                <field name="lc_date_end" />
+                            </group>
+                            <group>
+                                <label for="lc_margin"/>
+                                <div>
+                                    <field style="width:30%" name="lc_margin_percent" class="oe_inline" nolabel="1"/>
+                                    <span class="oe_inline" style="width:10%;color:#8e89c6"> % </span>
+                                    <field style="width:30%" name="lc_margin" class="oe_inline" nolabel="1"/>
+                                    <span  class="oe_inline" style="width:10%;color:#8e89c6"> Amount</span>
+                                </div>
+                                <field name="analytic_account_id"/>
+                                <field name="partner_id" />
+                                <field name="lc_bank_expense_value" />
+                                <field name="lc_managerial_expense" />
+
+                                <!--<field name="lc_bank" />-->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Letter Configuration">
+                                <group>
+                                    <group>
+                                        <field name="lc_commission_account_id"/>
+                                        <field name="lc_manag_exp_account_id" />
+                                        <field name="lc_liability_account_id" invisible="1"/>
+                                        <field name="lc_journal_id" invisible="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="lc_margin_account_id" string="LC Account"
+                                               attrs="{'invisible':[('form_for','=',True)]}"/>
+                                        <field name="lc_loan_account_id"/>
+                                        <!--<field name="renewal_account_id"-->
+                                               <!--attrs="{'invisible':['|',('state','!=','validate'),('type','!=','guarantee')],-->
+                                           <!--'required':[('state','=','validate'),('type','=','guarantee')]}"/>-->
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="LG Renewal Lines"
+                                  attrs="{'invisible':[('type','!=','guarantee')],}">
+                                <field name="renewal_ids">
+                                    <tree create="0" edit="0" delete="0">
+                                        <field name="lg_date_end"/>
+                                        <field name="lg_renewal_fees"/>
+                                        <field name="move_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="LC History">
+                                <field name="release_ids">
+                                    <tree create="0" edit="0" delete="0">
+                                        <field name="shipment_val" sum="Shipment"/>
+                                        <field name="lc_val" sum="LC"/>
+                                        <field name="loan_val" readonly="1" sum="Loan"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="view_account_letter_of_guarantee_form" model="ir.ui.view">
+            <field name="name">account.letter.guarantee.form</field>
+            <field name="model">account.letter</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Letter of Guarantee">
+                    <field name="type" invisible="1"/>
+                    <field name="is_draw" invisible="1"/>
+                    <field name="move_ids" invisible="1"/>
+                    <header groups="base.group_user">
+                        <button name="confirm_validate" states="draft" string="Validate"
+                                type="object" class="oe_highlight"/>
+                        <button name="confirm_done" states="validate,renewal" class="oe_highlight" string="Done"
+                                type="object" />
+                        <button name="action_liquidating" states="validate" string="Liquidating LG"
+                                type="object" />
+                        <button name="confirm_cancel" states="validate,renewal" string="Cancel"
+                                type="object" />
+                        <button name="action_draw_lg" class="oe_highlight"
+                                attrs="{'invisible':['|', '|', ('state','!=','done'),('is_draw','=',True), ('type','!=','guarantee')]}"
+                                string="With Draw LG"
+                                type="object" />
+                        <button name="action_renewal_lg"
+                                attrs="{'invisible':['|',('state','not in',('validate','renewal')),('type','!=','guarantee')]}"
+                                string="LG Renewal"
+                                type="object" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,validate,liquidating,renewal,done,draw" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" namae="button_box">
+                            <button class="oe_stat_button" name="button_journal_entries" string="Journal Entries"
+                                    type="object" groups="account.group_account_manager"
+                                    attrs="{'invisible':[('move_ids','=',[])]}" icon="fa-bars"/>
+                        </div>
+                        <div class="oe_title">
+
+                            <h1>
+                                <table>
+                                    <tr>
+                                        <td><field name="number" placeholder="Number" style="padding-right:10px" /></td>
+                                        <td/>
+                                        <td><field name="name" placeholder="Name" style="padding-right:10px" /></td>
+                                    </tr>
+                                </table>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="lc_value" string="LG Value"/>
+                                <field name="journal_id" domain="[('type','=','bank')]"/>
+                                <field name="currency_id" />
+                                <field name="type_id" attrs="{'invisible':[('type','=','credit')],
+                            'required':[('type','=','guarantee')]}"/>
+                                <field name="lc_date_start" />
+                                <field name="lc_date_end" />
+                            </group>
+                            <group>
+                                <label for="lc_margin"/>
+                                <div>
+                                    <field style="width:30%" name="lc_margin_percent" class="oe_inline" nolabel="1"/>
+                                    <span class="oe_inline" style="width:10%;color:#8e89c6"> % </span>
+                                    <field style="width:30%" name="lc_margin" class="oe_inline" nolabel="1"/>
+                                    <span  class="oe_inline" style="width:10%;color:#8e89c6"> Amount</span>
+                                </div>
+                                <field name="analytic_account_id"  domain="[('project_ids','!=',False)]"
+                                string="Project"/>
+                                <field name="partner_id" />
+                                <field name="lc_bank_expense_value" />
+                                <field name="lc_managerial_expense" />
+                                <!--<field name="lc_bank" />-->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Letter Configuration">
+                                <group>
+                                    <group>
+                                        <field name="lc_commission_account_id"/>
+                                        <field name="lc_margin_account_id" string="LG Account"/>
+                                        <field name="lc_liability_account_id" invisible="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="lc_loan_account_id"/>
+                                        <field name="lg_renewal_account_id"/>
+                                        <field name="lg_liquidating_account_id" readonly="0"/>
+                                        <field name="lc_journal_id" invisible="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="LG Renewal Lines"
+                                  attrs="{'invisible':[('type','!=','guarantee')],}">
+                                <field name="renewal_ids">
+                                    <tree create="0" edit="0" delete="0">
+                                        <field name="lg_date_end"/>
+                                        <field name="lg_renewal_fees"/>
+                                        <field name="move_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+        <record id="view_account_letter_of_credit_search" model="ir.ui.view">
+            <field name="name">account.letter.search</field>
+            <field name="model">account.letter</field>
+            <field name="arch" type="xml">
+                <search string="Letter of Credit">
+                    <field name="name" />
+                    <field name="number" />
+                    <field name="journal_id" />
+                    <filter string="Draw" name="is_draw_filteration" domain="[('is_draw','=',True)]"/>
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter name="group_by_journal_id" string="Bank" domain="[]"
+                                context="{'group_by':'journal_id'}" />
+                        <filter name="group_by_state" string="Status" domain="[]" context="{'group_by':'state'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_account_letter_of_credit_view">
+            <field name="name">Letter of Credits</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.letter</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree','view_id': ref('view_account_letter_of_credit_tree')}),
+                          (0, 0, {'view_mode': 'form','view_id': ref('view_account_letter_of_credit_form')}),
+                          ]"/>
+            <field name="search_view_id" ref="view_account_letter_of_credit_search" />
+            <field name="domain">[('type','=','credit'),('form_for','=',False)]</field>
+            <field name="context">{'default_type':'credit','default_form_for':False}</field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_account_letter_of_form_4">
+            <field name="name">Form 4</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.letter</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree','view_id': ref('view_account_letter_of_credit_tree')}),
+                          (0, 0, {'view_mode': 'form','view_id': ref('view_account_letter_of_credit_form')}),
+                          ]"/>
+            <field name="search_view_id" ref="view_account_letter_of_credit_search" />
+            <field name="domain">[('type','=','credit'),('form_for','=',True)]</field>
+            <field name="context">{'default_type':'credit','default_form_for':True}</field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_account_letter_of_guarantee_view">
+            <field name="name">Letter of Guarantee</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.letter</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree','view_id': ref('view_account_letter_of_credit_tree')}),
+                          (0, 0, {'view_mode': 'form','view_id': ref('view_account_letter_of_guarantee_form')}),
+                          ]"/>
+            <field name="search_view_id" ref="view_account_letter_of_credit_search" />
+            <field name="domain">[('type','=','guarantee')]</field>
+            <field name="context">{'default_type':'guarantee'}</field>
+        </record>
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="account_letters" name="Bank Letters" sequence="20"
+                  groups="account.group_account_invoice"
+                  parent="account.menu_finance_configuration"/>
+        <menuitem id="letter_of_credit_mange_menu" name="Letter of Credit" sequence="1"
+                  parent="bank_letters.account_letters"
+                  groups="account.group_account_invoice"
+                  action="act_open_account_letter_of_credit_view" />
+        <menuitem id="letter_of_credit_form_4_menu" sequence="2"
+                  parent="bank_letters.account_letters"
+                  groups="account.group_account_invoice"
+                  action="act_open_account_letter_of_form_4" />
+        <menuitem id="letter_of_guarantee_mange_menu" name="Letter of Guarantee" sequence="4"
+                  parent="bank_letters.account_letters"
+                  groups="account.group_account_invoice"
+                  action="act_open_account_letter_of_guarantee_view" />
+        <record id="view_account_letter_of_credit_type_form" model="ir.ui.view">
+            <field name="name">account.letter.type.form</field>
+            <field name="model">account.letter.type</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Banks">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <table>
+                                    <tr>
+                                        <td><field name="name" placeholder="Name" style="padding-right:10px" /></td>
+                                    </tr>
+                                </table>
+                            </h1>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="sale_purchase_lc_form" model="ir.ui.view">
+            <field name="name">sale.purchase.lc.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="date_order" position="after">
+                    <field name="letter_of_credit"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

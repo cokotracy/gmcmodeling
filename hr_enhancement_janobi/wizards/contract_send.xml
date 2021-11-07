@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_applicant_contract_janobi_form" model="ir.ui.view">
+            <field name="name">hr.applicant.contract.janobi.form</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header" position="inside">
+                    <button name="open_contract_send_wizard" string="Send Contract" type="object"
+                            groups="hr.group_hr_manager"/>
+                </xpath>
+                <xpath expr="//field[@name='email_from']" position="after">
+                    <field name="country_id"/>
+                    <field name="passport_id"/>
+                </xpath>
+                <xpath expr="//field[@name='availability']" position="before">
+                    <field name="meal_allowance"/>
+                    <field name="other_allowance"/>
+                    <field name="contract_type"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="contract_send_wizard_form" model="ir.ui.view">
+            <field name="name">hr.applicant.contract.send.form</field>
+            <field name="model">hr.applicant.contract.send</field>
+            <field name="groups_id" eval="[(4,ref('hr.group_hr_manager'))]"/>
+            <field name="arch" type="xml">
+                <form string="Contract send">
+                    <field name="composition_mode" invisible="1"/>
+                    <field name="applicant_id" invisible="1"/>
+                    <field name="email_from" invisible="1"/>
+                    <field name="mail_server_id" invisible="1"/>
+                    <div name="mail_form">
+                        <div>
+                            <group>
+                                <label for="partner_ids" string="Recipients" groups="hr.group_hr_manager"/>
+                                <div groups="hr.group_hr_manager">
+                                    <span>
+                                        <strong>Email mass mailing</strong>
+                                        on
+                                        <span>the selected records</span>
+                                    </span>
+                                    <span>Followers of the document and</span>
+                                    <field name="partner_ids" widget="many2many_tags_email"
+                                           placeholder="Add contacts to notify..."
+                                           context="{'force_email':True, 'show_email':True}"/>
+                                </div>
+                                <field name="subject" placeholder="Subject..."/>
+                            </group>
+                            <field name="body" style="border:none;" options="{'style-inline': true}"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="attachment_ids" widget="many2many_binary" string="Attach a file"
+                                       nolabel="1" colspan="2"/>
+                            </group>
+                            <group>
+                                <field name="template_id" options="{'no_create': True, 'no_edit': True}"
+                                       context="{'default_model': 'hr.applicant'}"/>
+                            </group>
+                        </group>
+                    </div>
+
+                    <footer>
+                        <button string="Send"
+                                name="send_action" type="object" class="send btn-primary o_mail_send"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        <button icon="fa-lg fa-save" type="object" name="save_as_template" string="Save as new template"
+                                class="pull-right btn-secondary" help="Save as a new template"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window
+                name="Send"
+                id="contract_send"
+                res_model="hr.applicant.contract.send"
+                binding_model="hr.applicant"
+                binding_views="list"
+                view_mode="form"
+                target="new"
+                context="{
+                'default_template_id': ref('hr_enhancement_janobi.email_template_contract'),
+            }"
+                groups="hr.group_hr_manager"/>
+
+    </data>
+
+</odoo>

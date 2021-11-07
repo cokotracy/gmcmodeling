@@ -1,0 +1,2045 @@
+<odoo>
+    <data>
+        <template id="report_contract_doc">
+            <t t-call="web.html_container">
+                <t t-set="day_dict" t-value="['الاثنين','الثلاثاء','الاربعاء','الخميس','الجمعة','السبت','الأحد']"/>
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h2>
+                                <span>Contract</span>
+                            </h2>
+                            <table cellpadding="7" cellspacing="0" dir="rtl" width="1005">
+                                <tbody>
+                                    <tr>
+                                        <td height="166"
+                                            style="border: 1px solid rgb(0, 0, 0);padding: 0in 0.08in;vertical-align: top;"
+                                            valign="top" width="100%">
+                                            <p dir="rtl"
+                                               style="margin-bottom: 0.11in;line-height: 108%;text-align: right;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <table cellpadding="7" cellspacing="0" dir="rtl" width="1014">
+                                                <tbody>
+                                                    <tr>
+                                                        <td height="410" style="border: 1px solid #000000;"
+                                                            width="49.14383561643836%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                            <p dir="rtl"
+                                                               style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>إنه في هذا اليوم&#160;</strong>
+                                                                <strong><span
+                                                                        t-esc="day_dict[datetime.date.today().weekday()]"/>&#160;
+                                                                </strong>
+                                                                <strong>الموافق&#160;</strong>
+                                                                <strong><span t-esc="datetime.date.today()"/>&#160;
+                                                                </strong>
+                                                                <strong>تم الاتفاق بين كل من&#160;</strong>
+                                                                <strong>:</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.14in;line-height: 115%;text-align: right;">
+                                                                <strong>أولا</strong>
+                                                                <strong>:&#160;</strong>
+                                                                <strong>شركة الجنوبي للمقاولات&#160;</strong>
+                                                                <strong>(&#160;</strong>
+                                                                <strong>شركة ذات مسئولية محدودة&#160;</strong>
+                                                                <strong>)&#160;</strong>
+                                                                <strong>شخص واحد سجل تجاري رقم&#160;</strong>
+                                                                <strong>/3450002829&#160;</strong>
+                                                                <strong>ومقرها مدينة عرعر بالحدود الشمالية ويمثلها
+                                                                    مديرها العام السيد&#160;
+                                                                </strong>
+                                                                <strong>/&#160;</strong>
+                                                                <span lang="ar-SA">
+                                                                    <strong>زيد الجنوبي العنزي ويشار إليه في هذا العقد
+                                                                        بالطرف الأول&#160;
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.14in;line-height: 115%;text-align: right;">
+                                                                <strong>ثانيا</strong>
+                                                                <strong>:</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.14in;line-height: 115%;text-align: right;">
+                                                                <strong>السيد&#160;</strong>
+                                                                <strong>:&#160;</strong>
+                                                                <span lang="ar-SA">
+                                                                    <strong><span t-field="o.partner_name"/>.
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.14in;line-height: 115%;text-align: right;">
+                                                                <strong>الجنسية&#160;</strong>
+                                                                <strong>:&#160;</strong>
+                                                                <span lang="ar-SA">
+                                                                    <strong><span t-esc="o.country_id.name"/>.
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.14in;line-height: 115%;text-align: right;">
+                                                                <strong>رقم جواز السفر&#160;</strong>
+                                                                <strong>:&#160;</strong>
+                                                                <span lang="ar-SA">
+                                                                    <strong><span t-field="o.passport_id"/>.
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.14in;line-height: 115%;text-align: right;">
+                                                                <strong>البريد الالكتروني&#160;</strong>
+                                                                <strong>:&#160;</strong>
+                                                                <span lang="ar-SA">
+                                                                    <strong>
+                                                                        <span t-field="o.email_from"/>
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.14in;line-height: 115%;text-align: right;">
+                                                                <strong>الجوال&#160;</strong>
+                                                                <strong>:&#160;</strong>
+                                                                <span lang="ar-SA">
+                                                                    <strong>
+                                                                        <span t-field="o.partner_mobile"/>
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                            <p style="line-height: 115%;text-align: left;margin-bottom: 0.14in;">
+                                                                <strong>طرف ثاني&#160;</strong>
+                                                                <strong>.</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: left;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td colspan="2" style="border: 1px solid #000000;"
+                                                            width="50.85616438356164%">
+                                                            <p style="line-height: 115%;text-align: left;margin-right: -0.59in;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                On this day (<span
+                                                                    t-esc="datetime.date.today().strftime('%A')"/>)
+                                                                corresponding
+                                                                <span t-esc="datetime.date.today()"/>
+                                                                it
+                                                                was agreed between:
+                                                            </p>
+                                                            <ol>
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="line-height: 115%;text-align: left;margin-bottom: 0.11in;">
+                                                                        <u>
+                                                                            <strong>Aljanobi contracting company
+                                                                            </strong>
+                                                                        </u>
+                                                                        (A limited liability company( one person,
+                                                                        commercial registration number / 3450002829
+                                                                        located in Arar city in the northern borders and
+                                                                        it is represented by its general manager Mr.
+                                                                        Zaid Aljanobi Alenazi
+                                                                        <span lang="en">referred to in this contract as
+                                                                            the first party.
+                                                                        </span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="line-height: 115%;text-align: left;margin-bottom: 0.11in;">
+                                                                        Mr.:<span t-field="o.partner_name"/>.
+                                                                    </p>
+                                                                </li>
+                                                            </ol>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                Nationality:<span
+                                                                    t-esc="o.with_context(lang='ar').country_id.name"/>.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                Passport number:<span t-field="o.passport_id"/>.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                Email:<span t-field="o.email_from"/>.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                Mobile number:<span t-field="o.partner_mobile"/>.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                Referred to in this contract as the second party
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                <br/>
+                                                                <br/>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" height="4" style="border: 1px solid #000000;"
+                                                            width="49.14383561643836%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>بند تمهيدي&#160;</strong>
+                                                                <strong>:-&#160;</strong>
+                                                                <strong>حيث أن الطرف الأول شركة سعودية تعمل في مجال
+                                                                    المقاولات العامة&#160;
+                                                                </strong>
+                                                                <strong>,&#160;</strong>
+                                                                <strong>وتقدم لها الطرف الثاني بطلب التوظيف المرفق
+                                                                    المودع في ملفه و به سيرة ذاتية خاصة اعتمد عليها
+                                                                    الطرف الأول في قبول توظيف الطرف الثاني وتعد جميع
+                                                                    البيانات الواردة بها بيانات جوهرية يحق للطرف الأول
+                                                                    فسخ العقد في حال ثبت عدم صحتها أو أي من الشهادات
+                                                                    الحاصل عليها الطرف الثاني
+                                                                </strong>
+                                                                <strong>,&#160;</strong>
+                                                                <strong>وبعد أن أقر الطرفان بكمال أهليتهما المعتبرة
+                                                                    شرعاً ونظاماً اتفقا لإبرام مثله على ما يلي&#160;
+                                                                </strong>
+                                                                <strong>:-&#160;</strong>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: right;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.85616438356164%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Introductory clause</strong>: as the first party
+                                                                is a Saudi company operates in general contracting
+                                                                field, the second party submitted the attached
+                                                                employment application which is deposited in his file
+                                                                and in it the CV the first party relied on to accept the
+                                                                employment of the second party,
+                                                                <span lang="en">All data contained therein are
+                                                                    considered essential data, the first party has the
+                                                                    right to cancel the contract in the event that it is
+                                                                    proven&#160;
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                incorrect or any of the certificates obtained by the
+                                                                second party is fake. And after the two parties
+                                                                recognized their full and legal competence they agreed
+                                                                to conclude the following:
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: left;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="6" style="border: 1px solid #000000;"
+                                                            width="49.14383561643836%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>أولاً&#160;</strong>
+                                                                <strong>:-&#160;</strong>
+                                                                <strong>اتفق الطرفان على أن يعمل الطرف الثاني لدى الطرف
+                                                                    الأول تحت إدارته وإشرافه بوظيفة&#160;
+                                                                </strong>
+                                                                <strong>/</strong>
+                                                                <strong><span
+                                                                        t-esc="o.with_context(lang='ar').job_id.name"/>&#160;
+                                                                </strong>
+                                                                <strong>ومباشرة الأعمال التي يكلف بها بما يتناسب مع
+                                                                    قدراته العلمية والعملية والفنية وفقاً لاحتياجات
+                                                                    العمل&#160;
+                                                                </strong>
+                                                                <strong>,&#160;</strong>
+                                                                <strong>وبما لا يتعارض مع الضوابط المنصوص عليها نظاماً&#160;</strong>
+                                                                <strong>.&#160;</strong>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>يكون مكان العمل في أي مكان بالمملكة يحدده الطرف
+                                                                    الأول&#160;
+                                                                </strong>
+                                                                <strong>,&#160;</strong>
+                                                                <strong>ولا يحق للطرف الثاني الاعتراض على نقله من مكان
+                                                                    مباشرة العمل إلى أي مكان أخر ويكون هذا الأمر وفق
+                                                                    السلطة التقديرية للطرف الأول ويعد توقيع الطرف الثاني
+                                                                    على هذا العقد بمثابة موافقة كتابية على النقل&#160;
+                                                                </strong>
+                                                                <strong>.&#160;</strong>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: right;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td colspan="2" style="border: 1px solid #000000;"
+                                                            width="50.85616438356164%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>First</strong>: The two parties agreed that the
+                                                                second party will work for the first party and under its
+                                                                management and supervision in the job of /&#160;
+                                                                <span t-esc="o.with_context(lang='en_US').job_id.name"/>&#160;
+                                                                , And to carry out the work assigned to in proportion to
+                                                                his scientific, practical and technical capabilities
+                                                                According to the business needs
+                                                                <span lang="en">And not inconsistent with the
+                                                                    regulations stipulated by law.
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                The place of work shall be any place in the Kingdom
+                                                                determined by the first party,
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                The second party has no right to object to his transfer
+                                                                from the place of commencement of work to any other
+                                                                place this matter shall be in accordance with the
+                                                                discretion of the first partysigning this contract by
+                                                                the second party is a written consent to the transfer.
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="356" style="border: 1px solid #000000;"
+                                                            width="49.14383561643836%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <strong>ثانياً&#160;</strong>
+                                                                <strong>:&#160;</strong>
+                                                                <strong>مدة هذا العقد هي&#160;</strong>
+                                                                <strong>/</strong>
+                                                                <strong><span
+                                                                        t-esc="o.with_context(lang='ar').contract_type"/>&#160;
+                                                                </strong>
+                                                                <strong>تبدأ من تاريخ مباشرة الطرف الثاني للعمل بموجب
+                                                                    إشعار مباشرة العمل ولا يجدد هذا العقد إلا بموجب
+                                                                    اتفاق جديد بين الطرفين أو خطاب يقدم من الطرف الثاني
+                                                                    بطلب تجديد العقد ويوافق عليه كتابيا من الطرف الأول&#160;
+                                                                </strong>
+                                                                <strong>,&#160;</strong>
+                                                                <strong>ويجب على الطرف الثاني إخطار الطرف الأول برغبته
+                                                                    في بعدم تجديد العقد قبل نهايته بمدة&#160;
+                                                                </strong>
+                                                                <strong>90</strong>
+                                                                <span lang="ar-SA">
+                                                                    <strong>يوماً على الأقل وفي حالة نهاية العقد وعدم
+                                                                        تجديده بالطريقة المذكورة في البند السابق فإن
+                                                                        العقد يجدد تلقائياً لمدة ثلاثة أشهر حتى يتمكن
+                                                                        الطرف الأول من تأمين بديل على أن تكون الإبلاغات
+                                                                        عن طريق البريد الالكتروني المعتمد للطرفين&#160;
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                        </td>
+                                                        <td colspan="2" style="border: 1px solid #000000;"
+                                                            width="50.85616438356164%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Second</strong>: The duration of this contract
+                                                                &#160;
+                                                                <span t-esc="o.with_context(lang='en_US').contract_type"/>&#160;
+                                                                <span lang="en">starts from the date the second party
+                                                                    commences work according to the notice of work
+                                                                    commencement.
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                This contract is not renewed except under a new
+                                                                agreement between the two parties
+                                                                <span lang="en">or a letter submitted by the second
+                                                                    party requesting the renewal of the contract and
+                                                                    approving it in writing from the first party, The
+                                                                    second party must notify the first party of his
+                                                                    desire not to renew the contract at least 90 days
+                                                                    before its expiry and In the event that the contract
+                                                                    ends and is not renewed in the manner mentioned in
+                                                                    the&#160;
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                Previous clause, the contract is automatically renewed
+                                                                for a period of three months so that the first party can
+                                                                secure an alternative the notifications should be
+                                                                through the approved email of the two parties.
+                                                            </p>
+                                                            <p style="line-height: 115%;text-align: left;margin-right: -0.59in;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p style="line-height: 115%;text-align: left;margin-right: -0.59in;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p style="line-height: 115%;text-align: left;margin-right: -0.59in;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p style="line-height: 115%;text-align: left;margin-right: -0.59in;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p style="line-height: 115%;text-align: left;margin-right: -0.59in;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: left;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p dir="rtl"
+                                               style="text-align: left;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <table cellpadding="7" cellspacing="0" dir="rtl" width="1005">
+                                                <tbody>
+                                                    <tr>
+                                                        <td height="262" style="border: 1px solid #000000;"
+                                                            width="48.34782608695652%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>ثالثاً&#160;</strong>
+                                                                </u>
+                                                                <u>
+                                                                    <strong>:</strong>
+                                                                </u>
+                                                                <strong>اتفق الطرفان على أن يخضع الطرف الثاني لفترة
+                                                                    تجربة مدتها&#160;
+                                                                </strong>
+                                                                <strong>(90)&#160;</strong>
+                                                                <strong>يوماً تبدأ من تاريخ مباشرته للعمل&#160;</strong>
+                                                                <strong>,&#160;</strong>
+                                                                <strong>ولا يدخل في حسابها إجازة عيدي الأضحى والفطر
+                                                                    والإجازة المرضية&#160;
+                                                                </strong>
+                                                                <strong>,&#160;</strong>
+                                                                <strong>ويكون للطرف الأول بمفرده الحق في إنهاء العقد
+                                                                    خلال هذه الفترة&#160;
+                                                                </strong>
+                                                                <strong>.</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>ويجوز بموافقة الطرفين مد فترة التجربة لمدة أو
+                                                                    مدد أخرى مماثلة بحيث لا تزيد فترة التجربة عن&#160;
+                                                                </strong>
+                                                                <strong>180&#160;</strong>
+                                                                <strong>يوماً باتفاق كتابي في كل مرة من مرات التمديد&#160;</strong>
+                                                                <strong>.&#160;</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: center;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="51.65217391304348%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Third</strong>: The two parties have agreed that
+                                                                the second party will undergo a trial period of (90)
+                                                                days starting from the date of commencement of work, and
+                                                                it does not include in the calculation Eid Al-Adha, Fitr
+                                                                and sick leaves, and only the first party has the right
+                                                                to terminate the contract during this period.
+                                                                <span lang="en">With the consent of both parties, the
+                                                                    trial period may be extended for one or more similar
+                                                                    periods so that the trial period does not exceed 180
+                                                                    days by written agreement each time the extensions
+                                                                    are extended.
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: center;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="211" style="border: 1px solid #000000;"
+                                                            width="48.34782608695652%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>رابعاً&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <strong>تحدد أيام العمل العادية&#160;</strong>
+                                                                (48) <strong>ساعة في الأسبوع&#160;</strong>, <strong>
+                                                                ويلتزم الطرف الأول بأن يدفع للطرف الثاني أجراً إضافياً
+                                                                عن ساعات العمل الإضافية يوازي أجر الساعة مضافاً إليه&#160;</strong>(50%) <strong>
+                                                                من أجره الأساسي فيما يتجاوز ساعات العمل الأسبوعية المشار
+                                                                إليها&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: center;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="51.65217391304348%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Fourth</strong>
+                                                                <span lang="en">: Regular work days are (48) hours per
+                                                                    week, The first party is obliged to pay the second
+                                                                    party an additional fee for overtime, which is equal
+                                                                    to the hourly wage plus (50%) of his basic wage in
+                                                                    excess of the indicated weekly work hours.
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: center;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="110" style="border: 1px solid #000000;"
+                                                            width="48.34782608695652%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>خامساً&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <strong>يدفع الطرف الأول للطرف الثاني أجراً أساسياً قدره&#160;</strong>
+                                                                <strong><span t-field="o.salary_proposed"/>&#160;
+                                                                </strong>
+                                                                <strong>ريال وبدل طعام&#160;</strong>
+                                                                <strong><span t-field="o.meal_allowance"/>&#160;
+                                                                </strong>
+                                                                <strong>ريال وبدلات أخرى&#160;</strong>
+                                                                <strong><span t-field="o.other_allowance"/>&#160;
+                                                                </strong>
+                                                                <strong>ريال يستحق نهاية كل شهر ميلادي&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="51.65217391304348%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Fifth</strong>: The first party pays to the
+                                                                second party a basic wage of (<span
+                                                                    t-field="o.salary_proposed"/>) riyals and Food
+                                                                allowance (<span
+                                                                    t-field="o.meal_allowance"/>)
+                                                                <span lang="en">riyals and Other allowances (<span
+                                                                        t-field="o.other_allowance"/>)
+                                                                    riyals
+                                                                    which is due at the end of each Gregorian month.
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: center;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="283" style="border: 1px solid #000000;"
+                                                            width="48.34782608695652%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>سادسا</strong>
+                                                                </u>
+                                                                : <strong>يستحق الطرف الثاني عن عام إجازة سنوية مدتها&#160;</strong>(21) <strong>
+                                                                يوماً تستحق بعد مرور&#160;</strong>23 <strong>شهر من
+                                                                مباشرة الطرف الثاني للعمل وقد وافق الطرف الثاني على
+                                                                تأجيل استحقاق الإجازة إلى السنة الثانية&#160;</strong>, <strong>
+                                                                ويعد توقيعه على هذا العقد موافقة كتابية على هذا التأجيل
+                                                                ولا يجوز له استعجال استحقاق الإجازة إلا بموافقة الطرف
+                                                                الأول&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>يستحق الطرف الثاني إجازة سنوية
+                                                                    مدتها&#160;</strong>(30) <strong>يوماً في حال زادت
+                                                                خدمته عن خمس سنوات&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="51.65217391304348%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Sixth</strong>:The second party is entitled to
+                                                                an annual leave of 21 days, which is due after 23 months
+                                                                after the second party commences work, The second party
+                                                                agreed to postpone the entitlement leave until the
+                                                                second year, and signing it on this contract is a
+                                                                written approval of this postponement and it is not
+                                                                permissible to rush the entitlement to the leave except
+                                                                with the consent of the first party.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <span lang="en">The second party is entitled to an
+                                                                    annual leave of 30 days if his service exceeds five
+                                                                    years.
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="168" style="border: 1px solid #000000;"
+                                                            width="48.34782608695652%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>سابعاً&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <strong>يلتزم الطرف الأول بتوفير الرعاية الطبية للطرف
+                                                                    الثاني بالتأمين الصحي&#160;</strong>, <strong>وفقاً
+                                                                لأحكام نظام الضمان الصحي التعاوني و يلتزم الطرف الأول
+                                                                بتسجيل الطرف الثاني لدى المؤسسة العامة للتأمينات
+                                                                الاجتماعية&#160;</strong>, <strong>وسداد الاشتراكات حسب
+                                                                أنظمتها</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="51.65217391304348%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Seventh</strong>: The first party is obligated
+                                                                to provide medical care to the second party with health
+                                                                insurance, in accordance with the provisions of the
+                                                                cooperative health insurance system. And&#160;is obliged
+                                                                to register the second party with the General
+                                                                Organization for Social Insurance&#160;and
+                                                                <span lang="en">Pay the contributions according to their
+                                                                    regulations.
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="168" style="border: 1px solid #000000;"
+                                                            width="48.34782608695652%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>ثامناً&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <strong>يتحمل الطرف الأول رسوم&#160;</strong>( <strong>
+                                                                استقدام الطرف الثاني&#160;</strong>/ <strong>نقل خدماته
+                                                                إليه&#160;</strong>) <strong>ورسوم إقامته ورخصة العمل
+                                                                وتجديدها وما يترتب على تأخير ذلك من غرامات ورسوم تغيير
+                                                                المهنة والخروج والعودة وتذكرة عودة الطرف الثاني إلى
+                                                                موطنه – بالوسيلة التي قدم بها – بعد انتهاء علاقة العمل&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>ويتحمل العامل رسوم غرامات التأخير في إصدار أو
+                                                                    تجديد الإقامة إذا كان تأخير الإصدار أو التجديد بسبب
+                                                                    يرجع إليه كأن لم يقوم بالفحص الطبي أو امتنع عن سداد
+                                                                    رسوم التابعين له قبل الموعد المحدد للتجديد أو
+                                                                    الإصدار</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>كما يتحمل الطرف الثاني تكاليف عودته إلى بلده في
+                                                                    حال عدم صلاحيته للعمل لدى الطرف الأول، أو رغبته في
+                                                                    إنهاءه للعقد قبل انتهاء مدته</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="51.65217391304348%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Eighth</strong>:The first party bears the fees&#160;of
+                                                                (bringing the second party / transferring their
+                                                                services), residence fees and work permit and renewing
+                                                                itand the consequences of delaying that
+                                                                <span lang="en">Fees for changing the profession, exit
+                                                                    and return, and the return ticket for the second
+                                                                    party to his country -in the same transportation he
+                                                                    came by- After the work relationship ends
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                The worker shall bear the fees for delay penalties in
+                                                                issuing or renewing the residence permit if the delay in
+                                                                issuing or renewing is due to a personal reason of hisAs
+                                                                if he had not performed the medical examination or
+                                                                failed to pay his followers fees before the date set for
+                                                                renewal or issuance.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <span lang="en">The second party also bears the costs of
+                                                                    returning to his country in case he is not fit to
+                                                                    work for the first party, Or his desire to terminate
+                                                                    the contract before its expiry date.
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="168" style="border: 1px solid #000000;"
+                                                            width="48.34782608695652%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>تاسعاً&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <strong>يلتزم الطرف الأول بنفقات تجهيز جثمان الطرف
+                                                                    الثاني ونقله إلى الجهة التي أبرم فيها
+                                                                    العقد&#160;</strong>, <strong>أو استقدم العامل منها&#160;</strong>, <strong>
+                                                                ما لم يدفن بموافقة ذويه داخل المملكة أو تلتزم المؤسسة
+                                                                العامة للتأمينات الاجتماعية بذلك&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="51.65217391304348%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Ninth</strong>: The first party shall bear the
+                                                                expenses of preparing the dead body of the second party
+                                                                <span lang="en">&#160;and transfer it to the place where
+                                                                    the contract was concluded, Or the country the
+                                                                    worker was brought in from, unless he was buried in
+                                                                    the kingdom with the consent of his relatives, Or
+                                                                    the General Organization for Social Insurance shall
+                                                                    abide by this.
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="167" style="border: 1px solid #000000;"
+                                                            width="48.34782608695652%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>عاشراً&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <span lang="ar-SA">
+                                                                    <strong>يلتزم الطرف الثاني بما يلي –</strong>
+                                                                </span>
+                                                            </p>
+                                                            <ol>
+                                                                <li>
+                                                                    <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                        <strong>أن ينجز العمل الموكل إليه&#160;</strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>وفقاً لأصول المهنة&#160;</strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>ووفق تعليمات الطرف الأول&#160;</strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>إذا لم يكن في هذه التعليمات ما يخالف
+                                                                            العقد&#160;
+                                                                        </strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>أو النظام أو الآداب العامة ولم يكن في
+                                                                            تنفيذها ما يعرضه للخطر&#160;
+                                                                        </strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>أو يعرض مصالح المنشأة للخطر&#160;
+                                                                        </strong>
+                                                                        <strong>.&#160;</strong>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                        <strong>أن يعتني عناية كافية بالأدوات&#160;
+                                                                        </strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>والمهمات المسندة إليه&#160;</strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>والخامات المملوكة للطرف الأول الموضوعة
+                                                                            تحت تصرفه
+                                                                        </strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>أو التي تكون في عهدته&#160;</strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>وأن يعيد إلى الطرف الأول المواد غير
+                                                                            المستهلكة&#160;
+                                                                        </strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>وأن يبلغ الطرف الأول بما يحتاج إلى صيانة
+                                                                            من المعدات أو الآلات كتابة فور حاجة المعدة
+                                                                            إلى الصيانة&#160;
+                                                                        </strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>ويتحمل نتيجة تقصيره أو تفريطه في عدم
+                                                                            الإبلاغ في الوقت المناسب&#160;
+                                                                        </strong>
+                                                                        <strong>.&#160;</strong>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                        <strong>أن يقدم كل عون&#160;</strong>
+                                                                        <strong>,&#160;</strong>
+                                                                        <strong>ومساعدة دون أن يشترط لذلك أجراً إضافياً
+                                                                            في حالة الأخطار التي تهدد سلامة مكان العمل
+                                                                            أو الأشخاص العاملين فيه&#160;
+                                                                        </strong>
+                                                                        <strong>.&#160;</strong>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                        <strong>أن يخضع وفقاً لطلب الطرف الأول للفحوص
+                                                                            الطبية التي يرغب في إجرائها عليه قبل
+                                                                            الالتحاق بالعمل أو أثناءه للتحقق من خلوه من
+                                                                            الأمراض المهنية أو السارية
+                                                                        </strong>
+                                                                        <strong>.&#160;</strong>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                        <strong>يلتزم الطرف الثاني بأن لا يقوم بعد
+                                                                            انتهاء العقد بمنافسة الطرف الأول لمدة سنتين
+                                                                            بعد انتهاء العلاقة التعاقدية وذلك في أي مكان
+                                                                            من الأماكن التي مارس فيها العمل مع الطرف
+                                                                            الأول أثناء عقده أو في مكان يتولى الطرف
+                                                                            الأول مشاريع بها وذلك في ذات العمل الذي عمل
+                                                                            به لدى الطرف الأول
+                                                                        </strong>
+                                                                        <strong>.&#160;</strong>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                        <strong>يلتزم الطرف الثاني بعدم إفشاء أي أسرار
+                                                                            اطلع عليها أثناء العمل مع الطرف الأول ويحق
+                                                                            للطرف الأول مقاضاة الطرف الثاني لدى الجهات
+                                                                            القضائية المختصة عن أي أضرار يسببها ذلك
+                                                                            الإفشاء حالة مخالفة ذلك كما يلتزم الطرف
+                                                                            الثاني أن يدفع تعويضاً يساوي راتبه عن سنة
+                                                                            كاملة دون الإخلال بالتعويضات الأخرى
+                                                                            والجزاءات النظامية المقررة بموجب الأنظمة ذات
+                                                                            العلاقة على أن تكون مدة هذا الشرط هي خمس
+                                                                            سنوات من تاريخ انتهاء العلاقة العمالية بين
+                                                                            الطرفين ويكون ذلك في جميع الأماكن التي عمل
+                                                                            بها الطرف الثاني لدى الطرف الأول أو الجهات
+                                                                            الحكومية التي يتعامل معها الطرف الأول ويشمل
+                                                                            ذلك ما يلي في البند التالي على سبيل المثال
+                                                                            وليس على سبيل الحصر&#160;
+                                                                        </strong>
+                                                                        <strong>.&#160;</strong>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                        <strong>اتفق الطرفان أن مفهوم المعلومات السرية
+                                                                            يتضمن كافة البيانات و الأسعار والمواد
+                                                                            والمنتجات والتكنولوجيا وبرامج الكمبيوتر
+                                                                            والمواصفات والكتيبات و الكتالوجات وخطط
+                                                                            الأعمال والبرمجـيـات وخـطـط التسويق
+                                                                            والمعلومات المالية و قائمة العملاء و
+                                                                            الموردين و الوكلاء، وغيرها من المعلومات التي
+                                                                            يفصح عنها أو تقدمها الشركة&#160;
+                                                                        </strong>
+                                                                        <strong>(&#160;</strong>
+                                                                        <strong>الطرف الأول&#160;</strong>
+                                                                        <strong>)&#160;</strong>
+                                                                        <strong>إلى الموظف&#160;</strong>
+                                                                        <strong>(&#160;</strong>
+                                                                        <strong>الطرف الثاني</strong>
+                                                                        <strong>)&#160;</strong>
+                                                                        <strong>سواء شفهياً أو كتابياً أو بأي وسيلة أخرى
+                                                                            وترجع&#160;
+                                                                        </strong>
+                                                                        <strong>"</strong>
+                                                                        <strong>سرية</strong>
+                                                                        <strong>"&#160;</strong>
+                                                                        <strong>المعلومة التي يتم الإفصاح عنها إلى تقدير
+                                                                            الشركة وحدها
+                                                                        </strong>
+                                                                        <strong>.</strong>
+                                                                    </p>
+                                                                </li>
+                                                            </ol>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="51.65217391304348%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Tenth: The second party shall comply with the
+                                                                    following
+                                                                </strong>
+                                                                <span lang="en">-</span>
+                                                            </p>
+                                                            <ol>
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="line-height: 115%;text-align: left;margin-bottom: 0.11in;">
+                                                                        To complete the work assigned to him according
+                                                                        to the principles of the profession, and
+                                                                        According to the instructions of the first party
+                                                                        if nothing in these instructions violates the
+                                                                        contract, the system or public morals
+                                                                        <span lang="en">and implementing it did not
+                                                                            endanger him, or endanger the interests of
+                                                                            the enterprise.
+                                                                        </span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="line-height: 115%;text-align: left;margin-bottom: 0.11in;">
+                                                                        To take adequate care of the tools, the tasks
+                                                                        assigned to him, and The materials owned by the
+                                                                        first party which are placed at his disposalOr
+                                                                        the materials that are in his custody, And give
+                                                                        back the non-consumable items to the first
+                                                                        party, And to inform the first party in writing
+                                                                        of the equipment or machinery that needs
+                                                                        maintenance as soon as the equipment needs
+                                                                        maintenance,And to bear the result of his
+                                                                        default or negligencewhen he do not report in
+                                                                        time.
+                                                                    </p>
+                                                                </li>
+                                                            </ol>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                <br/>
+                                                                <br/>
+                                                            </p>
+                                                            <ol start="3">
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                        To provide all aid and assistance without asking
+                                                                        for any additional fee in the event of threats
+                                                                        to the safety of the workplace or the people
+                                                                        working in it.
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="line-height: 115%;text-align: left;margin-bottom: 0.11in;">
+                                                                        <span lang="en">To be subject, in accordance
+                                                                            with the request of the first party, to the
+                                                                            medical examinations that he wishes to
+                                                                            perform before joining or during the work to
+                                                                            verify that he is free from occupational or
+                                                                            contagious diseases.
+                                                                        </span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="line-height: 115%;text-align: left;margin-bottom: 0.11in;">
+                                                                        The second party is obligated not to compete
+                                                                        with the first party for a period of two years
+                                                                        after the end of the contractual relationship
+                                                                        And that is in any place where he worked with
+                                                                        the first party during his contractOr in a place
+                                                                        in which the first party undertakes projects in
+                                                                        the same field in which he worked for the first
+                                                                        party.
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="line-height: 115%;text-align: left;margin-bottom: 0.11in;">
+                                                                        <span lang="en">The second party is obliged not
+                                                                            to disclose any secrets he has seen while
+                                                                            working with the first party, and the first
+                                                                            party has the right to sue the second party
+                                                                            with the competent judicial authorities for
+                                                                            any damages caused by that disclosure in
+                                                                            case of violation of that , The second party
+                                                                            is also obligated to pay compensation equal
+                                                                            to his salary for a full year
+                                                                        </span>
+                                                                    </p>
+                                                                </li>
+                                                            </ol>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                Without prejudice to other compensation and statutory
+                                                                sanctions established under the relevant regulations,
+                                                                provided that the period of this condition is five years
+                                                                from the date of the end of the labor relationship
+                                                                between the two sides.
+                                                                <span lang="en">This will be in all the places where the
+                                                                    second party worked for the first party or the
+                                                                    government agencies that the first party deals with,
+                                                                    and this includes what’s coming in the following
+                                                                    item, for example, and not exclusively.
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                <br/>
+                                                                <br/>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                <br/>
+                                                                <br/>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-left: 0.5in;margin-bottom: 0.11in;">
+                                                                <br/>
+                                                                <br/>
+                                                            </p>
+                                                            <ol start="7">
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="line-height: 115%;text-align: left;margin-bottom: 0.11in;">
+                                                                        <span lang="en">The parties agreed that the
+                                                                            concept of confidential information includes
+                                                                            all data, prices, materials, products,
+                                                                            technology, computer programs,
+                                                                            specifications, brochures, catalogs,
+                                                                            business plans, software, marketing plans,
+                                                                            financial information, a list of customers,
+                                                                            suppliers, and agents , And other
+                                                                            information disclosed or provided by the
+                                                                            company (the first party) to the employee
+                                                                            (the second party), whether orally or in
+                                                                            writing or by any other means, and the
+                                                                            "confidentiality" of the information
+                                                                            disclosed is due to the company's
+                                                                            appreciation only.
+                                                                        </span>
+                                                                    </p>
+                                                                </li>
+                                                            </ol>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p dir="rtl"
+                                               style="text-align: center;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <p dir="rtl"
+                                               style="text-align: center;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <table cellpadding="7" cellspacing="0" dir="rtl" width="1014">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>حادي عشر</strong>
+                                                                </u>
+                                                                : - <strong>يحق للطرف الأول أن يخصم علي الطرف الثاني ما
+                                                                قد تم صرفه عليه خلال الدورات التدريبية إذا طلب إنهاء عقد
+                                                                العمل برغبته قبل انتهاء المدة المحددة للعقد أو المدة
+                                                                المجددة&#160;</strong>, <strong>كما أن الطرف الثاني ملزم
+                                                                بدفع مبلغ يحدد بإقرار مستقل عند تدريبه على أي من معدات
+                                                                أو آليات الطرف الأول عند رغبته في إنهاء العقد قبل انتهاء
+                                                                مدته&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: center;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Eleventh</strong>
+                                                                <span lang="en">: - The first party has the right to
+                                                                    deduct from the second party what has been spent on
+                                                                    him during the training courses if he requests to
+                                                                    terminate the work contract with his desire before
+                                                                    the end of the specified period of the contract or
+                                                                    the renewed period, The second party is also
+                                                                    obligated to pay an amount determined by an
+                                                                    independent declaration when training on any of the
+                                                                    equipment or machinery of the first party when he
+                                                                    wishes to terminate the contract before its term
+                                                                    expires.
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: center;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>ثاني عشر</strong>
+                                                                </u>
+                                                                : <strong>يلتزم الطرف الثاني بحسن السلوك&#160;</strong>, <strong>
+                                                                والأخلاق أثناء العمل وفي جميع الأوقات يلتزم بالأنظمة
+                                                                والأعراف والعادات والتقاليد والآداب المرعية في المملكة
+                                                                العربية السعودية وكذلك بالقواعد واللوائح والتعليمات
+                                                                المعمول بها لدى الطرف الأول&#160;</strong>, <strong>
+                                                                ويتحمل كافة الغرامات المالية والجزاءات النظامية الناتجة
+                                                                عن مخالفته لتلك الأنظمة&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Twelfth</strong>: The second party adheres to
+                                                                good behavior, and ethics during work and at all times.&#160;He
+                                                                <span lang="en">&#160;adheres to the systems, customs,
+                                                                    norms, traditions and etiquette recognized in the
+                                                                    Kingdom of Saudi Arabia, as well as the rules,
+                                                                    regulations and instructions applicable to the first
+                                                                    party.
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <span lang="en">And He shall bear all financial fines
+                                                                    and statutory penalties resulting from his violation
+                                                                    of these regulations.
+                                                                </span>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>ثالث عشر&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <strong>أقر الطرف الثاني ووافق على استقطاع الطرف الأول
+                                                                    للنسبة المقررة عليه من الأجر الشهري للاشتراك في
+                                                                    المؤسسة العامة للتأمينات الاجتماعية وأي غرامات
+                                                                    نظامية يقوم الطرف الأول بدفعها عن الطرف الثاني دون
+                                                                    الالتزام بما ورد بالقدر المحدد نظاماً للخصم من
+                                                                    الراتب الشهري&#160;</strong>, <strong>وقد وافق الطرف
+                                                                الثاني على حق الطرف الأول استقطاع أي مبلغ يكون قد استلمه
+                                                                تحت بند سلف أو قروض في حدود&#160;</strong>(50%) <strong>
+                                                                من الراتب&#160;</strong>, <strong>وعند تصفية مستحقاته
+                                                                لدى الطرف الأول يكون له حق عمل مقاصة بأي مبالغ له لدى
+                                                                الطرف الثاني دون أي اعتراض منه على ذلك&#160;</strong>.
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Thirteenth</strong>: The second party
+                                                                acknowledged and agreed the deduction the first party
+                                                                will make for the prescribed percentage from the second
+                                                                party's monthly wage to participate in the General
+                                                                Organization for Social Insurance,
+                                                                <span lang="en">And any statutory fines that the first
+                                                                    party pays for the second party without committing
+                                                                    to what is stated in the amount specified as a
+                                                                    system for deduction of the monthly salary, The
+                                                                    second party agreed to the right of the first party
+                                                                    to deduct any amount that he had received under the
+                                                                    item of advances or loans within (50%) of the
+                                                                    salary, When liquidating his dues with the first
+                                                                    party, the first party shall have the right to
+                                                                    set-off any amounts from the second party without
+                                                                    any objection to that from the second party.
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>رابع عشر</strong>
+                                                                </u>
+                                                                <u>:-</u>
+                                                                <strong>ينتهي هذا العقد بانتهاء مدته – الأصلية أو
+                                                                    المجددة&#160;</strong>- <strong>أو باتفاق الطرفين
+                                                                على إنهائه بشرط موافقة الطرفين كتابة&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Fourteenth</strong>
+                                                                <span lang="en">: - This contract ends with the end of
+                                                                    its duration - original or renewed - or with the
+                                                                    agreement of the parties to terminate it, on the
+                                                                    condition that both parties agree in writing.
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>خامس عشر&#160;</strong>
+                                                                </u>
+                                                                <u>:-</u>
+                                                                <strong>يحق للطرف الأول فسخ العقد دون مكافأة أو إشعار
+                                                                    للطرف الثاني أو تعويضه&#160;</strong>, <strong>شريطة
+                                                                إتاحة الفرصة للطرف الثاني في إبداء أسباب معارضته للفسخ&#160;</strong>, <strong>
+                                                                وذلك طبقاً للحالات الواردة في
+                                                                المادة&#160;</strong>( <strong>الثمانون&#160;</strong>) <strong>
+                                                                من نظام العمل&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Fifteenth</strong>: - The first party has the
+                                                                right to cancel the contract without reward, notice or
+                                                                compensating the second party, on condition
+                                                                <span lang="en">&#160;that the second party is given an
+                                                                    opportunity to state the reasons for opposing the
+                                                                    termination, This is in accordance with the cases
+                                                                    mentioned in Article (80) of the Labor Law.
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>سادس عشر&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <strong>يحق للطرف الثاني ترك العمل&#160;</strong>
+                                                                , <strong>وإنهاء العقد دون إشعار الطرف الأول مع احتفاظه
+                                                                بحقه في الحصول على كافة مستحقاته طبقاً للحالات الواردة
+                                                                في المادة&#160;</strong>( <strong>الحادية والثمانون&#160;</strong>) <strong>
+                                                                من نظام العمل&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Sixteenth</strong>: The second party has the
+                                                                right to leave work and terminate the contract without
+                                                                notifying the first party while retaining his right to
+                                                                obtain all of his entitlement in accordance with the
+                                                                cases mentioned in Article (81) of the labor system.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>سابع عشر&#160;</strong>
+                                                                </u>
+                                                                <u>:-</u>
+                                                                <strong>اتفق الطرفان على أنه في حال فسخ العقد دون سبب
+                                                                    مشروع على ما يلي&#160;</strong>:-
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>أ – إذا كان فسخ العقد من قبل الطرف
+                                                                    الأول&#160;</strong>,
+                                                                <span lang="ar-SA">
+                                                                    <strong>فيلتزم بأن يدفع للطرف الثاني تعويضاً عن فسخ
+                                                                        هذا العقد قدره راتب شهرين&#160;
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>ب – إذا كان فسخ العقد من قبل الطرف الثاني فيلتزم
+                                                                    بأن يدفع إلى الطرف الأول تعويضاً عن هذا الفسخ راتب
+                                                                    ثلاثة أشهر و بما لا يقل عن عشرة ألاف ريال أيهما أكبر&#160;
+                                                                </strong>
+                                                                .
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Seventeenth</strong>
+                                                                <span lang="en">: - The two parties have agreed that in
+                                                                    the event of the termination of the contract without
+                                                                    a legitimate reason, the following is required:
+                                                                </span>
+                                                            </p>
+                                                            <ol>
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="line-height: 115%;text-align: left;margin-bottom: 0.11in;">
+                                                                        If the annulment of the contract is by the first
+                                                                        party, he shall pay the second party
+                                                                        compensation for the annulment of this contract
+                                                                        in the amount of two months' salary.
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p dir="ltr"
+                                                                       style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                        If the annulment of the contract by the second
+                                                                        party is committed, he shall pay to the first
+                                                                        party compensation for this annulment, a
+                                                                        three-month salary or a minimum of ten thousand
+                                                                        riyals, whichever is greater.
+                                                                    </p>
+                                                                </li>
+                                                            </ol>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>ثامن عشر</strong>
+                                                                </u>
+                                                                :- <strong>يستحق الطرف الثاني عند انتهاء العلاقة
+                                                                التعاقدية من قبل الطرف الأول أو باتفاق الطرفين أو
+                                                                بانتهاء مدة العقد أو نتيجة القوة القاهرة مكافأة قدرها
+                                                                أجر خمسة عشر يوماً عن كل سنة من السنوات الخمس الأولى&#160;</strong>, <strong>
+                                                                وأجر شهر عن كل سنة من السنوات
+                                                                التالية&#160;</strong>, <strong>ويستحق العامل مكافأة عن
+                                                                أجزاء السنة بنسبة ما قضاه منها في العمل&#160;</strong>, <strong>
+                                                                وتحسب على أساس الأجر الأخير&#160;</strong>.
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <strong>Eighteenth</strong>: - At the end of the
+                                                                contractual relationship by the first party or by
+                                                                agreement of both parties or at the end of the contract
+                                                                period or the result of force majeure, the second party
+                                                                deserves a reward of fifteen days' wages for each of the
+                                                                first five years,And one month wage for each of the
+                                                                following years, and The worker deserves a reward for
+                                                                the parts of the year in proportion to what he spent on
+                                                                the job, and is calculated based on the last wage.
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>تاسع عشر&#160;</strong>
+                                                                </u>
+                                                                <u>:-</u>
+                                                                <strong>يخضع هذا العقد لنظام العمل ولائحته التنفيذية&#160;</strong>
+                                                                , <strong>والقرارات الصادرة تنفيذاً له في كل ما لم يرد
+                                                                به نص في هذا العقد&#160;</strong>, <strong>ويحل هذا
+                                                                العقد محل كافة الاتفاقيات&#160;</strong>, <strong>
+                                                                والعقود السابقة الشفهية منها أو الكتابية إن
+                                                                وجدت&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Nineteenth</strong>: - This contract is subject
+                                                                to the work system and its executive regulations, and
+                                                                decisions issued in implementation of it in all that was
+                                                                not stipulated in this contract, and this contract
+                                                                replaces all agreements, and previous verbal or written
+                                                                contracts, if any.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>عشرون&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <strong>يعد من الأسباب المشروعة لإنهاء العقد والتي يحق
+                                                                    معها للطرف الأول إنهاء العقد دون إشعار الطرف الثاني
+                                                                    دون تعويض هي&#160;</strong>:-1- <strong>القوة
+                                                                القاهرة –&#160;</strong>2- <strong>إغلاق
+                                                                المنشأة&#160;</strong>3- <strong>إغلاق النشاط أو القسم
+                                                                الذي يعمل به الطرف الثاني&#160;</strong>-4- <strong>
+                                                                استبعاد الجهات الحكومية التي يعمل لديها الطرف الأول
+                                                                كمقاول رئيس أو مقاول باطن الطرف الثاني لأي سبب من
+                                                                الأسباب وتعود هذه الأسباب إلى الجهة الحكومية وحدها ولا
+                                                                يجوز المجادلة في خطاب الاستبعاد ولا يحق للطرف الثاني
+                                                                التمسك بحقه في مدة العقد أو استقلال هذا العقد عن العقد
+                                                                مع الجهات الحكومية&#160;</strong>, <strong>لأنه من
+                                                                المعلوم لدى الطرفين أن الطرف الأول شركة تعمل في مجال
+                                                                المشاريع الحكومية&#160;</strong>.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <strong>Twenty</strong>: The legitimate reasons for
+                                                                terminating the contract with which the first party is
+                                                                entitled to terminate the contract without notice to the
+                                                                second party and without compensation are 1- Force
+                                                                Majeure - 2- shutting down the facility 3- shutting the
+                                                                activity or department in which the second party works
+                                                                4- Excluding government agencies that the first party
+                                                                works as a prime contractor or subcontractor for the
+                                                                second party for any reason, and these reasons are
+                                                                returned to the government agency alone. It is not
+                                                                permissible to argue in the letter of exclusion and the
+                                                                second party is not entitled to uphold its right to the
+                                                                term of the contract or the independence of this
+                                                                contract from the contract with Governmental entities,
+                                                                Because it is known to both parties that the first party
+                                                                is a company operating in the field of government
+                                                                projects.
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <br/>
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>واحد وعشرون&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <strong>يجوز حصول الطرف الثاني بموافقة الطرف الأول على
+                                                                    إجازة بدون أجر يتفق الطرفان على مدتها ويعد عقد العمل
+                                                                    موقوفاً خلال مدة هذه الإجازة ة إذا زادت عن عشرين
+                                                                    يوماً ما لم يتفق الطرفان على خلاف ذلك
+                                                                    كتابة&#160;</strong>, <strong>ويحق للطرف الأول خصم
+                                                                كافة التكاليف المترتبة على هذه
+                                                                الإجازة&#160;</strong>, <strong>ويحق للطرف الأول تمديد
+                                                                العقد بمدة الإجازة بدون أجر&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Twenty-one</strong>: It is permissible for the
+                                                                second party to obtain with the consent of the first
+                                                                party, a leave without pay the two parties agree on its
+                                                                duration, and the work contract is suspended during the
+                                                                period of this leave if it exceeds twenty days unless
+                                                                the parties agree otherwise in writing, The first party
+                                                                has the right to deduct all costs arising from this
+                                                                leave, and the first party is also entitled to extend
+                                                                the contract for the duration of the leave without pay.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p dir="rtl"
+                                               style="margin-bottom: 0.11in;line-height: 108%;text-align: right;margin-right: -0.59in;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <table cellpadding="7" cellspacing="0" dir="rtl" width="1014">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>ثاني وعشرون&#160;</strong>
+                                                                </u>
+                                                                <u>:-</u>
+                                                                <strong>لا تدخل الفترات المخصصة للراحة والصلاة والطعام
+                                                                    ضمن ساعات العمل اليومية&#160;</strong>( <strong>
+                                                                الفعلية&#160;</strong>) <strong>ولا يكون العامل تحت سلطة
+                                                                صاحب العمل&#160;</strong>.
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;margin-right: -0.59in;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <strong>Twenty-second:&#160;</strong>The periods for
+                                                                rest, prayer and food do not fall within the daily
+                                                                (actual) working hours, and the worker is not under the
+                                                                authority of the employer
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>ثالث وعشرون&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <span lang="ar-SA">
+                                                                    <strong>يلتزم الطرفان بتنفيذ هذا العقد وفق حسن النية
+                                                                        والأمانة التي فرضها الله على عباده ولا يجوز لأي
+                                                                        من الطرفين إساءة استعمال أحكام هذا النظام
+                                                                        والقرارات الصادرة تنفيذاً لأحكامه ولا يجوز للطرف
+                                                                        الثاني الدعوة إلى الإضرابات أو تحريض زملائه سواء
+                                                                        كانت لهم مطالب مشروعة أو غير مشروعة وعليه
+                                                                        استخدام القنوات المشروعة لذلك ويعد قيام الطرف
+                                                                        الثاني بأي من هذه الأعمال سبباً لفسخ العقد دون
+                                                                        مكافأة أو إشعار
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Twenty-third:&#160;</strong>The two parties are
+                                                                obligated to implement this contract in accordance with
+                                                                the good faith and trust that God imposed on his
+                                                                servants. Neither party may misuse the provisions of
+                                                                this system nor the decisions issued in implementation
+                                                                of its provisions. And the second party may not call for
+                                                                strikes or frustrating his colleagues, whether they have
+                                                                legitimate or unlawful demands. And they shall use the
+                                                                legitimate channels for that, and if the second party
+                                                                did any of these actions it will be a reason to
+                                                                terminate the contract without remuneration or notice.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>رابع وعشرون&#160;</strong>
+                                                                </u>
+                                                                <u>:</u>
+                                                                <strong>لا يجوز للطرف الثاني التغيب عن العمل – واستثناء
+                                                                    – من أحكام لائحة الجزاءات الخاصة بالشركة إذا ترتب
+                                                                    على غياب الطرف الثاني دون عذر مقبول وترتب على ذلك
+                                                                    الغياب إيقاف آليات أو عمال آخرين كان مسئولاً عن
+                                                                    تعويض الطرف الأول عن كافة الأضرار المترتبة على ذلك&#160;
+                                                                </strong>
+                                                                .
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Twenty-fourth</strong>: The second party may not
+                                                                be absent from work- And an exception - from the
+                                                                provisions of the company's penal regulations, if the
+                                                                absence of the second party without an acceptable excuse
+                                                                results in stopping the mechanisms or other workers then
+                                                                the second party who were responsible compensate the
+                                                                first party for all the damages in result.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>خامس وعشرون</strong>
+                                                                </u>
+                                                                <strong>:&#160;</strong>
+                                                                <strong>تعد الأعمال الواردة بالوصف الوظيفي المعد من قبل
+                                                                    الطرف الأول للمهنة المعين عليها الطرف الثاني هو الحد
+                                                                    الأدنى للأعمال التي يتعين على الطرف الثاني القيام
+                                                                    بها ويحق للطرف الأول الإضافة على هذا الوصف بما لا
+                                                                    يخل بطبيعة العمل المسندة إلى الطرف الثاني أو تغيير
+                                                                    في مهنته&#160;
+                                                                </strong>
+                                                                <strong>.&#160;</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Twenty-fifth</strong>: The jobs mentioned in the
+                                                                job description prepared by the first party for the
+                                                                profession assigned to the second party, is the minimum
+                                                                for the work that the second party must do and The first
+                                                                party has the right to add to this description without
+                                                                prejudice to the nature of the work assigned to the
+                                                                second party or a change in his profession.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>سادس وعشرون</strong>
+                                                                </u>
+                                                                <strong>:&#160;</strong>
+                                                                <strong>يتعين على الطرف الثاني الإلمام بالبرامج
+                                                                    الالكترونية التي يدخلها الطرف الأول والتدرب عليها
+                                                                    وكذلك التدريب على جميع البرامج التي تهدف إلى رفع
+                                                                    كفاءة العمل وتحقيق أهدافه&#160;
+                                                                </strong>
+                                                                <strong>.&#160;</strong>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <strong>Twenty-sixth</strong>: The second party should
+                                                                be familiar with the electronic programs that the first
+                                                                party enters and train on, as well as training on all
+                                                                programs that aim to raise the efficiency of work and
+                                                                achieve its goals.
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="50.342465753424655%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>سابع وعشرون</strong>
+                                                                </u>
+                                                                <strong>:&#160;</strong>
+                                                                <strong>يستحق الطرف الثاني تذكرة عند استحقاق إجازته&#160;</strong>
+                                                                <strong>(&#160;</strong>
+                                                                <strong>بري&#160;</strong>
+                                                                <strong>)&#160;</strong>
+                                                                <strong>لمهن العمالة والمراقبين – جوي لمهن المهندسين
+                                                                    والمحاسبين والمهن العليا&#160;
+                                                                </strong>
+                                                                <strong>.&#160;</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;"
+                                                            width="49.657534246575345%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <strong>Twenty-seventh</strong>: The second party
+                                                                deserves a ticket when he is entitled his vacation (by
+                                                                land) for the professions of workers and monitors (by
+                                                                air) for the professions of engineers, accountants and
+                                                                higher professions
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p dir="rtl"
+                                               style="margin-bottom: 0.11in;line-height: 108%;text-align: right;margin-left: -0.2in;margin-right: -0.59in;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <p dir="rtl"
+                                               style="text-align: center;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <p dir="rtl"
+                                               style="text-align: center;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <table cellpadding="7" cellspacing="0" dir="rtl" width="1016">
+                                                <tbody>
+                                                    <tr>
+                                                        <td height="95" style="border: 1px solid #000000;" width="50%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>ثامن وعشرون&#160;</strong>
+                                                                </u>
+                                                                <u>
+                                                                    <strong>:</strong>
+                                                                </u>
+                                                                <strong>تعد اللائحة التنظيمية المعتمدة من وزارة العمل
+                                                                    والخاصة بالطرف الأول مكملة لهذا العقد وتنظم ما لم
+                                                                    يتم النص عليه فيه&#160;
+                                                                </strong>
+                                                                <strong>.&#160;</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;" width="50%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <strong>Twenty-eighth</strong>: The regulatory
+                                                                regulations approved by the Ministry of Labor for the
+                                                                first party are considered complementary to this
+                                                                contractand organizes what is not stipulated in it
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="96" style="border: 1px solid #000000;" width="50%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>التاسع والعشرون</strong>
+                                                                </u>
+                                                                <strong>:-&#160;</strong>
+                                                                <strong>في حال نشوء خلاف بين الطرفين حول هذا العقد فإن
+                                                                    الاختصاص القضائي ينعقد للجهة المختصة بنظر القضايا
+                                                                    العمالية بمدينة عرعر بالمملكة العربية السعودية –
+                                                                    حصراً – دون غيرها&#160;
+                                                                </strong>
+                                                                <strong>.&#160;</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;" width="50%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Twenty-ninth</strong>: In the event of a dispute
+                                                                between the two parties over this contract, the
+                                                                jurisdiction will be held for the authority competent to
+                                                                consider labor cases in the city of Arar, Saudi Arabia -
+                                                                exclusively - and not any other.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="96" style="border: 1px solid #000000;" width="50%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>الثلاثون&#160;</strong>
+                                                                </u>
+                                                                <u>
+                                                                    <strong>:&#160;</strong>
+                                                                    <strong>الإخطارات ونسخ العقد&#160;</strong>
+                                                                    <strong>:-&#160;</strong>
+                                                                </u>
+                                                            </p>
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>تتم الإخطارات والإشعارات بين الطرفين كتابة على
+                                                                    البريد الالكتروني الموضح بصدر هذا العقد&#160;
+                                                                </strong>
+                                                                <strong>,&#160;</strong>
+                                                                <strong>ويلتزم كل طرف بإشعار الطرف الأخر خطياً في حال
+                                                                    تغييره وإلا اعتبر هو المعمول به&#160;
+                                                                </strong>
+                                                                <strong>,&#160;</strong>
+                                                                <strong>ويكون لهذا التبليغ كافة الآثار النظامية&#160;
+                                                                </strong>
+                                                                <strong>.</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;" width="50%">
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                <strong>Thirty</strong>
+                                                                <span lang="en">: notifications and copies of the
+                                                                    contract: -
+                                                                </span>
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="line-height: 115%;text-align: left;margin-bottom: 0in;">
+                                                                The process and notifications between the two parties
+                                                                shall be made in writing to the email indicated at the
+                                                                issuance of this contract, each party shall notify the
+                                                                other party in writing if it is changed, otherwise it
+                                                                shall be deemed to be in effect, and this notification
+                                                                shall have all the systemic effects.
+                                                            </p>
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="96" style="border: 1px solid #000000;" width="50%">
+                                                            <p style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <u>
+                                                                    <strong>الحادي والثلاثون</strong>
+                                                                </u>
+                                                                <u>
+                                                                    <strong>:</strong>
+                                                                </u>
+                                                                <strong>إذا تعارض النص الذي باللغة العربية مع النص
+                                                                    المترجم فإن اللغة العربية هي المعتمدة في تفسير والنص
+                                                                    العربي هو النص المعتمد في هذا العقد وهي المرجع له
+                                                                </strong>
+                                                                <strong>.</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;" width="50%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <strong>Thirty-first</strong>
+                                                                <span lang="en">: If the text in the Arabic language
+                                                                    conflicts with the translated text, then the Arabic
+                                                                    language is the one approved in the interpretation
+                                                                    and the Arabic text is the text adopted in this
+                                                                    contract and it is the reference to it
+                                                                </span>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="96" style="border: 1px solid #000000;" width="50%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0in;line-height: 115%;text-align: right;">
+                                                                <strong>ملحوظة&#160;</strong>
+                                                                <strong>:&#160;</strong>
+                                                                <strong>يعتبر هذا العقد ملغي في حال عدم مباشرة الطرف
+                                                                    الثاني العمل لدى الطرف الأول كحد أقصى ثلاثة أيام من
+                                                                    تاريخ دخوله إلى المملكة العربية السعودية بموجب إشعار
+                                                                    مباشرة العمل المعد من قبل الطرف الأول&#160;
+                                                                </strong>
+                                                                <strong>.</strong>
+                                                            </p>
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <br/>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;" width="50%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <strong>Note:&#160;</strong>
+                                                                <span lang="en">This contract is considered canceled if
+                                                                    the second party does not start working for the
+                                                                    first party as a maximum of three days from the date
+                                                                    of his entry into the Kingdom of Saudi Arabia
+                                                                    according to the notice of starting the work
+                                                                    prepared by the first party
+                                                                </span>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="95" style="border: 1px solid #000000;" width="50%">
+                                                            <p style="margin-bottom: 0.1in;line-height: 115%;text-align: right;">
+                                                                <span lang="ar-SA">
+                                                                    <strong>حرر هذا العقد من نسختين لكل طرف نسخة
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                        </td>
+                                                        <td style="border: 1px solid #000000;" width="50%">
+                                                            <p dir="ltr"
+                                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                                <span lang="en">
+                                                                    <strong>This contract is made in two copies, one for
+                                                                        each party
+                                                                    </strong>
+                                                                </span>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p dir="rtl"
+                                               style="text-align: center;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <p dir="rtl"
+                                               style="text-align: center;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <p dir="rtl"
+                                               style="text-align: center;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <p dir="rtl"
+                                               style="text-align: center;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <p dir="rtl"
+                                               style="text-align: center;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <p dir="rtl"
+                                               style="text-align: center;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <p dir="rtl"
+                                               style="text-align: left;margin-left: -0.2in;margin-right: -0.59in;margin-bottom: 0.11in;line-height: 108%;">
+                                                <br/>
+                                                <br/>
+                                            </p>
+                                            <p dir="ltr"
+                                               style="margin-bottom: 0.1in;line-height: 115%;text-align: left;">
+                                                <br/>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <report
+                id="report_contract_report"
+                string="Contract"
+                model="hr.applicant"
+                report_type="qweb-pdf"
+                file="hr_enhancement_janobi.report_contract_doc"
+                name="hr_enhancement_janobi.report_contract_doc"
+        />
+
+
+    </data>
+</odoo>

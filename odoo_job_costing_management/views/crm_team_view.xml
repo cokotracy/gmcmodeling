@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="sales_team_form_view_inherited" model="ir.ui.view">
+            <field name="name">crm.team.form.inherited.view</field>
+            <field name="model">crm.team</field>
+            <field name="inherit_id" ref="sale.crm_team_salesteams_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoiced_target']" position="after">
+                    <field name="is_tender" invisible="1"/>
+                    <field name="has_team_tender"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

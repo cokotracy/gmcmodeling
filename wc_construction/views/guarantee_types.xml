@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <record id="view_guarantee_types_form" model="ir.ui.view">
+            <field name="name">view_guarantee_types_form</field>
+            <field name="model">guarantee.types</field>
+            <field name="arch" type="xml">
+
+                <form string="">
+
+                    <sheet>
+
+                            <group>
+                                <field name="name"/>
+                            </group>
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_guarantee_types_tree" model="ir.ui.view">
+            <field name="name">view_guarantee_types_tree</field>
+            <field name="model">guarantee.types</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_guarantee_types_view" model="ir.actions.act_window">
+            <field name="name">Guarantee types</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">guarantee.types</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+
+              </p><p>
+
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_guarantee_types_view" name="Guarantee Types" parent="odoo_job_costing_management.menu_job_cost_configuration" action="action_guarantee_types_view" sequence="10"/>
+
+
+
+    </data>
+</odoo>

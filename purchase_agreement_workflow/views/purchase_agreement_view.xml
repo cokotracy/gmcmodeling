@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_requisition_form_custom" model="ir.ui.view">
+        <field name="name">purchase.requisition.form.inherit</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+        <field name="arch" type="xml">
+            <field name="state" position="replace">
+                <field name="state" widget="statusbar"
+                       statusbar_visible="draft,dep_manager,approved,cancel"/>
+            </field>
+
+          <xpath expr="//button[@name='%(purchase_requisition.action_purchase_requisition_to_so)d']" position="replace">
+                <button name="%(purchase_requisition.action_purchase_requisition_to_so)d" type="action"
+                        string="New Quotation" class="btn-primary" states="approved"/>
+            </xpath>
+             <xpath expr="//button[@name='action_done']" position="replace">
+                <button name="action_done" states="approved" string="Close" type="object" class="btn-primary"/>
+            </xpath>
+
+          <xpath expr="//button[@name='action_in_progress']" position="replace">
+               <button name="action_in_progress"  string="Approve" type="object" class="btn-primary"  attrs="{'invisible':['|',('employee_check','=',False),('state','!=','dep_manager')]}"/>
+          </xpath>
+            <xpath expr="//header" position="inside">
+                <button class="oe_stat_button" type="object" icon="fa-user" string="Confirm"
+                        name="approve_dep_manager" states="draft"
+                        />
+
+                <button class="oe_stat_button" type="object" icon="fa-user" string="Reject" attrs="{'invisible':['|',('employee_check','=',False),('state','=','draft')]}"
+                        name="action_reject"
+                        />
+            </xpath>
+
+            <xpath expr="//button[@name='action_cancel']" position="replace">
+                <button name="action_cancel" states="draft,dep_manager,approved" string="Cancel" type="object"/>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+
+                 <field name="employee_check" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

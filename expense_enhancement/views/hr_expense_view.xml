@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_view_hr_expense_sheet_form_janobi" model="ir.ui.view">
+            <field name="name">view_inherit_view_hr_expense_sheet_form_janobi</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+            <field name="arch" type="xml">
+
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="expense_type"/>
+                </xpath>
+
+                <xpath expr="//page[@name='expenses']//tree//field[@name='analytic_account_id']" position="before">
+                    <field name="expense_type"  invisible="1"/>
+                    <field name="project_id" attrs="{'readonly': [('expense_type', '!=', 'project')]}"/>
+                    <field name="tasks_ids" widget="many2many_tags" attrs="{'readonly': [('expense_type', '!=', 'project')]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='analytic_account_id']" position="attributes">
+                     <attribute name="attrs">{'readonly': [('expense_type', '!=', 'expense')]}
+                     </attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

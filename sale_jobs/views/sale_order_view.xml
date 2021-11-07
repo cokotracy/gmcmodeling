@@ -1,0 +1,39 @@
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_job_estimate" type="object" string="Job Estimations" class="oe_stat_button" icon="fa-pencil" context="{'default_quotation_id': active_id}"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='product_id']" position="attributes">
+                <attribute name="string">Work Item</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                <attribute name="string">Work Item</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='product_uom_qty']" position="after">
+                <field name="recently_done"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                <field name="recently_done_update" invisible='1'/>
+                <field name="recently_done"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="job_type_id"/>
+            </xpath>
+            <xpath expr="//page[@name='other_information']/group" position="inside">
+                <group string="Project Information" name="project_information">
+                    <field name="project_id"/>
+                    <field name="project_no"/>
+                    <field name="project_start_date"/>
+                    <field name="project_end_date"/>
+                    <field name="project_period"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

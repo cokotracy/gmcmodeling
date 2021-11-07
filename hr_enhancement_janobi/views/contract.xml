@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_contract_janobi_view_form" model="ir.ui.view">
+        <field name="name">hr.contract.janobi.view.form</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//field[@name='trial_date_end']" position="after">
+            </xpath> -->
+            <xpath expr="//field[@name='hr_responsible_id']" position="after">
+                <field name="contract_document" widget="pdf_viewer"/>
+                <field name="contract_type"/>
+            </xpath>
+            <xpath expr="//group[@name='yearly_advantages']" position="after">
+              <group>
+                <field name="housing_insured"/>
+                <field name="housing_allowance" widget="monetary"
+                       attrs="{'readonly': [('housing_insured', '=', 'insured')]}"/>
+                <field name="overtime_allowance" widget="monetary"/>
+                <field name="transportation_allowance" widget="monetary"/>
+                <field name="meal_allowance" widget="monetary"/>
+                <field name="phone_allowance" widget="monetary"/>
+                <field name="nature_of_work_allowance" widget="monetary"/>
+                <field name="other_allowance" widget="monetary"/>
+                <field name="total_wage" widget="monetary" readonly="1"/>
+              </group>
+            </xpath>
+            <xpath expr="//page[@name='information']" position="after">
+                <page name="tickets" string="Traveling Tickets" groups="hr.group_hr_manager">
+                    <group>
+                        <group>
+                            <field name="tickets_type"/>
+                            <field name="number_of_tickets"/>
+                        </group>
+                        <group>
+                            <field name="tickets_price" widget="monetary"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="in_kind_allowance" string="In-Kind Allowance" groups="hr.group_hr_manager">
+                    <group>
+                        <group>
+                            <field name="in_kind_allowance_name"/>
+                            <field name="in_kind_allowance_amount" widget="monetary"/>
+                        </group>
+                        <group>
+                            <field name="in_kind_allowance_start_date"/>
+                            <field name="in_kind_allowance_end_date"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

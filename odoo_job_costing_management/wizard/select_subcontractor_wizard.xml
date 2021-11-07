@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_select_subcontractor_form" model="ir.ui.view">
+        <field name="name">select.subcontractor.form</field>
+        <field name="model">select.subcontractor</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Select subcontractor">
+                <group string="Subcontractor">
+                    <field name="sub_contractors" domain="[('supplier_rank', '>', 0)]"/>
+                </group>
+                <footer>
+                    <button name="select_contractors" string="Add" type="object" class="oe_highlight" />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_open_select_subcontractor_view">
+        <field name="name">Select Subcontractor</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">select.subcontractor</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_select_subcontractor_view_form">
+        <field name="act_window_id" ref="act_open_select_subcontractor_view" />
+        <field name="sequence" eval="10" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_select_subcontractor_form" />
+    </record>
+
+    <record id="view_select_labour_form" model="ir.ui.view">
+        <field name="name">select.labour.form</field>
+        <field name="model">select.labour</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Select labour">
+                <group string="labour">
+                    <field name="labour_ids"/>
+                </group>
+                <footer>
+                    <button name="select_labours" string="Add" type="object" class="oe_highlight" />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_open_select_labour_view">
+        <field name="name">Select Labour</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">select.labour</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_select_labour_view_form">
+        <field name="act_window_id" ref="act_open_select_labour_view" />
+        <field name="sequence" eval="10" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_select_labour_form" />
+    </record>
+
+    <record id="view_select_equipment_form" model="ir.ui.view">
+        <field name="name">select.equipment.form</field>
+        <field name="model">select.equipment</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Select equipment">
+                <group string="Equipment">
+                    <field name="equipment_line_ids"/>
+                </group>
+                <footer>
+                    <button name="select_equipment" string="Add" type="object" class="oe_highlight" />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+        <record model="ir.actions.act_window" id="act_open_select_equipment_view">
+        <field name="name">Select Equipment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">select.equipment</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+      </record>
+
+    <record model="ir.actions.act_window.view" id="act_open_select_equipment_view_form">
+        <field name="act_window_id" ref="act_open_select_equipment_view" />
+        <field name="sequence" eval="10" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_select_equipment_form" />
+    </record>
+
+
+
+
+</odoo>

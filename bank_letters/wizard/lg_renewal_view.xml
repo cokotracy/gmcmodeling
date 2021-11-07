@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- ####################################################################################### -->
+        <!-- wizard view form-->
+        <record id="wizard_lg_renewal_view" model="ir.ui.view">
+            <field name="name">wizard.view.lg_renewal</field>
+            <field name="model">wizard_lg_renewal</field>
+            <field name="arch" type="xml">
+                <form string="LG renewal">
+                    <group>
+                        <group>
+                            <field name="lg_date_end" required="1"/>
+                        </group>
+                        <group>
+                            <field name="lg_renewal_fees" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="wizard_renewal_lg" type='object' string='Save'
+                                class="oe_highlight"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_wizard_lg_renewal" model="ir.actions.act_window">
+            <field name="name">LG renewal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard_lg_renewal</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

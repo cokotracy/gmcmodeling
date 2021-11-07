@@ -1,0 +1,24 @@
+.pos .pos-bill-categ-receipt-container {
+    font-size: 0.75em;
+    text-align: center;
+}
+.pos .bill_category {
+    border-bottom: 1px solid #EEEEEE;
+    border-top: 1px solid #EEEEEE;
+}
+.text-center {
+	text-align: center;
+}
+.text-right {
+	float: right;
+}
+.mb10 {
+	margin-bottom: 10px;
+}
+.mt15 {
+	margin-top: 15px;
+}
+hr {
+    border-top:1px dotted #000;
+}
+

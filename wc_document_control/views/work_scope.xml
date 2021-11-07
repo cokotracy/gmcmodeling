@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record id="view_work_scope_form" model="ir.ui.view">
+            <field name="name">view_work_scope_form</field>
+            <field name="model">work.scope</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_work_scope_tree" model="ir.ui.view">
+            <field name="name">view_work_scope_tree</field>
+            <field name="model">work.scope</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_work_scope_view" model="ir.actions.act_window">
+            <field name="name">Scope Of Work</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">work.scope</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+
+              </p><p>
+
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_work_scope_view" name="Scope Of Work" parent="menu_document_control_conf_categ" action="action_work_scope_view" sequence="10"/>
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="ReceiptScreenWidget">
+        <t t-jquery=".pos-receipt-container" t-operation="after">
+
+            <div class="pos-bill-categ-receipt-container">
+            </div>
+        </t>
+    </t>
+
+    <t t-name="PosTicket_Bill_Category">
+        <t t-foreach="bill_orderlines" t-as="bill_orderline" class="bill_category">
+        <div style="page-break-before:always" class="pos-receipt-container">
+            <div class="pos-sale-ticket" style="font-family: Calisto MT;">
+                <div>
+                    <strong class="text-right"><t t-esc="moment().format('L LT')"/></strong>
+                    <strong><t t-esc="bill_orderline.name"/></strong>
+                </div>
+                <hr/>
+                <table class='receipt-orderlines'>
+                    <colgroup>
+                        <col width='80%'/>
+                        <!--                        <col width='20%'/>-->
+                        <col width='20%'/>
+                    </colgroup>
+                    <tr>
+                        <tr t-foreach="bill_orderline.orderlines" t-as="orderline">
+                            <td>
+                                <t t-esc="orderline.get_product().display_name"/>
+                            </td>
+                            <td class="pos-right-align">
+                                <t t-esc="orderline.get_quantity_str_with_unit()"/>
+                            </td>
+                            <!--                            <td class="pos-right-align">-->
+                            <!--                                <t t-esc="widget.format_currency(orderline.get_display_price())"/>-->
+                            <!--                            </td>-->
+                        </tr>
+                    </tr>
+                </table>
+                <div class="text-center mt15"><strong >Powered by:<t t-esc="widget.pos.company.name"/></strong></div>
+            </div>
+        </div>
+        </t>
+    </t>
+
+</templates>

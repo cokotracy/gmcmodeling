@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--LC & Form 4 Configration-->
+        <record id="lc_account_letter_form_view" model="ir.ui.view">
+            <field name="name">bnk.lc.config.form.view</field>
+            <field name="model">bnk.lc.config</field>
+            <field name="arch" type="xml">
+                <form string="LC &amp; Form 4 Configuration">
+                    <sheet>
+                        <group>
+                            <field name="lc_account_id"/>
+                            <field name="lc_loan_account_id"/>
+                            <field name="lc_bank_exp_account_id"/>
+                            <field name="lc_manag_exp_account_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="lc_account_letter_tree_view" model="ir.ui.view">
+            <field name="name">bnk.lc.config.tree.view</field>
+            <field name="model">bnk.lc.config</field>
+            <field name="arch" type="xml">
+                <tree >
+                    <field name="lc_account_id"/>
+                    <field name="lc_loan_account_id"/>
+                    <field name="lc_bank_exp_account_id"/>
+                    <field name="lc_manag_exp_account_id"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window"
+                id="lc_act_open_account_letter_config">
+            <field name="name">LC &amp; Form 4 Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bnk.lc.config</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="lc_open_account_letter_config_menu"
+                  parent="bank_letters.account_letters"
+                  action="lc_act_open_account_letter_config"
+                  groups="account.group_account_manager"
+                  sequence="3"/>
+
+
+        <!--LC & Form 4 Configration-->
+        <record id="lg_account_letter_form_view" model="ir.ui.view">
+            <field name="name">bnk.lg.config.form.view</field>
+            <field name="model">bnk.lg.config</field>
+            <field name="arch" type="xml">
+                <form string="LG Configuration">
+                    <sheet>
+                        <group>
+                            <field name="lg_account_id"/>
+                            <field name="lg_loan_account_id"/>
+                            <field name="lg_bank_exp_account_id"/>
+                            <field name="lg_renewal_account_id"/>
+                            <field name="lg_liquidating_account_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="lg_account_letter_tree_view" model="ir.ui.view">
+            <field name="name">bnk.lg.config.tree.view</field>
+            <field name="model">bnk.lg.config</field>
+            <field name="arch" type="xml">
+                <tree >
+                    <field name="lg_account_id"/>
+                            <field name="lg_loan_account_id"/>
+                            <field name="lg_bank_exp_account_id"/>
+                            <field name="lg_renewal_account_id"/>
+                            <field name="lg_liquidating_account_id"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window"
+                id="lg_act_open_account_letter_config">
+            <field name="name">LG Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bnk.lg.config</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="lg_open_account_letter_config_menu"
+                  parent="bank_letters.account_letters"
+                  action="lg_act_open_account_letter_config"
+                  groups="account.group_account_manager"
+                  sequence="5"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,172 @@
+<odoo>
+    <data>
+        <template id="report_custody_custody_doc">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h2 align="center">Custody Description</h2>
+                            <h3>
+                                <strong>Custody Number:</strong>
+                                <span t-field="o.name"/>
+                            </h3>
+                            <table style="width:100%">
+                                <tr style="width:100%">
+                                    <td style="width:50%">
+                                        <div>
+                                            <strong>Employee:</strong>
+                                            <span t-field="o.employee"/>
+                                            <br/>
+                                            <strong>Department:</strong>
+                                            <span t-field="o.department"/>
+                                            <br/>
+                                            <strong>Bank Account:</strong>
+                                            <span t-field="o.bank_account"/>
+                                            <br/>
+                                            <strong>Request Date:</strong>
+                                            <span t-field="o.date"/>
+                                            <br/>
+                                            <strong>Status:</strong>
+                                            <span t-field="o.state"/>
+                                        </div>
+                                    </td>
+                                    <td style="width:50%">
+                                        <div>
+                                            <strong>Old Custody Value:</strong>
+                                            <span t-field="o.old_custody_value"/>
+                                            <br/>
+                                            <strong>Custody Value:</strong>
+                                            <span t-field="o.custody_value"/>
+                                            <br/>
+                                            <strong>Paid Value:</strong>
+                                            <span t-field="o.paid_value"/>
+                                            <br/>
+                                            <strong>Approved Custody Value:</strong>
+                                            <span t-field="o.approved_custody_value"/>
+                                            <br/>
+                                            <strong>Approve Date:</strong>
+                                            <span t-field="o.approve_date"/>
+                                            <br/>
+                                            <strong>Rejected Custody Value:</strong>
+                                            <span t-field="o.rejected_custody_value"/>
+                                            <br/>
+                                            <strong>Reject Date:</strong>
+                                            <span t-field="o.reject_date"/>
+                                            <br/>
+                                            <strong>Balance:</strong>
+                                            <span t-field="o.balance"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Value</th>
+                                        <th>Customer</th>
+                                        <th>Asset</th>
+                                        <th>Analytic Account</th>
+                                        <th>Date</th>
+                                        <th>Approve</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="custody_tbody">
+                                    <t t-foreach="o.line_ids" t-as="l">
+                                        <span t-if="l.approve == True">
+                                            <tr>
+                                                <td>
+                                                    <span t-field="l.description"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.value"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.partner_id"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.asset_id"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.analytic_account_id"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="l.date"/>
+                                                </td>
+                                                <td>
+                                                    <span t-if="l.approve == True">Approved</span>
+                                                    <span t-if="l.approve == False">Rejected</span>
+                                                </td>
+                                            </tr>
+                                        </span>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <div class="oe_structure"/>
+                        </div>
+                        <div class="footer last-page" style="height:100px;border-top: 1px black solid;">
+                            <div class="row">
+                                <div class="col-xs-4 text-center" style="width:50%">
+                                    <strong>
+                                        <span style="font-size: 18px;">توقيع صاحب العهدة</span>
+                                        <br/>
+                                        <span style="font-size: 16px;align=right">
+                                            الإسم:.........................................
+                                        </span>
+                                        <br/>
+                                        <span style="font-size: 16px;align=right">
+                                            التوقيع:.......................................
+                                        </span>
+                                    </strong>
+                                </div>
+                                <div class="col-xs-4 text-center" style="width:50%">
+                                    <strong>
+                                        <span style="font-size: 18px;">توقيع مستلم الأرشفة</span>
+                                        <br/>
+                                        <span style="font-size: 16px;align=right">
+                                            الإسم:.........................................
+                                        </span>
+                                        <br/>
+                                        <span style="font-size: 16px;align=right">
+                                            التوقيع:.......................................
+                                        </span>
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="paperformat_custody_report"
+                model="report.paperformat">
+            <field name="name">European A4 Landscape</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+                id="report_custody_custody_report"
+                string="Custody"
+                model="custody.custody"
+                report_type="qweb-pdf"
+                file="janobi_custody.report_custody_custody_doc"
+                name="janobi_custody.report_custody_custody_doc"
+                paperformat="janobi_custody.paperformat_custody_report"
+                menu="False"
+                print_report_name="'Custody - %s' % (object.name)"
+
+        />
+
+    </data>
+</odoo>

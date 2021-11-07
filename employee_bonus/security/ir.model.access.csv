@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_officer_bonus_reason,hr.officer.bonus.reason,model_bonus_reason,hr.group_hr_user,1,1,1,1
+access_employee_bonus_reason,emp.bonus.reason,model_bonus_reason,base.group_user,1,0,0,0
+access_hr_officer_bonus,hr.officer.bonus,model_employee_bonus,hr.group_hr_user,1,1,1,1
+access_employee_bonus,emp.bonus,model_employee_bonus,base.group_user,1,0,0,0
+access_dept_manager_bonus_reason,dept.manager.employee.bonus,model_employee_bonus,employee_bonus.group_department_manager_for_bonus,1,1,1,1

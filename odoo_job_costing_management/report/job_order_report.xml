@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <data>
+    <record id="paperformat_my_joboder_landscape_report" model="report.paperformat">
+        <field name="name">Job Order Report</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">55</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">1</field>
+        <field name="margin_right">1</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">50</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="job_order_report" model="ir.actions.report">
+            <field name="name">Job Order</field>
+            <field name="model">project.project</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">odoo_job_costing_management.report_job_order</field>
+            <field name="report_file">odoo_job_costing_management.report_job_order</field>
+            <field name="binding_model_id" ref="model_project_project"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="odoo_job_costing_management.paperformat_my_joboder_landscape_report"/>
+        </record>
+        
+   <!-- <report
+       id="job_order_report"
+       model="project.project"
+       string="Job Order"
+       report_type="qweb-pdf"
+       name="odoo_job_costing_management.report_job_order"
+       file="odoo_job_costing_management.report_job_order"
+       paperformat = "odoo_job_costing_management.paperformat_my_joboder_landscape_report"
+   /> -->
+
+    <template id="report_job_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div id="qrcode" t-if="doc.qr_code">
+                            <!-- <img alt="qr_code" t-att-src="doc.qr_code" style="border:0px solid transparent; height: 50; width: 200px;" height="50"/> -->
+                            <img  t-att-src="image_data_uri(doc.qr_code)"/>
+
+                        </div>
+
+
+                        <div>
+                            <table class="table table-condensed table-bordered">
+                                    <thead style="background-color:#191970;color:#FFFFFF;font-wight:bold">
+                                    <tr>
+                                        <th class="text-center"><strong>JOB ORDER</strong></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div>
+                            <table class="table table-condensed table-bordered">
+                                    <thead style="background-color:#191970;color:#FFFFFF;font-wight:bold">
+                                    <tr>
+                                        <th style="color:wight;font-wight:bold"><strong>PROJECT DETAILS</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="font-wight:bold">
+                                        <td ><strong>JOB ORDER NO</strong></td>
+                                        <td><span t-field="doc.job_order_no"/></td>
+                                        <td ><strong>ENTRY DATE</strong></td>
+                                        <td><span t-field="doc.entry_date"/></td>
+                                    </tr>
+                                    <tr style="font-wight:bold">
+                                        <td ><strong>PROJECT ID</strong></td>
+                                        <td><span t-field="doc.project_ID"/></td>
+                                        <td><strong>Location</strong></td>
+                                        <td ><span t-field="doc.location"/></td>
+                                    </tr>
+                                    <tr style="font-wight:bold">
+                                        <td ><strong>PROJECT NAME</strong></td>
+                                        <td><span t-field="doc.name"/></td>
+                                        <td ><strong>PO NUMBER</strong></td>
+                                        <td><span t-field="doc.po_number"/></td>
+                                    </tr>
+                                    <tr style="font-wight:bold">
+                                        <td></td>
+                                        <td><span/></td>
+                                        <td ><strong>PO DATE</strong></td>
+                                        <td><span t-field="doc.po_date"/></td>
+                                    </tr>
+                                    <tr style="font-wight:bold">
+                                        <td style="font-wight:bold"><strong>CLIENT NAME</strong></td>
+                                        <td><span t-field="doc.client_name"/></td>
+                                        <td style="font-wight:bold"><strong>START DATE</strong></td>
+                                        <td><span t-field="doc.start_date"/></td>
+                                    </tr>
+                                    <tr style="font-wight:bold">
+                                        <td style="font-wight:bold"><strong>CLIENT MANAGER</strong></td>
+                                        <td><span t-field="doc.client_manager"/></td>
+                                        <td style="font-wight:bold"><strong>HAND OVER DATE</strong></td>
+                                        <td><span t-field="doc.hand_over_date"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div t-if="doc.key_personnel_ids">
+                            <!--<h3>Direct Materials</h3>-->
+                            <table class="table table-condensed table-bordered">
+                                <thead style="background-color:#191970;color:#FFFFFF ;font-wight:bold">
+                                    <tr>
+                                        <th>
+                                            <strong>KEY PERSONNEL</strong>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th><strong>POSITION</strong></th>
+                                        <th style="color:wight ;font-wight:bold"><strong>EMPLOYEE NAME</strong></th>
+                                        <th style="color:wight ;font-wight:bold"><strong>MOBILE</strong></th>
+                                        <th style="color:wight ;font-wight:bold"><strong>EMAIL ID</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.key_personnel_ids" t-as="material_line">
+                                        <td>
+                                            <span t-field="material_line.position_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="material_line.employee_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="material_line.mobile"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="material_line.email_id"/>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <t t-if="doc.remarks">
+                            <table class="table table-condensed table-bordered">
+                                    <thead style="background-color:#191970;color:#FFFFFF ;font-wight:bold">
+                                    <tr>
+                                        <th><strong>REMARKS</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span t-field="doc.remarks"/> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </t>
+                        </div>
+
+                        <div>
+                            <table class="table table-condensed table-bordered">
+                                    <thead style="background-color:#191970;color:#FFFFFF">
+                                    <tr>
+                                        <th >CLIENT STAMP AND SIGNATURE</th>
+                                        <th style="color:wight">EDC STAMP AND SIGNATURE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="font-wight:bold">
+                                        <td ><strong>NAME:</strong></td>
+                                        <td><strong>NAME:</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>DATE:</strong></td>
+                                        <td><strong>DATE:</strong></td>
+                                    </tr>
+                                    <tr style="font-wight:bold">
+                                        <td ><strong>SIGNATURE:</strong></td>
+                                        <td><strong>SIGNATURE:</strong></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    </data>
+</odoo>

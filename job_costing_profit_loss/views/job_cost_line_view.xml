@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="job_costing_form_view_inherit_actual_subtotal" model="ir.ui.view">
+        <field name="name">Job.Costing.Form.inherit.actual.subtotal</field>
+        <field name="model">job.costing</field>
+        <field name="inherit_id" ref="odoo_job_costing_management.job_costing_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='job_cost_material_page']//tree//field[@name='actual_vendor_cost']" position="after">
+                <field name="actual_invoice_subtotal" />
+            </xpath>
+<!--            <xpath expr="//page[@name='job_cost_labour_page']//tree//field[@name='actual_timesheet_cost']" position="after">-->
+<!--                <field name="actual_invoice_subtotal" />-->
+<!--            </xpath>-->
+            <xpath expr="//page[@name='job_cost_overhead_page']//tree//field[@name='actual_vendor_cost']" position="after">
+                <field name="actual_invoice_subtotal" />
+            </xpath>
+        </field>
+    </record>
+    
+</odoo> 

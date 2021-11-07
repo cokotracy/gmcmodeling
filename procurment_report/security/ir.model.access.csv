@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+access_procurment_print_add,procurment.print,procurment_report.model_procurment_print,group_procurment_print_add,1,0,1,0
+access_procurment_print_edit,procurment.print,procurment_report.model_procurment_print,group_procurment_print_edit,1,1,1,0
+access_procurment_print_delete,procurment.print,procurment_report.model_procurment_print,group_procurment_print_delete,1,1,1,1
+
+access_code_code_add,code.code,procurment_report.model_code_code,group_code_code_add,1,0,1,0
+access_code_code_edit,code.code,procurment_report.model_code_code,group_code_code_edit,1,1,1,0
+access_code_code_delete,code.code,procurment_report.model_code_code,group_code_code_delete,1,1,1,1

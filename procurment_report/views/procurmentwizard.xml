@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <report
+     id="dc_xlsx_procurment"
+     model="procurment.print"
+     string="Procurment List Report"
+     report_type="xlsx"
+     name="procurment_report.dc_xlsx_procurment"
+     file="procurment_report.dc_xlsx_procurment"
+     attachment_use="True"
+     menu = "False"
+ />
+
+  <record id="procurment_xlsx_view_form_11" model="ir.ui.view">
+     <field name="name">procurment_xlsx_view_form.form.11</field>
+     <field name="model">procurment.print</field>
+     <field name="arch" type="xml">
+         <form>
+
+                 <group string="Generate Procurment List Excel Report">
+                     <group >
+                         <field name="project_no"/>
+                         <field name="work_item_code"/>
+                         <field name="name"/>
+                         <field name="product"/>
+
+
+                     </group>
+                     <group >
+                       <field name="submittal_type" />
+                       <field name="scope_of_work_id" />
+                       <field name="division"/>
+                       <field name="job_type_id" />
+                       <field name="action_code" />
+
+
+
+                     </group>
+                 </group>
+
+             <footer>
+                 <button name="print_dc_xls" type="object" string="Export Excel" class="oe_highlight"/> OR
+                 <button special="cancel" string="Cancel"/>
+             </footer>
+         </form>
+     </field>
+ </record>
+
+
+ <record id="procurment_list_wizard_action" model="ir.actions.act_window">
+     <field name="name">Procurment List Report</field>
+     <field name="res_model">procurment.print</field>
+     <field name="view_mode">form</field>
+     <field name="target">new</field>
+ </record>
+
+ <menuitem id="procurment_list_wizard_rep_xls_print" name="Procurment List Report" parent="procurment_list_project.menu_procurment_list" action="procurment_list_wizard_action" sequence="2"/>
+
+
+
+
+
+
+
+
+</odoo>

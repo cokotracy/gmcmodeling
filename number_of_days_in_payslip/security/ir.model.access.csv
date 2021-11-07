@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_number_of_days_in_payslip_number_of_days_in_payslip,number_of_days_in_payslip.number_of_days_in_payslip,model_number_of_days_in_payslip_number_of_days_in_payslip,base.group_user,1,1,1,1

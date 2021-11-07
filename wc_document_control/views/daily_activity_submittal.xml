@@ -1,0 +1,234 @@
+<odoo>
+    <data>
+        <record id="view_daily_activity_submittal_form" model="ir.ui.view">
+            <field name="name">view_daily_activity_submittal_form</field>
+            <field name="model">daily_activity.submittal</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="action_dc_send" type="object" class="oe_highlight" string="Send By Email"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="projectID" readonly="1" force_save="1"/>
+                                <field name="project_id" required="1"/>
+                                <field name="client_id"/>
+                                <field name="client_manager_id"/>
+                                <field name="client_specialist_id"/>
+                                <field name="prepared_by_id"/>
+                            </group>
+
+                            <group>
+                                <field name="daily_activityID" readonly="1" force_save="1"/>
+                                <field name="submission_date"/>
+                                <field name="weather"/>
+                                <field name="humidity"/>
+                                <field name="main_contractor"/>
+                                <field name="company_id" readonly="1" force_save="1"/>
+                            </group>
+                        </group>
+
+                        <group string="CONTRACTOR'S MANPOWER">
+                            <group>
+                                <!--<group string="STAFF"></group>-->
+                                <!--<group string="Nos"></group>-->
+                                <field name="project_manager"/>
+                                <field name="site_manager"/>
+                                <field name="engineers"/>
+                                <field name="admin"/>
+                                <field name="technicians"/>
+                                <field name="safety_officer"/>
+                                <field name="indir_labour"/>
+                                <field name="operator"/>
+                                <field name="mechanic"/>
+                                <field name="electricians"/>
+                                <field name="welders"/>
+                                <field name="drivers"/>
+
+                            </group>
+                            <group>
+                                <!--<group string="DIRECT LABOUR"></group>-->
+                                <!--<group string="Nos"></group>-->
+                                <field name="foreman"/>
+                                <field name="charge_hand"/>
+                                <field name="steel_fixer"/>
+                                <field name="carpenter"/>
+                                <field name="mason"/>
+                                <field name="plasterer"/>
+                                <field name="office_boys"/>
+                                <field name="plumbers"/>
+                                <field name="unSkilled"/>
+                                <field name="night_watchman"/>
+                                <field name="cleaner"/>
+                                <field name="store_keeper"/>
+                                <field name="gate_keeper"/>
+                            </group>
+                        </group>
+
+
+                        <group string="EQUIPMENT">
+                            <group>
+
+                                <label for="backhoe"/>
+                                <div class="d-flex">
+                                    <field name="backhoe" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:5px;padding-right:5px;">Status</span>
+                                    <field name="backhoe_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="wheel_loader"/>
+                                <div class="d-flex">
+                                    <field name="wheel_loader" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="wheel_loader_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="tipper"/>
+                                <div class="d-flex">
+                                    <field name="tipper" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="tipper_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="rooler_compactor"/>
+                                <div class="d-flex">
+                                    <field name="rooler_compactor" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="rooler_compactor_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="mobile_crane"/>
+                                <div class="d-flex">
+                                    <field name="mobile_crane" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="mobile_crane_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="tower_crane"/>
+                                <div class="d-flex">
+                                    <field name="tower_crane" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="tower_crane_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="transit_mixer"/>
+                                <div class="d-flex">
+                                    <field name="transit_mixer" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="transit_mixer_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="concrete_vibrator"/>
+                                <div class="d-flex">
+                                    <field name="concrete_vibrator" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="concrete_vibrator_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="welding_machine"/>
+                                <div class="d-flex">
+                                    <field name="welding_machine" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="welding_machine_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="generator"/>
+                                <div class="d-flex">
+                                    <field name="generator" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="generator_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="bar_bending_cutting"/>
+                                <div class="d-flex">
+                                    <field name="bar_bending_cutting" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="bar_bending_cutting_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="pick_up_trucks"/>
+                                <div class="d-flex">
+                                    <field name="pick_up_trucks" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="pick_up_trucks_status" style="width:40%" force_save="1"/>
+                                </div>
+
+                                <label for="bobcat_telescopic"/>
+                                <div class="d-flex">
+                                    <field name="bobcat_telescopic" placeholder="QTY" style="width:40%"/>
+                                    <span style="font-weight: bold;padding-left:15px;padding-right:15px;">Status</span>
+                                    <field name="bobcat_telescopic_status" style="width:40%" force_save="1"/>
+                                </div>
+
+
+                            </group>
+                            <group></group>
+
+
+                        </group>
+
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_daily_activity_submittal_tree" model="ir.ui.view">
+            <field name="name">view_daily_activity_submittal_tree</field>
+            <field name="model">daily_activity.submittal</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="projectID"/>
+                    <field name="project_id"/>
+                    <field name="daily_activityID"/>
+                    <field name="client_id"/>
+                    <field name="client_manager_id"/>
+                    <field name="prepared_by_id"/>
+                    <field name="submission_date"/>
+                    <field name="weather"/>
+                    <field name="humidity"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_daily_activity_search" model="ir.ui.view">
+            <field name="name">view_daily_activity_search</field>
+            <field name="model">daily_activity.submittal</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="project_id" string="string" domain="[('project_ID', 'ilike', self)]"/>
+                    <field name="projectID"/>
+                    <field name="project_id"/>
+                    <field name="daily_activityID"/>
+                    <field name="client_id"/>
+                    <field name="prepared_by_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_daily_activity_submittal_view" model="ir.actions.act_window">
+            <field name="name">Daily Activity</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">daily_activity.submittal</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+
+                </p>
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_daily_activity_submittal_view" name="Daily Activity" parent="menu_document_control_categ"
+                  action="action_daily_activity_submittal_view" sequence="9"/>
+    </data>
+</odoo>

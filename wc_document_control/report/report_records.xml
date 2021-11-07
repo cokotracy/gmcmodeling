@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="paperformat_editing" model="report.paperformat">
+	        <field name="name">Printing Portrait</field>
+	        <field name="default" eval="True"/>
+	        <field name="format">A4</field>
+	        <field name="page_height">0</field>
+	        <field name="page_width">0</field>
+	        <field name="orientation">Portrait</field>
+	        <field name="margin_top">10</field>
+	        <field name="margin_bottom">18</field>
+	        <field name="margin_left">7</field>
+	        <field name="margin_right">7</field>
+	        <field name="header_line" eval="False"/>
+	        <field name="header_spacing">25</field>
+	        <field name="dpi">150</field>
+	    </record>
+
+		<record id="paperformat_editing_landscape" model="report.paperformat">
+	        <field name="name">Printing A4 Landscape</field>
+	        <field name="default" eval="True"/>
+	        <field name="format">A4</field>
+	        <field name="page_height">0</field>
+	        <field name="page_width">0</field>
+	        <field name="orientation">Landscape</field>
+	        <field name="margin_top">10</field>
+	        <field name="margin_bottom">18</field>
+	        <field name="margin_left">7</field>
+	        <field name="margin_right">7</field>
+	        <field name="header_line" eval="False"/>
+	        <field name="header_spacing">25</field>
+	        <field name="dpi">150</field>
+	    </record>
+
+		<report id="variation_submittal_report_id"
+			string="Variation Proposal" model="variation.submittal"
+			report_type="qweb-pdf"
+			file="wc_document_control.variation_submittal_report_template_id"
+			name="wc_document_control.variation_submittal_report_template_id"
+			paperformat="wc_document_control.paperformat_editing"/>
+
+		<report id="eng_instruct_submittal_report_id"
+			string="Engineer Instructions Submittal" model="eng_instruct.submittal"
+			report_type="qweb-pdf"
+			file="wc_document_control.eng_instruct_submittal_report_template_id"
+			name="wc_document_control.eng_instruct_submittal_report_template_id"
+			paperformat="wc_document_control.paperformat_editing"/>
+
+		<report id="daily_activity_submittal_report_id"
+			string="Daily Activity" model="daily_activity.submittal"
+			report_type="qweb-pdf"
+			file="wc_document_control.daily_activity_submittal_report_template_id"
+			name="wc_document_control.daily_activity_submittal_report_template_id"
+			paperformat="wc_document_control.paperformat_editing"/>
+
+		<report id="cvi_report_id"
+			string="CVI Submittal" model="cvi.submittal"
+			report_type="qweb-pdf"
+			file="wc_document_control.cvi_submittal_report_template_id"
+			name="wc_document_control.cvi_submittal_report_template_id"
+			paperformat="wc_document_control.paperformat_editing"/>
+
+		<report id="drawing_report_landscape"
+                model="document.control"
+                report_type="qweb-pdf"
+                string="Print PDF Landscape"
+                menu="True"
+                name="wc_document_control.document_control_template_landscape"
+                file="wc_document_control.document_control_template_landscape"
+                paperformat="wc_document_control.paperformat_editing_landscape"/>
+
+	</data>
+</odoo>

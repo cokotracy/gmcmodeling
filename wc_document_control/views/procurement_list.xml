@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_inherit_procurment_list_view_form_form" model="ir.ui.view">
+            <field name="name">view_inherit_procurment_list_view_form_form</field>
+            <field name="model">procurment.list</field>
+            <field name="inherit_id" ref="procurment_list_project.procurment_list_view_form"/>
+            <field name="arch" type="xml">
+                
+                <!-- position: after|before|replace|attributes|inside -->
+                <!-- position: after|before|replace|attributes|inside -->
+                <xpath expr="//header" position="inside">
+                    <button name="create_dc" string="Create Submittal" class="btn-primary" type="object" invisible="0"/>
+
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="consultant"/>
+                    <field name="client_specialist_id"/>
+                </xpath>
+                <xpath expr="//notebook/page[1]/field/tree/field[@name='product']" position="after">
+                    <field name="submittal_type"/>
+                    <field name="scope_of_work_id"/>
+                    <field name="division"/>
+                    <field name="is_dc_updated" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//notebook/page[1]/field/tree/field[@name='code']" position="after">
+                    <field name="action_code"/>
+
+                </xpath>
+
+                <xpath expr="//notebook/page[2]/field/tree/field[@name='product']" position="after">
+                    <field name="submittal_type"/>
+                    <field name="scope_of_work_id"/>
+                    <field name="division"/>
+                    <field name="is_dc_updated" invisible="1"/>
+                </xpath>
+                <xpath expr="//notebook/page[2]/field/tree/field[@name='code']" position="after">
+                    <field name="action_code"/>
+                </xpath>
+                <xpath expr="//notebook/page[2]/field/tree" position="attributes">
+                    <attribute name="decoration-danger">is_dc_updated == True</attribute>
+                    <!--<attribute name="colors">red:is_dc_updated != False</attribute>-->
+                </xpath>
+                
+            </field>
+        </record>
+    </data>
+</odoo>

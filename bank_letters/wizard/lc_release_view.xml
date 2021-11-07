@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- ####################################################################################### -->
+        <!-- wizard view form-->
+        <record id="wizard_lc_release_view" model="ir.ui.view">
+            <field name="name">wizard.view.lc_release</field>
+            <field name="model">wizard_lc_release</field>
+            <field name="arch" type="xml">
+                <form string="LC Release">
+
+                    <group>
+                        <group>
+                            <field name="shipment_val" required="1"/>
+                            <field name="lc_val" required="1"/>
+                            <field name="loan_val"/>
+
+                        </group>
+                        <group>
+                            <field name="bank_exp" required="1"/>
+                            <field name="mang_exp" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="wizard_release_lc" type='object' string='Save'
+                                class="oe_highlight"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_wizard_lc_release" model="ir.actions.act_window">
+            <field name="name">LC Release</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard_lc_release</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                   (0, 0, {'view_mode': 'form','view_id': ref('wizard_lc_release_view')}),
+                          ]"/>
+        </record>
+
+        <record id="wizard_lc_release_view_form_4" model="ir.ui.view">
+            <field name="name">wizard.view.lc_release.form_4</field>
+            <field name="model">wizard_lc_release</field>
+            <field name="arch" type="xml">
+                <form string="LC Release Form 4">
+
+                    <group>
+                        <group>
+                            <field name="shipment_val" required="1"/>
+                            <field name="loan_val" string="Bank Amount Deducted"/>
+
+                        </group>
+                        <group>
+                            <field name="lc_val" required="1"/>
+                        </group>
+                        <group>
+                            <field name="bank_exp" required="1"/>
+                            <field name="mang_exp" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="wizard_release_lc" type='object' string='Save'
+                                class="oe_highlight"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_wizard_lc_release_form_4" model="ir.actions.act_window">
+            <field name="name">LC Release From 4</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard_lc_release</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                   (0, 0, {'view_mode': 'form','view_id': ref('wizard_lc_release_view_form_4')}),
+                          ]"/>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_attendance_transfer_log_form_view" model="ir.ui.view">
+            <field name="name">hr_attendance_transfer_log_form_view</field>
+            <field name="model">hr.attendance.transfer.log</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_get_log" type="object" string="Get Log" class="oe_highlight"
+                                states="draft"/>
+                        <button name="action_confirm" type="object" string="Confirm" states="draft"/>
+                        <button name="action_transfer" type="object" string="Transfer" class="oe_highlight"
+                                states="confirm"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,transfer"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="type"/>
+                                <field name="employee_id"
+                                       attrs="{'invisible': [('type','!=','employee')], 'required': [('type','=','employee')]}"/>
+                                <field name="department_id"
+                                       attrs="{'invisible': [('type','!=','department')], 'required': [('type','=','department')]}"/>
+                                <label for="date_from" string="Date From"/>
+                                <div class="oe_row">
+                                    <field name="date_from"/>
+                                    <span style="font-weight:bold">To</span>
+                                    <field name="date_to"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="user_id"/>
+                            </group>
+                        </group>
+                        <group string="Attendance Log">
+                            <field name="attendance_log_ids" nolabel="1" readonly="1">
+                                <tree>
+                                    <field name="employee_id"/>
+                                    <field name="check_in"/>
+                                    <field name="check_out"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_attendance_transfer_log_tree_view" model="ir.ui.view">
+            <field name="name">hr_attendance_transfer_log_tree_view</field>
+            <field name="model">hr.attendance.transfer.log</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="type"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="user_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_attendance_transfer_log_act_window" model="ir.actions.act_window">
+            <field name="name">Attendance Transfer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.attendance.transfer.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new transfer.
+                </p>
+            </field>
+        </record>
+
+        <record id="hr_attendance_transfer_log_search_view" model="ir.ui.view">
+            <field name="name">hr.attendance.transfer.log.search.view</field>
+            <field name="model">hr.attendance.transfer.log</field>
+            <field name="arch" type="xml">
+                <search string="Attendance Log">
+                    <field name="employee_id"
+                           filter_domain="['|', ('employee_id', 'ilike', self), ('employee_id.fb_id', 'ilike', self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_employee_inherited_form_view">
+            <field name="name">hr.employee.inherited.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='pin']" position="after">
+                    <field name="fb_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem name="attendance Transfer" id="hr_attendance_transfer_log_menu"
+                  parent="hr_attendance_log_menu_root" action="hr_attendance_transfer_log_act_window"/>
+
+    </data>
+</odoo>

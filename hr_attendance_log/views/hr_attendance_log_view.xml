@@ -1,0 +1,77 @@
+<odoo>
+    <data>
+        <record id="hr_attendance_log_view_form" model="ir.ui.view">
+            <field name="name">hr_attendance_log_view_form</field>
+            <field name="model">hr.attendance.log</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="employee_id"/>
+                            <field name="check_in" readonly="1"/>
+                            <field name="check_out" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_attendance_log_view_tree" model="ir.ui.view">
+            <field name="name">hr_attendance_log_view_tree</field>
+            <field name="model">hr.attendance.log</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="copy_attendance_rf_id"/>
+                    <field name="copy_employee_id"/>
+                    <field name="check_in"/>
+                    <field name="check_out"/>
+                    <field name="transferred"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="hr_attendance_log_search_view" model="ir.ui.view">
+            <field name="name">hr.attendance.log.search.view</field>
+            <field name="model">hr.attendance.log</field>
+            <field name="arch" type="xml">
+                <search string="Attendance Log">
+                    <field name="employee_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_attendance_log_view_calendar" model="ir.ui.view">
+            <field name="name">hr_attendance_log_calendar</field>
+            <field name="model">hr.attendance.log</field>
+            <field name="arch" type="xml">
+                <calendar string="Attendances" date_start="check_in" date_stop="check_out"
+                          event_open_popup="true"
+                          mode="month" color="employee_id" quick_add="False">
+                    <field name="employee_id"/>
+                    <field name="check_in"/>
+                    <field name="check_out"/>
+                </calendar>
+            </field>
+        </record>
+
+
+        <record id="hr_attendance_log_action" model="ir.actions.act_window">
+            <field name="name">Attendance Log</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.attendance.log</field>
+            <field name="view_mode">tree,calendar</field>
+        </record>
+
+
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="hr_attendance_log_menu_root" name="Attendance Log"
+                  parent="hr_attendance.menu_hr_attendance_root" sequence="10"/>
+
+        <menuitem id="hr_attendance_log_menu"
+                  name="Attendance Log"
+                  parent="hr_attendance_log_menu_root"
+                  action="hr_attendance_log_action"
+                  sequence="1"/>
+    </data>
+</odoo>

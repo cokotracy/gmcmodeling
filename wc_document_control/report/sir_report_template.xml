@@ -1,0 +1,176 @@
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <!-- NAME & FILE_NAME should be the same -->
+        <report
+                id="sir_report"
+                model="sir.submittal"
+                report_type="qweb-pdf"
+                string="SIR SUBMITTAL"
+                menu="True"
+                name="wc_document_control.sir_template"
+                file="wc_document_control.sir_template"
+                paperformat="wc_document_control.paperformat_editing"/>
+        />
+
+        <template id="sir_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="wc_document_control.custom_external_layout_standard">
+                        <div class="page">
+                                <!--<div>-->
+                                    <!--<img src="/wc_document_control/static/description/header.jpeg" alt="Header" style="width:100%"/>-->
+                                <!--</div>-->
+
+                        <div class="row" style="display:flex;align-items:center;margin-left:2px;width:99.9%;margin-bottom:20px;height:200px;border:2px solid black;">
+                            <div style="margin-top:30px;width:40%;display:flex;align-items:center;">
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="float-left" style="max-height:140px; max-width:300px;"/>
+                            </div>
+                            <div class="row" style="margin-top:30px;width:30%;display:flex;align-items:center;">
+                                <div style="width:50%;display:flex;align-items:center;">
+                                    <img t-if="o.consultant.logo1" t-att-src="image_data_uri(o.consultant.logo1)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                                <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">
+                                    <img t-if="o.consultant.logo2" t-att-src="image_data_uri(o.consultant.logo2)" class="float-left" style="max-height:140px; max-width:195px;"/>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:30px;width:30%;display:flex;align-items:center;">
+                                <div style="width:50%;display:flex;align-items:center;">
+                                    <img t-if="o.project_id.partner_id.image_1920" t-att-src="image_data_uri(o.project_id.partner_id.image_1920)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                                <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">
+                                    <img t-if="o.project_id.partner_id.logo2" t-att-src="image_data_uri(o.project_id.partner_id.logo2)" class="float-left" style="max-height:1140px; max-width:198px;"/>
+                                </div>
+                            </div>
+                        </div>
+<!--                            <table style="border:2px;solid">-->
+<!--                                     <thead>-->
+<!--                                         <th style="width:40%">-->
+<!--                                         <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     <th style="width:15%">-->
+<!--                                         <img t-if="o.consultant.logo1" t-att-src="image_data_uri(o.consultant.logo1)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     <th style="width:15%">-->
+<!--                                         <img t-if="o.consultant.logo2" t-att-src="image_data_uri(o.consultant.logo2)" class="float-left" />-->
+
+<!--                                     </th>-->
+
+<!--                                     <th style="width:15%">-->
+<!--                                        <img t-if="o.project_id.partner_id.image_1920" t-att-src="image_data_uri(o.project_id.partner_id.image_1920)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     <th style="width:15%">-->
+<!--                                         <img t-if="o.project_id.partner_id.logo2" t-att-src="image_data_uri(o.project_id.partner_id.logo2)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     </thead>-->
+
+<!--                                      &lt;!&ndash;<div style="width:30%;float:left">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;<div style="width:30%; float:right">&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--                                 &lt;!&ndash;<div style="width:30%; float:right">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;<img t-if="o.consultant.logo2" t-att-src="image_data_uri(o.consultant.logo2)" class="float-left" alt="Logo"/>&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                                 </table>-->
+
+
+                                <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                        <tbody>
+                                            <tr style="background-color:  #4682b4;color:white">
+                                                <th scope="col" colspan="4"><center><span>SITE INSPECTION REQUEST (SIR)</span></center></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col"><span>Project ID</span></th>
+                                                <td scope="col"> <span t-esc="o.projectID"/></td>
+                                                <th scope="col"><span>Reference No</span></th>
+                                                <td scope="col"><span/></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col"><span>Project Name</span></th>
+                                                <td scope="col"> <span t-esc="o.project_id.name"/></td>
+                                                <th scope="col"><span>Contractor</span></th>
+                                                <td scope="col"><span/></td>
+                                            </tr>
+
+                                             <tr>
+                                                <th scope="col"><span>Cleint Name</span></th>
+                                                <td scope="col"><span t-esc="o.client_id.name"/></td>
+                                                <th scope="col"><span>Consultant PM</span></th>
+                                                <td scope="col"><span t-esc="o.consultant_pm"/> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col"><span>Consultant</span></th>
+                                                <td scope="col"><span t-esc="o.consultant.name"/></td>
+                                                <th scope="col"><span>Date</span></th>
+                                                <td scope="col"><span t-esc="o.submission_date"/></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+                                <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td scope="col" colspan="3"><span>We request inspection and approval of the following works: -</span></td>
+                                                <td scope="col"><span></span></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td scope="col"><span>SLNO</span></td>
+                                                <td scope="col">DESCRIPTION OF WORK</td>
+                                                <td scope="col"><span>LOCATION</span></td>
+                                                <td scope="col"><span>REF. IN CONTRACT DOCUMENTS</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col"><span/></td>
+                                                <td scope="col"><span t-esc="o.description_work"/></td>
+                                                <td scope="col"><span t-esc="o.location"></span></td>
+                                                <td scope="col"><span></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                <br/>
+
+                                <div style="height:300px;width:100%">
+                                    <img style="width:100%" src="/wc_document_control/static/description/first_section_in_sir.png"/>
+                                </div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div style="height:300px;width:100%">
+                                    <img style="width:100%" src="/wc_document_control/static/description/last_section_in_sir.png"/>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+
+
+</odoo>

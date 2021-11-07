@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_custody_creation_template" model="mail.template">
+            <field name="name">Custody: Creation Template</field>
+            <field name="subject">Custody Creation ${object.name}</field>
+            <field name="email_from">${user.email|safe}</field>
+            <field name="email_to">${object.employee.work_email|safe}</field>
+            <field name="model_id" ref="janobi_custody.model_custody_custody"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.employee.name},</p>
+                <p>Date: ${object.date}</p>
+                <p>Custody Submitted..!</p>
+                <p>A custody was submitted to you by, ${user.name}.</p>
+                <p>Old custody value : ${object.old_custody_value}.</p>
+                <p>Custody value : ${object.custody_value}.</p>
+                <p style="font-size: 12px;">
+                <br></br>
+                Note: Custody will be locked after 7 Days.
+                </p>
+            ]]>
+            </field>
+        </record>
+
+        <record model="base.automation" id="custody_creation_server_action">
+            <field name="name">Custody: Custody creation</field>
+            <field name="model_id" ref="model_custody_custody"/>
+            <field name="template_id" ref="janobi_custody.email_custody_creation_template"/>
+            <field name="sequence">1</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">email</field>
+            <field name="trigger">on_create</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record model="base.automation" id="custody_creation_server_action_activity">
+            <field name="name">Custody: Custody Creation notification</field>
+            <field name="model_id" ref="model_custody_custody"/>
+            <field name="sequence">1</field>
+            <field name="type">ir.actions.server</field>
+            <field name="trigger">on_create</field>
+            <field name="state">next_activity</field>
+            <field name="activity_type_id">6</field>
+            <field name="activity_date_deadline_range">0</field>
+            <field name="activity_date_deadline_range_type">days</field>
+            <field name="activity_user_type">generic</field>
+            <field name="activity_user_field_name">employee_user_id</field>
+            <field name="activity_summary">Important!!</field>
+            <field name="activity_note"><![CDATA[
+                <p>Custody is Created and will expire after 7 Days.!</p>
+            ]]></field>
+        </record>
+    </data>
+</odoo>

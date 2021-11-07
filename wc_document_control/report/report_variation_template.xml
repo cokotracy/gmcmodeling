@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <template id="variation_submittal_report_template_id">
+		<t t-call="web.html_container">
+			<t t-call="wc_document_control.custom_external_layout_standard">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <!--<div>-->
+					        <!--<img src="/wc_document_control/static/description/header.jpeg" alt="Header" style="width:100%"/>-->
+				        <!--</div>-->
+                        <div class="row" style="display:flex;align-items:center;margin-left:2px;width:99.9%;margin-bottom:20px;height:200px;border:2px solid black;">
+                            <div style="margin-top:30px;width:40%;display:flex;align-items:center;">
+                                <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" class="float-left" style="max-height:140px; max-width:300px;"/>
+                            </div>
+<!--                            <div class="row" style="width:30%;display:flex;align-items:center;">-->
+<!--                                <div style="width:50%;display:flex;align-items:center;">-->
+<!--                                    <img t-if="doc.consultant.logo1" t-att-src="image_data_uri(doc.consultant.logo1)" class="float-left" style="max-height:198px; max-width:198px;"/>-->
+<!--                                </div>-->
+<!--                                <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">-->
+<!--                                    <img t-if="doc.consultant.logo2" t-att-src="image_data_uri(doc.consultant.logo2)" class="float-left" style="max-height:195px; max-width:195px;"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="row" style="margin-top:30px;width:30%;display:flex;align-items:center;">
+                                <div style="width:50%;display:flex;align-items:center;">
+                                    <img t-if="doc.project_id.partner_id.image_1920" t-att-src="image_data_uri(doc.project_id.partner_id.image_1920)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                                <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">
+                                    <img t-if="doc.project_id.partner_id.logo2" t-att-src="image_data_uri(doc.project_id.partner_id.logo2)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                            </div>
+                        </div>
+
+<!--                        <table style="border:2px;solid">-->
+<!--                                     <thead>-->
+<!--                                         <th style="width:40%">-->
+<!--                                         <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     &lt;!&ndash;<th style="width:15%">&ndash;&gt;-->
+<!--                                         &lt;!&ndash;<img t-if="o.consultant.logo1" t-att-src="image_data_uri(o.consultant.logo1)" class="float-left" />&ndash;&gt;-->
+
+<!--                                     &lt;!&ndash;</th>&ndash;&gt;-->
+<!--                                     &lt;!&ndash;<th style="width:15%">&ndash;&gt;-->
+<!--                                         &lt;!&ndash;<img t-if="o.consultant.logo2" t-att-src="image_data_uri(o.consultant.logo2)" class="float-left" />&ndash;&gt;-->
+
+<!--                                     &lt;!&ndash;</th>&ndash;&gt;-->
+
+<!--                                     <th style="width:15%">-->
+<!--                                        <img t-if="o.project_id.partner_id.image_1920" t-att-src="image_data_uri(o.project_id.partner_id.image_1920)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     <th style="width:15%">-->
+<!--                                         <img t-if="o.project_id.partner_id.logo2" t-att-src="image_data_uri(o.project_id.partner_id.logo2)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     </thead>-->
+
+<!--                                      &lt;!&ndash;<div style="width:30%;float:left">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;<div style="width:30%; float:right">&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--                                 &lt;!&ndash;<div style="width:30%; float:right">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;<img t-if="o.consultant.logo2" t-att-src="image_data_uri(o.consultant.logo2)" class="float-left" alt="Logo"/>&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                                 </table>-->
+
+                        <div style="text-align: center; font-size:30px;background-color: #4682b4;border: 2px solid black;">
+                            <p style="margin-top:3px;font-weight:bold;color:white;">VARIATION PROPOSAL REPORT</p>
+                        </div>
+                        <div class="row" style="margin-top:10px; width:100%">
+                            <table class="table" style="margin-left:10px;margin-right:2px;height:20px; width: 50%; border-color: rgb(175, 175, 175)">
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold ;width:30%;color:white;border-color: rgb(175, 175, 175);">
+                                        REFERENCE NO</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;color:black ; border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.revision_no"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >PROJECT ID</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%; font-weight:100;border-color: rgb(175, 175, 175)" >
+                                        <span t-field="doc.projectID"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >PROJECT NAME</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.project_id.name"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table" style="height:20px; width: 50%; border-color: rgb(175, 175, 175)">
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold ;width:30%;color:white;border-color: rgb(175, 175, 175);">
+                                        CONTRACTOR</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;color:black ; border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.contractor"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >ATTENTION</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%; font-weight:100;border-color: rgb(175, 175, 175)" >
+                                        <span t-field="doc.client_specialist_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:30%;color:white;border-color: rgb(175, 175, 175);" >DATE</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:70%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.submission_date"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="margin-top:2px; width:100%">
+                            <table class="table" style="margin-right:2px;height:20px; width: 100%; border-color: rgb(175, 175, 175)">
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold ;width:40%;color:white;border-color: rgb(175, 175, 175);">
+                                        CLIENT NAME</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%;color:black ; border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.client_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:40%;color:white;border-color: rgb(175, 175, 175);" >SUBJECT</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%; font-weight:100;border-color: rgb(175, 175, 175)" >
+                                        <span t-field="doc.subject"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:40%;color:white;border-color: rgb(175, 175, 175);" >BREIF DESCRIPTION OF VARIATION</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.description"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:40%;color:white;border-color: rgb(175, 175, 175);" >JUSTIFICATION OF VARIATION</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.justification"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:40%;color:white;border-color: rgb(175, 175, 175);" >RAISED BY</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.create_uid.name"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:40%;color:white;border-color: rgb(175, 175, 175);" >INITIAL CONTRACT AMOUNT (SR)</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.initial_contract_amount"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:40%;color:white;border-color: rgb(175, 175, 175);" >PREVIOUSLY APPROVED VARIATION (SR)</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.previously_approved_variation"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:40%;color:white;border-color: rgb(175, 175, 175);" >REQUESTED VARIATION AMOUNT (SR)</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.requested_variation_amount"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:40%;color:white;border-color: rgb(175, 175, 175);" >ACCUMULATED CONTRACT AMOUNT (SR)</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.accumulated_contract_amount"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:40%;color:white;border-color: rgb(175, 175, 175);" >CURRENT COMPLETION DATE</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.current_completion_date"/>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="border: 1px solid ;font-size : 20px;background-color: #4682b4 ;font-weight:bold;width:40%;color:white;border-color: rgb(175, 175, 175);" >REVISED COMPLETION DATE</td>
+                                    <td style="border: 1px solid ;font-size : 20px;width:60%;border-color: rgb(175, 175, 175);" >
+                                        <span t-field="doc.revised_completion_date"/>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+                        <br/>
+                        <br/>
+
+                        <div style="text-align: center; font-size:30px;background-color: #4682b4;border: 2px solid black;">
+                            <p style="margin-top:3px;font-weight:bold;color:white;">SIGNATORIESPREPARED</p>
+                        </div>
+                        <div style="margin-top:10px; width:100%">
+                            <table class="table" style="width:100%;border: 1px solid ;border-color: rgb(175, 175, 175);">
+                                <tr>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">PREPARED BY</td>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">REVIEWED BY</td>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">REVIEWED BY</td>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">APPROVED BY</td>
+                                </tr>
+                                <tr style="height:250px;">
+                                    <td style="font-size:20px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);"></td>
+                                    <td style="font-size:20px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);"></td>
+                                    <td style="font-size:20px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);"></td>
+                                    <td style="font-size:20px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">COMMENTS</td>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">COMMENTS</td>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">COMMENTS</td>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">COMMENTS</td>
+                                </tr>
+                                <tr style="height:250px;">
+                                    <td style="font-size:20px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);"></td>
+                                    <td style="font-size:20px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);"></td>
+                                    <td style="font-size:20px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);"></td>
+                                    <td style="font-size:20px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">CONTRACTOR</td>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">CONSULTANT</td>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">CONSULTANT PM</td>
+                                    <td style="font-size:25px;width:25%;border: 1px solid ;text-align: center;border-color: rgb(175, 175, 175);">CLIENT</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </t>
+			</t>
+			</t>
+		</template>
+
+        <template id="custom_external_layout_standard">
+            <div class="article o_report_layout_standard">
+                <t t-raw="0"/>
+            </div>
+			<div class="footer" >
+
+			</div>
+        </template>
+
+
+    </data>
+</odoo>
+

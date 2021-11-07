@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    
+        <record id="purchase_requisition_seq" model="ir.sequence">
+            <field name="name">Purchase Requisition Sequence</field>
+            <field name="code">purchase.requisition.seq</field>
+            <field name="prefix">EPR</field>
+            <field name="padding">5</field>
+        </record>
+        
+        <record id="purchase_requisition_seq_c" model="ir.sequence">
+            <field name="name">Purchase Requisition Sequence C</field>
+            <field name="code">purchase.requisition.seq.c</field>
+            <field name="padding">5</field>
+        </record>
+        <record id="purchase_requisition_seq_E" model="ir.sequence">
+            <field name="name">Purchase Requisition Sequence E</field>
+            <field name="code">purchase.requisition.seq.e</field>
+            <field name="padding">5</field>
+        </record>
+        <record id="purchase_requisition_seq_M" model="ir.sequence">
+            <field name="name">Purchase Requisition Sequence M</field>
+            <field name="code">purchase.requisition.seq.m</field>
+            <field name="padding">5</field>
+        </record>
+
+    </data>
+</odoo>

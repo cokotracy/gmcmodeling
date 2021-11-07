@@ -1,0 +1,256 @@
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <!-- NAME & FILE_NAME should be the same -->
+        <report
+                id="rfi_report"
+                model="rfi.submittal"
+                report_type="qweb-pdf"
+                string="RFI SUBMITTAL"
+                menu="True"
+                name="wc_document_control.rfi_template"
+                file="wc_document_control.rfi_template"
+                paperformat="wc_document_control.paperformat_editing"/>
+        />
+
+        <template id="rfi_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="wc_document_control.custom_external_layout_standard">
+                        <div class="page">
+
+                                <!--<div>-->
+                                    <!--<img src="/wc_document_control/static/description/header.jpeg" alt="Header" style="width:100%"/>-->
+                                <!--</div>-->
+
+                        <div class="row" style="display:flex;align-items:center;margin-left:2px;width:99.9%;margin-bottom:20px;height:200px;border:2px solid black;">
+                            <div style="margin-top:30px;width:40%;display:flex;align-items:center;">
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="float-left" style="max-height:140px; max-width:300px;"/>
+                            </div>
+<!--                            <div class="row" style="width:30%;display:flex;align-items:center;">-->
+<!--                                <div style="width:50%;display:flex;align-items:center;">-->
+<!--                                    <img t-if="doc.consultant.logo1" t-att-src="image_data_uri(doc.consultant.logo1)" class="float-left" style="max-height:198px; max-width:198px;"/>-->
+<!--                                </div>-->
+<!--                                <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">-->
+<!--                                    <img t-if="doc.consultant.logo2" t-att-src="image_data_uri(doc.consultant.logo2)" class="float-left" style="max-height:195px; max-width:195px;"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="row" style="margin-top:30px;width:30%;display:flex;align-items:center;">
+                                <div style="width:50%;display:flex;align-items:center;">
+                                    <img t-if="o.project_id.partner_id.image_1920" t-att-src="image_data_uri(o.project_id.partner_id.image_1920)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                                <div style="margin-left : 5px;width:50%;display:flex;align-items:center;">
+                                    <img t-if="o.project_id.partner_id.logo2" t-att-src="image_data_uri(o.project_id.partner_id.logo2)" class="float-left" style="max-height:140px; max-width:198px;"/>
+                                </div>
+                            </div>
+                        </div>
+<!--                            <table style="border:2px;solid">-->
+<!--                                     <thead>-->
+<!--                                         <th style="width:40%">-->
+<!--                                         <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     &lt;!&ndash;<th style="width:15%">&ndash;&gt;-->
+<!--                                         &lt;!&ndash;<img t-if="o.consultant.logo1" t-att-src="image_data_uri(o.consultant.logo1)" class="float-left" />&ndash;&gt;-->
+
+<!--                                     &lt;!&ndash;</th>&ndash;&gt;-->
+<!--                                     &lt;!&ndash;<th style="width:15%">&ndash;&gt;-->
+<!--                                         &lt;!&ndash;<img t-if="o.consultant.logo2" t-att-src="image_data_uri(o.consultant.logo2)" class="float-left" />&ndash;&gt;-->
+
+<!--                                     &lt;!&ndash;</th>&ndash;&gt;-->
+
+<!--                                     <th style="width:15%">-->
+<!--                                        <img t-if="o.project_id.partner_id.image_1920" t-att-src="image_data_uri(o.project_id.partner_id.image_1920)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     <th style="width:15%">-->
+<!--                                         <img t-if="o.project_id.partner_id.logo2" t-att-src="image_data_uri(o.project_id.partner_id.logo2)" class="float-left" />-->
+
+<!--                                     </th>-->
+<!--                                     </thead>-->
+
+<!--                                      &lt;!&ndash;<div style="width:30%;float:left">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;<div style="width:30%; float:right">&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--                                 &lt;!&ndash;<div style="width:30%; float:right">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;<img t-if="o.consultant.logo2" t-att-src="image_data_uri(o.consultant.logo2)" class="float-left" alt="Logo"/>&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                                 </table>-->
+
+
+                                <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                        <tbody>
+                                            <tr style="background-color: #4682b4;color:white">
+                                                <th scope="col" colspan="4"><center><span>Request For Information (RFI) Details</span></center></th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col"><span>Reference No</span></th>
+                                                <td scope="col"> <span t-esc="o.revision_no"/></td>
+                                                <th scope="col"><span>Submittal Type</span></th>
+                                                <td scope="col"><span t-esc="dict(o.fields_get(allfields=['submittal_type'])['submittal_type']['selection'])[o.submittal_type]"/> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col"><span>Project ID</span></th>
+                                                <td scope="col"><span t-esc="o.projectID"/></td>
+                                                <th scope="col"><span>Submission Date</span></th>
+                                                <td scope="col"><span t-esc="o.submission_date"/> </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="col"><span>Project Name</span></th>
+                                                <td scope="col"><span t-esc="o.project_id.name"/></td>
+                                                <th scope="col"><span>Scope Details</span></th>
+                                                <td scope="col"><span t-esc="o.scope_details"/> </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="col"><span>Attention</span></th>
+                                                <td scope="col"><span t-esc="o.client_specialist_id.name"/></td>
+                                                <th scope="col"><span>Status</span></th>
+                                                <td scope="col"><span t-esc="o.code"/> </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="col"><span>Drawing Reference</span></th>
+                                                <td scope="col"><span t-esc="o.drawing_ref"/></td>
+                                                <th scope="col"></th>
+                                                <td scope="col"> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col"><span>Subject</span></th>
+                                                <td scope="col" colspan="3"><span t-esc="o.subject"/></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                        <tbody>
+                                            <tr style="background-color: #4682b4;color:white">
+                                                <th scope="col" colspan="4"><span>QUESTION</span></th>
+                                            </tr>
+                                            <tr style="hight:500px">
+                                                <td scope="col" colspan="4" rowspan="4"> <span t-esc="o.question"/></td>
+                                            </tr>
+                                            <!--<tr>-->
+                                            <!--</tr>-->
+                                            <!--<tr>-->
+                                            <!--</tr>-->
+                                            <!--<tr>-->
+                                            <!--</tr>-->
+
+
+                                        </tbody>
+                                    </table>
+                                <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                        <tbody>
+                                            <tr style="background-color: #4682b4;color:white">
+                                                <th scope="col" colspan="4"><span>SUGGESTION</span></th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col" colspan="4" rowspan="4"> <span t-esc="o.suggestion"/></td>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td scope="col" style="width:40%"><span>Attachments : </span></td>
+                                                <!--<td scope="col"> <span t-esc="o.revision_no"/></td>-->
+                                                <td scope="col" colspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col" style="width:40%"><span>Contractor :</span></td>
+                                                <td scope="col" style="width:30%"> <span>Signature : </span></td>
+                                                <td scope="col" style="width:30%"><span>Date :</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col" style="width:40%"><span>Received By P.M. </span></td>
+                                                <td scope="col" style="width:30%"> <span>Signature : </span></td>
+                                                <td scope="col" style="width:30%"><span>Date :</span></td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                        <tbody>
+                                            <tr style="background-color: #4682b4;color:white">
+                                                <th scope="col" colspan="4"><span>RESPONSE BY CONSULTANT</span></th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col" colspan="4" rowspan="4"> </td>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                <table style="font-size:20px" class="table table-sm table-condensed table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td scope="col" style="width:40%"><span>Attachments : </span></td>
+                                            <!--<td scope="col"> <span t-esc="o.revision_no"/></td>-->
+                                            <td scope="col" colspan="2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="col" style="width:40%"><span>Consultant :</span></td>
+                                            <td scope="col" style="width:30%"> <span>Signature : </span></td>
+                                            <td scope="col" style="width:30%"><span>Date :</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="col" style="width:30%"><span>Received By P.M. </span></td>
+                                            <td scope="col" style="width:30%"> <span>Signature : </span></td>
+                                            <td scope="col" style="width:30%"><span>Date :</span></td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                                <br/>
+
+                                <div style="width:100%">
+                                    <img style="width:100%" src="/wc_document_control/static/description/copy_to_rfi.png"/>
+                                </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+
+
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+
+        <record id="custody_seq" model="ir.sequence">
+            <field name="name">Custody Code</field>
+            <field name="code">custody.code</field>
+            <field name="prefix">%(year)s/</field>
+            <field name="padding">4</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="sale_order_form_inherit_new">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button class="oe_stat_button" type="object" icon="fa-user" string="Send to SM"
+                            name="send_to_sm_state"
+                            attrs="{'invisible': ['|', ('type', '!=', 'credit'), ('state', '!=', 'draft')]}"
+                    />
+                    <button class="oe_stat_button" type="object" icon="fa-user" string="Send to AP"
+                            name="send_to_ap_state"
+                            attrs="{'invisible': ['|', ('type', '!=', 'subcontracting'), ('state', '!=', 'draft')]}"
+                    />
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="type" invisible="1"/>
+                    <field name="hide" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//header/button[8]" position="replace">
+                    <button name="action_confirm" type="object" string="Confirm"
+                            attrs="{'invisible': ['|', ('state', '=', 'sale'), ('hide', '=', True)]}"/>
+                </xpath>
+
+                <xpath expr="//header/button[9]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <field name="state" position="replace">
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sm_approval,ap_approval,sale"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

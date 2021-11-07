@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="inher_view_purchase_requisition_form" model="ir.ui.view">
+            <field name="name">purchase.requisition.form</field>
+            <field name="model">purchase.requisition</field>
+            <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='vendor_id']" position="after">
+                    <field name="kindpo_id"/>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+
+                    <field name="purchasee_type"/>
+                    <field name="purchasee_type_2" string="نوع الشراء"/>
+
+                </xpath>
+
+            </field>
+        </record>
+
+
+
+
+    </data>
+</odoo>

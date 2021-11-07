@@ -1,0 +1,141 @@
+<odoo>
+    <data>
+        <template id="employee_badge_doc">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="employee">
+                    <t t-call="web.external_layout">
+                        <div class="page" style="page-break-after: always;">
+                            <div style="position:absolute;left:17%;margin-left:-100px;top:30px;width:10.00125cm;height:6.3235416667cm;">
+                                <div style="position:absolute;left:0px;top:0px">
+                                    <img src="/hr_enhancement_janobi/static/src/img/front-background.jpg" width='378'
+                                         height='239'/>
+                                </div>
+                                <div style="position:absolute;left:310px;top:6px">
+                                    <img src="/hr_enhancement_janobi/static/src/img/logo_janobi.png" width='70'
+                                         height='70'/>
+                                </div>
+                                <div style="position:absolute;left:10px;top:45px;border-radius: 50%;">
+                                    <img t-if="employee.image_1920" t-att-src="image_data_uri(employee.image_1920)"
+                                         style="height:55pt;width:50pt;border-radius: 50%;" alt="Employee Image"/>
+                                </div>
+                                <div style="position:absolute;left:80px;top:72px;width:300px;text-align:left;">
+                                    <span style="font-family:Candara Bold,serif;font-size:13px;color:rgb(175,144,89);width:100%">
+                                        <t t-esc="employee.name"/>
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:85px;top:90px;width:300px;text-align:left;">
+                                    <span style="font-family:Candara Italic,serif;font-size:11px;color:rgb(175,144,89);width=100%">
+                                        <t t-esc="employee.job_id.name"/>
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:325px;top:130px">
+                                    <span style="font-family:Candara Bold Italic,serif;font-size:9px;color:rgb(175,144,89);">
+                                        Signature
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:7px;top:125px;">
+                                    <span style="font-family:Candara Bold,serif;font-size:12px;color:rgb(175,144,89);font-weight:bold;">
+                                        ID/Stay&#160;No.
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:110px;top:125px;">
+                                    <span style="font-family:Candara Bold,serif;font-size:12px;color:rgb(175,144,89);font-weight:bold;">
+                                        Blood:
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:190px;top:125px;">
+                                    <span style="font-family:Candara Bold,serif;font-size:12px;color:rgb(175,144,89);font-weight:bold;">
+                                        Authorized&#160;to&#160;drive
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:9px;top:140px">
+                                    <span style="font-family:Candara,serif;font-size:11px;color:rgb(55,151,90);">
+                                        <t t-esc="employee.identification_id"/>
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:120px;top:140px;">
+                                    <span style="font-family:Candara,serif;font-size:12px;color:rgb(55,151,90);">
+                                        <t t-esc="employee.blood_group"/>
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:7px;top:160px;">
+                                    <span style="font-family:Candara Bold,serif;font-size:12px;color:rgb(175,144,89);font-weight:bold;">
+                                        Joining&#160;Date:
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:110px;top:160px;">
+                                    <span style="font-family:Candara Bold,serif;font-size:12px;color:rgb(175,144,89);font-weight:bold;">
+                                        Gender:
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:190px;top:160px;">
+                                    <span style="font-family:Candara Bold,serif;font-size:12px;color:rgb(175,144,89);font-weight:bold;">
+                                        Email:
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:10px;top:175px;">
+                                    <span style="font-family:Candara,serif;font-size:11px;color:rgb(55,151,90);">
+                                        <t t-esc="employee.contract_id.date_start"/>
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:115px;top:175px">
+                                    <span style="font-family:Candara,serif;font-size:11px;color:rgb(55,151,90);">
+                                        <t t-esc="employee.gender"/>
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:195px;top:175px;">
+                                    <span style="font-family:Candara,serif;font-size:11px;color:rgb(55,151,90);">
+                                        <t t-esc="employee.work_email"/>
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:7px;top:195px;">
+                                    <span style="font-family:Candara Bold,serif;font-size:12px;color:rgb(175,144,89);font-weight:bold;">
+                                        Expiry&#160;Date:
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:110px;top:195px;">
+                                    <span style="font-family:Candara Bold,serif;font-size:12px;color:rgb(175,144,89);font-weight:bold;">
+                                        Emp.&#160;No.
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:10px;top:210px;">
+                                    <span style="font-family:Candara,serif;font-size:11px;color:rgb(55,151,90);">
+                                        <t t-esc="employee.contract_id.date_end"/>
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:115px;top:210px;">
+                                    <span style="font-family:Candara,serif;font-size:8.1px;color:rgb(55,151,90);">
+                                        <t t-esc="employee.code"/>
+                                    </span>
+                                </div>
+                                <div style="position:absolute;left:200px;top:200px;">
+                                    <img alt="barcode" t-if="employee.barcode"
+                                         t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', employee.barcode, 600, 120)"
+                                         style="max-height:100pt;max-width:80%;"/>
+                                </div>
+                            </div>
+                            <div style="position:absolute;left:98%;margin-left:-390px;top:30px;width:10.00125cm;height:6.3235416667cm;">
+                                <div style="position:absolute;left:0px;top:0px">
+                                    <img src="/hr_enhancement_janobi/static/src/img/back-background.jpg" width='378'
+                                         height='239'/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <report
+                id="employee_badge_report"
+                string="Employee Badge"
+                model="hr.employee"
+                report_type="qweb-pdf"
+                file="hr_enhancement_janobi.employee_badge_doc"
+                name="hr_enhancement_janobi.employee_badge_doc"
+        />
+
+
+    </data>
+</odoo>

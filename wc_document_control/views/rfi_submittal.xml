@@ -1,0 +1,119 @@
+<odoo>
+    <data>
+        <record id="view_rfi_submittal_form" model="ir.ui.view">
+            <field name="name">view_rfi_submittal_form</field>
+            <field name="model">rfi.submittal</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="resbmittal_button" string="Resubmittal"
+                                attrs="{'invisible':[('is_reviewed','=',True)]}" class="btn-primary" type="object"/>
+                        <button name="action_dc_send" type="object" class="oe_highlight" string="Send By Email"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="open_related_revisions" type="object" class="oe_stat_button" icon="fa-tasks"
+                                    attrs="{'invisible':[('revision_no_seq','!=',0)]}">
+                                <field string="Revisions" name="revisions_num" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="projectID" readonly="1" force_save="1"/>
+                                <field name="project_id" required="1"/>
+                                <field name="client_id"/>
+                                <field name="client_manager_id"/>
+                                <field name="client_specialist_id"/>
+                                <field name="prepared_by_id"/>
+                                <field name="is_reviewed" invisible="1"/>
+                                <field name="revision_no_seq" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="submittal_type" required="1"/>
+                                <field name="scope_of_work_id" required="1"/>
+                                <field name="scope_division"/>
+                                <field name="scope_details"/>
+                                <field name="code"/>
+                            </group>
+
+                            <group>
+                                <field name="rfiID" readonly="1" force_save="1"/>
+                                <field name="revision_no" readonly="1" force_save="1"/>
+                                <field name="submission_date"/>
+                                <field name="last_update"/>
+                                <field name="drawing_ref"/>
+                                <field name="company_id" readonly="1" force_save="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="subject"/>
+                            <field name="question"/>
+                            <field name="suggestion"/>
+                            <field name="answer"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_rfi_submittal_tree" model="ir.ui.view">
+            <field name="name">view_rfi_submittal_tree</field>
+            <field name="model">rfi.submittal</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="projectID"/>
+                    <field name="project_id"/>
+                    <field name="client_id"/>
+                    <field name="client_manager_id"/>
+                    <field name="prepared_by_id"/>
+                    <field name="submittal_type"/>
+                    <field name="scope_of_work_id"/>
+                    <field name="code"/>
+                    <field name="rfiID"/>
+                    <field name="revision_no"/>
+                    <field name="submission_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_rfi_search" model="ir.ui.view">
+            <field name="name">view_rfi_search</field>
+            <field name="model">rfi.submittal</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="project_id" string="string" domain="[('project_ID', 'ilike', self)]"/>
+                    <field name="projectID"/>
+                    <field name="project_id"/>
+                    <field name="rfiID"/>
+                    <field name="revision_no"/>
+                    <field name="code"/>
+                    <field name="subject"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_rfi_submittal_view" model="ir.actions.act_window">
+            <field name="name">RFI Submittal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rfi.submittal</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+
+                </p>
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+        <!--<menuitem id="menu_rfi_sir_submittal_forms_categ" name="RFI AND SIR AND MIR" parent="menu_document_control_root" sequence="5"/>-->
+        <menuitem id="menu_rfi_submittal_view" name="RFI Submittal" parent="menu_document_control_categ"
+                  action="action_rfi_submittal_view" sequence="7"/>
+    </data>
+</odoo>
